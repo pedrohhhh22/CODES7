@@ -1,97 +1,97 @@
 package com.appsdevs.popit
 
 import android.content.pm.ActivityInfo
-import android. os.Bundle
+import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.core. Animatable
-import androidx.compose.animation. core.EaseInOutSine
-import androidx.compose.animation.core. RepeatMode
-import androidx.compose.animation. core.animateFloat
-import androidx.compose.animation.core. infiniteRepeatable
-import androidx.compose. animation.core.rememberInfiniteTransition
-import androidx. compose.animation.core.spring
-import androidx.compose.animation.core. tween
-import androidx. compose.foundation.Image
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.EaseInOutSine
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose. foundation.border
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout. Arrangement
-import androidx.compose.foundation. layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation. layout.Column
-import androidx.compose.foundation.layout. ColumnScope
-import androidx. compose.foundation.layout.Row
-import androidx.compose.foundation.layout. Spacer
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx. compose.foundation.layout.fillMaxWidth
-import androidx.compose. foundation.layout.height
-import androidx.compose.foundation.layout. offset
-import androidx.compose.foundation.layout. padding
-import androidx. compose.foundation.layout.size
-import androidx.compose.foundation. layout.width
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy. LazyColumn
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation. shape.RoundedCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose. material3.HorizontalDivider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
-import androidx.compose.runtime. Composable
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime. getValue
-import androidx. compose.runtime.key
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableDoubleStateOf
-import androidx. compose.runtime.mutableIntStateOf
-import androidx.compose.runtime. mutableLongStateOf
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateListOf
-import androidx. compose.runtime.mutableStateMapOf
-import androidx. compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose. ui.Alignment
-import androidx.compose. ui.Modifier
-import androidx.compose. ui.draw.alpha
-import androidx.compose.ui.draw. clip
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics. Brush
-import androidx. compose.ui.graphics.Color
-import androidx.compose.ui. graphics.Shadow
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.input.pointer.changedToUp
-import androidx.compose.ui.input. pointer.pointerInput
-import androidx.compose.ui. layout.ContentScale
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform. LocalDensity
-import androidx.compose. ui.res.painterResource
-import androidx.compose. ui.text.TextStyle
-import androidx. compose.ui.text.font.FontWeight
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit. Dp
-import androidx. compose.ui.unit.dp
-import androidx.compose.ui.unit. sp
-import androidx. compose.ui.window.Dialog
-import androidx.compose.ui.window. DialogProperties
-import androidx. core.view.WindowCompat
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.appsdevs.popit.ui.theme.PopITTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
-import kotlinx. coroutines.delay
-import kotlinx. coroutines.flow.first
-import kotlinx. coroutines.launch
-import java.util. Locale
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import java.util.Locale
 import kotlin.math.PI
 import kotlin.math.roundToInt
 import kotlin.random.Random
@@ -104,7 +104,7 @@ class TournamentActivity :  ComponentActivity() {
         try {
             WindowCompat.setDecorFitsSystemWindows(window, false)
             val controller = WindowInsetsControllerCompat(window, window.decorView)
-            controller. hide(WindowInsetsCompat.Type.systemBars())
+            controller.hide(WindowInsetsCompat.Type.systemBars())
             controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         } catch (_: Exception) {}
 
@@ -205,12 +205,12 @@ fun TournamentMainScreen(onClose: () -> Unit) {
                 }
             )
         }
-        is TournamentGameState. GameOver -> {
+        is TournamentGameState.GameOver -> {
             val score = (gameState as TournamentGameState.GameOver).finalScore
             TournamentGameOverScreen(
                 finalScore = score,
                 onPlayAgain = { gameState = TournamentGameState.Playing },
-                onBackToLobby = { gameState = TournamentGameState. Lobby }
+                onBackToLobby = { gameState = TournamentGameState.Lobby }
             )
         }
     }
@@ -253,7 +253,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
             // Sincronizar epoch con Firebase
             ds.syncTournamentEpochWithFirebase()
             // NUEVO: Forzar sincronización del perfil al entrar
-            ds. forceSyncProfileToFirebase()
+            ds.forceSyncProfileToFirebase()
             isLoading = false
         } catch (e: Exception) {
             e.printStackTrace()
@@ -263,7 +263,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
 
     // NUEVO: Actualizar Firebase cuando cambia el perfil local
     LaunchedEffect(myName, myAvatar, myGeneratedAvatar, myBannerColor) {
-        if (! isLoading && myUserId. isNotBlank()) {
+        if (! isLoading && myUserId.isNotBlank()) {
             // Pequeño delay para evitar múltiples llamadas
             delay(300L)
             ds.updateProfileInFirebase()
@@ -291,7 +291,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
     val currentEpoch = if (epochFlowVal == 0L) currentTimeMs else epochFlowVal
 
     val activeMs = ds.getTournamentActiveMs()
-    val totalMs = ds. getTournamentDurationMs()
+    val totalMs = ds.getTournamentDurationMs()
     val elapsedMs = (currentTimeMs - currentEpoch).coerceAtLeast(0L)
 
     val isActive = elapsedMs < activeMs
@@ -313,17 +313,17 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
             name = if (isCurrentUser && myName.isNotBlank()) myName else e.name,
             score = e.score,
             avatarRes = if (isCurrentUser && myAvatar != 0) myAvatar else e.avatarRes,
-            oduserId = e. oduserId,
-            updatedAt = e. updatedAt,
+            oduserId = e.oduserId,
+            updatedAt = e.updatedAt,
             generatedAvatarId = if (isCurrentUser) myGeneratedAvatar else e.generatedAvatarId,
             bannerColorId = if (isCurrentUser) myBannerColor else e.bannerColorId,
             highScore = e.highScore,
             totalPops = e.totalPops,
-            bestClickPercent = e. bestClickPercent,
+            bestClickPercent = e.bestClickPercent,
             challengesCompleted = e.challengesCompleted,
-            level = e. level,
-            bestStreak = e. bestStreak,
-            maxConsecutiveDays = e. maxConsecutiveDays
+            level = e.level,
+            bestStreak = e.bestStreak,
+            maxConsecutiveDays = e.maxConsecutiveDays
         )
     }
 
@@ -337,7 +337,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
     val infiniteTransition = rememberInfiniteTransition(label = "lobbyEffects")
     val headerGlow by infiniteTransition.animateFloat(
         initialValue = 0.6f, targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(2000, easing = EaseInOutSine), RepeatMode. Reverse),
+        animationSpec = infiniteRepeatable(tween(2000, easing = EaseInOutSine), RepeatMode.Reverse),
         label = "headerGlow"
     )
 
@@ -345,8 +345,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
         if (isLoading) {
             // Mostrar loading mientras sincroniza
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
                     .background(
                         brush = Brush.verticalGradient(
                             listOf(Color(0xFF1A1A2E), Color(0xFF16213E), Color(0xFF0F3460))
@@ -360,15 +359,14 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
                     Text(
                         text = "Loading Tournament...",
                         fontSize = 18.sp,
-                        color = Color. White,
+                        color = Color.White,
                         fontWeight = FontWeight.Medium
                     )
                 }
             }
         } else {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
                     .background(
                         brush = Brush.verticalGradient(
                             listOf(Color(0xFF1A1A2E), Color(0xFF16213E), Color(0xFF0F3460))
@@ -381,7 +379,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
                     isTournamentEnded = isTournamentEnded,
                     remainingMs = remainingMs,
                     headerGlow = headerGlow,
-                    isTestMode = DataStoreManager. TOURNAMENT_TEST_MODE,
+                    isTestMode = DataStoreManager.TOURNAMENT_TEST_MODE,
                     onClose = onClose
                 )
 
@@ -404,8 +402,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                         . clickable { showRewardsInfoSheet = true },
                     shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(
@@ -413,9 +410,8 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
                     )
                 ) {
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            . padding(12.dp),
+                        modifier = Modifier.fillMaxWidth()
+                            .padding(12.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
                     ) {
@@ -424,7 +420,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
                         Text(
                             text = "View Rewards & Prizes",
                             fontSize = 14.sp,
-                            fontWeight = FontWeight. Bold,
+                            fontWeight = FontWeight.Bold,
                             color = Color.White
                         )
                         Spacer(modifier = Modifier.width(8.dp))
@@ -491,9 +487,9 @@ private fun TournamentHeader(
     onClose: () -> Unit
 ) {
     Row(
-        modifier = Modifier. fillMaxWidth(),
-        horizontalArrangement = Arrangement. SpaceBetween,
-        verticalAlignment = Alignment. CenterVertically
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
@@ -520,24 +516,22 @@ private fun TournamentHeader(
                     if (isTestMode) {
                         Spacer(modifier = Modifier.width(8.dp))
                         Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(4.dp))
+                            modifier = Modifier.clip(RoundedCornerShape(4.dp))
                                 .background(Color(0xFFFF5722))
                                 .padding(horizontal = 6.dp, vertical = 2.dp)
                         ) {
                             Text(
                                 text = "TEST",
                                 fontSize = 8.sp,
-                                fontWeight = FontWeight. Bold,
-                                color = Color. White
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
                             )
                         }
                     }
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Box(
-                        modifier = Modifier
-                            .size(8.dp)
+                        modifier = Modifier.size(8.dp)
                             .clip(CircleShape)
                             .background(
                                 when {
@@ -558,7 +552,7 @@ private fun TournamentHeader(
                         color = when {
                             isActive -> Color(0xFF4CAF50)
                             isTournamentEnded -> Color(0xFFFFD700)
-                            else -> Color. White. copy(alpha = 0.7f)
+                            else -> Color.White.copy(alpha = 0.7f)
                         }
                     )
                 }
@@ -567,10 +561,10 @@ private fun TournamentHeader(
 
         Box(
             modifier = Modifier
-                . size(44.dp)
+                .size(44.dp)
                 .clip(CircleShape)
-                .background(Color. White. copy(alpha = 0.1f))
-                .border(1.dp, Color. White. copy(alpha = 0.2f), CircleShape)
+                .background(Color.White.copy(alpha = 0.1f))
+                .border(1.dp, Color.White.copy(alpha = 0.2f), CircleShape)
                 .clickable { onClose() },
             contentAlignment = Alignment.Center
         ) {
@@ -592,7 +586,7 @@ private fun TournamentPlayButton(
     onStartNewTournament:  () -> Unit
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "buttonPulse")
-    val buttonPulse by infiniteTransition. animateFloat(
+    val buttonPulse by infiniteTransition.animateFloat(
         initialValue = 1f, targetValue = 1.03f,
         animationSpec = infiniteRepeatable(tween(1000, easing = EaseInOutSine), RepeatMode.Reverse),
         label = "pulse"
@@ -602,13 +596,12 @@ private fun TournamentPlayButton(
         pendingReward != null -> {
             Button(
                 onClick = onClaimReward,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
                     .height(70.dp)
                     .scale(buttonPulse),
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD700)),
-                elevation = ButtonDefaults. buttonElevation(defaultElevation = 8.dp)
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(text = "🎁", fontSize = 28.sp)
@@ -621,9 +614,9 @@ private fun TournamentPlayButton(
                             color = Color.Black
                         )
                         Text(
-                            text = "Rank #${pendingReward.rank} • ${formatTournamentCurrency(pendingReward. coins)} coins",
+                            text = "Rank #${pendingReward.rank} • ${formatTournamentCurrency(pendingReward.coins)} coins",
                             fontSize = 12.sp,
-                            color = Color. Black. copy(alpha = 0.7f)
+                            color = Color.Black.copy(alpha = 0.7f)
                         )
                     }
                 }
@@ -632,8 +625,7 @@ private fun TournamentPlayButton(
         isActive -> {
             Button(
                 onClick = onPlay,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
                     .height(64.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
@@ -641,7 +633,7 @@ private fun TournamentPlayButton(
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(text = "🎮", fontSize = 24.sp)
-                    Spacer(modifier = Modifier. width(12.dp))
+                    Spacer(modifier = Modifier.width(12.dp))
                     Text(
                         text = "PLAY TOURNAMENT",
                         fontSize = 20.sp,
@@ -653,12 +645,12 @@ private fun TournamentPlayButton(
         }
         isTournamentEnded -> {
             Card(
-                modifier = Modifier. fillMaxWidth().height(64.dp),
+                modifier = Modifier.fillMaxWidth().height(64.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(containerColor = Color(0xFF666666))
             ) {
                 Box(
-                    modifier = Modifier. fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -667,7 +659,7 @@ private fun TournamentPlayButton(
                         Text(
                             text = "Tournament Ended - Waiting for rewards",
                             fontSize = 16.sp,
-                            fontWeight = FontWeight. Bold,
+                            fontWeight = FontWeight.Bold,
                             color = Color.White
                         )
                     }
@@ -677,8 +669,7 @@ private fun TournamentPlayButton(
         isCycleComplete -> {
             Button(
                 onClick = onStartNewTournament,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
                     .height(64.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2196F3)),
@@ -710,19 +701,18 @@ private fun YourRankCard(
     myRank: Int
 ) {
     Card(
-        modifier = Modifier. fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults. cardColors(containerColor = Color(0xFF0F0F1A).copy(alpha = 0.9f)),
-        elevation = CardDefaults. cardElevation(defaultElevation = 6.dp)
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF0F0F1A).copy(alpha = 0.9f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
                 .background(
                     brush = Brush.horizontalGradient(
                         colors = listOf(
                             Color(0xFFFFD700).copy(alpha = 0.1f),
-                            Color. Transparent,
+                            Color.Transparent,
                             Color(0xFFFFD700).copy(alpha = 0.1f)
                         )
                     )
@@ -731,8 +721,7 @@ private fun YourRankCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
-                modifier = Modifier
-                    .size(56.dp)
+                modifier = Modifier.size(56.dp)
                     .clip(CircleShape)
                     .background(
                         brush = Brush.linearGradient(
@@ -751,7 +740,7 @@ private fun YourRankCard(
                     Image(
                         painter = painterResource(id = avatarToShow),
                         contentDescription = null,
-                        contentScale = ContentScale. Crop,
+                        contentScale = ContentScale.Crop,
                         modifier = Modifier.size(50.dp).clip(CircleShape)
                     )
                 }
@@ -761,14 +750,14 @@ private fun YourRankCard(
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = myName. ifBlank { "You" },
+                    text = myName.ifBlank { "You" },
                     color = Color.White,
-                    fontWeight = FontWeight. Bold,
+                    fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
                 Text(
                     text = "Your Ranking",
-                    color = Color.White. copy(alpha = 0.6f),
+                    color = Color.White.copy(alpha = 0.6f),
                     fontSize = 12.sp
                 )
             }
@@ -777,7 +766,7 @@ private fun YourRankCard(
                 Text(
                     text = if (myEntry != null) "#$myRank" else "--",
                     color = Color(0xFFFFD700),
-                    fontWeight = FontWeight. ExtraBold,
+                    fontWeight = FontWeight.ExtraBold,
                     fontSize = 28.sp,
                     style = TextStyle(
                         shadow = Shadow(
@@ -792,8 +781,8 @@ private fun YourRankCard(
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = formatTournamentCurrency(myEntry?.score ?: 0),
-                        color = Color. White,
-                        fontWeight = FontWeight. Bold,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
                         fontSize = 14.sp
                     )
                 }
@@ -812,13 +801,12 @@ private fun ColumnScope.LeaderboardCard(
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults. cardColors(containerColor = Color(0xFF0F0F1A).copy(alpha = 0.9f)),
-        elevation = CardDefaults. cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF0F0F1A).copy(alpha = 0.9f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         modifier = Modifier.weight(1f)
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
                 .padding(12.dp)
         ) {
             Row(
@@ -844,39 +832,37 @@ private fun ColumnScope.LeaderboardCard(
             }
 
             Spacer(modifier = Modifier.height(8.dp))
-            HorizontalDivider(color = Color. White. copy(alpha = 0.1f))
+            HorizontalDivider(color = Color.White.copy(alpha = 0.1f))
             Spacer(modifier = Modifier.height(8.dp))
 
             if (entries.isEmpty()) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                         .weight(1f),
                     contentAlignment = Alignment.Center
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(text = "🎮", fontSize = 48.sp)
-                        Spacer(modifier = Modifier. height(12.dp))
+                        Spacer(modifier = Modifier.height(12.dp))
                         Text(
                             text = "No scores yet",
-                            color = Color.White. copy(alpha = 0.7f),
+                            color = Color.White.copy(alpha = 0.7f),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Medium
                         )
                         Text(
                             text = "Be the first to play! ",
-                            color = Color.White. copy(alpha = 0.5f),
+                            color = Color.White.copy(alpha = 0.5f),
                             fontSize = 14.sp
                         )
                     }
                 }
             } else {
                 LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                         .weight(1f)
                 ) {
-                    itemsIndexed(entries. take(100)) { _, item ->
+                    itemsIndexed(entries.take(100)) { _, item ->
                         TournamentRankingRow(
                             item = item,
                             isCurrentUser = item.oduserId == myUserId,
@@ -904,7 +890,7 @@ private fun TournamentRankingRow(
         targetValue = 0.7f,
         animationSpec = infiniteRepeatable(
             animation = tween(1500, easing = EaseInOutSine),
-            repeatMode = RepeatMode. Reverse
+            repeatMode = RepeatMode.Reverse
         ),
         label = "glow"
     )
@@ -918,11 +904,11 @@ private fun TournamentRankingRow(
 
     Row(
         modifier = Modifier
-            . fillMaxWidth()
+            .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
             .background(
                 if (isCurrentUser) Color(0xFFFFD700).copy(alpha = glowAlpha * 0.25f)
-                else Color. White.copy(alpha = 0.05f)
+                else Color.White.copy(alpha = 0.05f)
             )
             .then(
                 if (isCurrentUser) {
@@ -938,8 +924,7 @@ private fun TournamentRankingRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
-            modifier = Modifier
-                .size(36.dp)
+            modifier = Modifier.size(36.dp)
                 .clip(RoundedCornerShape(10.dp))
                 .background(rankColor),
             contentAlignment = Alignment.Center
@@ -958,7 +943,7 @@ private fun TournamentRankingRow(
                 Text(
                     text = "#${item.rank}",
                     color = Color.White,
-                    fontWeight = FontWeight. Bold,
+                    fontWeight = FontWeight.Bold,
                     fontSize = 12.sp
                 )
             }
@@ -968,23 +953,23 @@ private fun TournamentRankingRow(
 
         Box(
             modifier = Modifier
-                . size(40.dp)
+                .size(40.dp)
                 .clip(CircleShape)
                 .background(Color.White.copy(alpha = 0.1f)),
             contentAlignment = Alignment.Center
         ) {
             if (item.generatedAvatarId >= 0) {
                 GeneratedAvatar(
-                    avatarId = item. generatedAvatarId,
-                    modifier = Modifier. size(36.dp).clip(CircleShape)
+                    avatarId = item.generatedAvatarId,
+                    modifier = Modifier.size(36.dp).clip(CircleShape)
                 )
             } else {
-                val avatarToDisplay = if (item. avatarRes != 0) item.avatarRes else R.drawable.profileuser0
+                val avatarToDisplay = if (item.avatarRes != 0) item.avatarRes else R.drawable.profileuser0
                 Image(
                     painter = painterResource(id = avatarToDisplay),
                     contentDescription = null,
-                    contentScale = ContentScale. Crop,
-                    modifier = Modifier. size(36.dp).clip(CircleShape)
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.size(36.dp).clip(CircleShape)
                 )
             }
         }
@@ -994,7 +979,7 @@ private fun TournamentRankingRow(
         Column(modifier = Modifier.weight(1f)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = item.name. ifBlank { "Player" },
+                    text = item.name.ifBlank { "Player" },
                     color = if (isCurrentUser) Color(0xFFFFD700) else Color.White,
                     fontWeight = if (isCurrentUser) FontWeight.Bold else FontWeight.SemiBold,
                     fontSize = 14.sp
@@ -1002,8 +987,7 @@ private fun TournamentRankingRow(
                 if (isCurrentUser) {
                     Spacer(modifier = Modifier.width(6.dp))
                     Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(4.dp))
+                        modifier = Modifier.clip(RoundedCornerShape(4.dp))
                             .background(Color(0xFFFFD700).copy(alpha = 0.2f))
                             .padding(horizontal = 6.dp, vertical = 2.dp)
                     ) {
@@ -1019,7 +1003,7 @@ private fun TournamentRankingRow(
             Text(
                 text = "Lvl ${item.level}",
                 fontSize = 10.sp,
-                color = Color. White.copy(alpha = 0.5f)
+                color = Color.White.copy(alpha = 0.5f)
             )
         }
 
@@ -1029,7 +1013,7 @@ private fun TournamentRankingRow(
             Text(
                 text = formatTournamentCurrency(item.score),
                 color = Color(0xFFFFD700),
-                fontWeight = FontWeight. Bold,
+                fontWeight = FontWeight.Bold,
                 fontSize = 14.sp
             )
         }
@@ -1052,12 +1036,12 @@ private fun PlayerProfileDialog(
     // Load medals for this player (simulated based on their stats)
     LaunchedEffect(player) {
         playerMedals = listOf(
-            createMedalProgressFromValue(MedalDefinitions. SCORE_MASTER, player.highScore),
+            createMedalProgressFromValue(MedalDefinitions.SCORE_MASTER, player.highScore),
             createMedalProgressFromValue(MedalDefinitions.POP_LEGEND, player.totalPops),
             createMedalProgressFromValue(MedalDefinitions.SHARPSHOOTER, player.bestClickPercent),
             createMedalProgressFromValue(MedalDefinitions.CHALLENGER, player.challengesCompleted)
         ).filter { it.currentTier != BadgeTier.LOCKED }
-            .sortedByDescending { it. currentTier. level }
+            .sortedByDescending { it.currentTier.level }
             .take(3)
 
         isLoadingMedals = false
@@ -1071,16 +1055,15 @@ private fun PlayerProfileDialog(
     ) {
         Card(
             modifier = Modifier
-                . fillMaxWidth(0.95f)
+                .fillMaxWidth(0.95f)
                 .wrapContentHeight(),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
-            elevation = CardDefaults. cardElevation(defaultElevation = 16.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = 16.dp)
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    . verticalScroll(scrollState)
+                modifier = Modifier.fillMaxWidth()
+                    .verticalScroll(scrollState)
                     .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(Color(0xFF2A1A4A), Color(0xFF1A1A2E))
@@ -1089,33 +1072,30 @@ private fun PlayerProfileDialog(
             ) {
                 // Close button
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        . padding(16.dp),
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(16.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
                     Box(
-                        modifier = Modifier
-                            .size(36.dp)
+                        modifier = Modifier.size(36.dp)
                             .clip(CircleShape)
                             .background(Color.White.copy(alpha = 0.1f))
                             .clickable { onDismiss() },
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("✕", fontSize = 18.sp, color = Color. White. copy(alpha = 0.7f))
+                        Text("✕", fontSize = 18.sp, color = Color.White.copy(alpha = 0.7f))
                     }
                 }
 
                 // Banner + Avatar
                 Box(
                     modifier = Modifier
-                        . fillMaxWidth()
+                        .fillMaxWidth()
                         .height(200.dp),
                     contentAlignment = Alignment.TopCenter
                 ) {
                     Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                             .height(140.dp)
                             .padding(horizontal = 16.dp)
                     ) {
@@ -1127,13 +1107,11 @@ private fun PlayerProfileDialog(
                     }
 
                     Box(
-                        modifier = Modifier
-                            .align(Alignment. BottomCenter)
+                        modifier = Modifier.align(Alignment.BottomCenter)
                             .offset(y = 10.dp)
                     ) {
                         Box(
-                            modifier = Modifier
-                                .size(100.dp)
+                            modifier = Modifier.size(100.dp)
                                 .clip(CircleShape)
                                 .background(Color(0xFF1A1A2E))
                                 .border(4.dp, Color(0xFF2A2A4A), CircleShape),
@@ -1150,15 +1128,14 @@ private fun PlayerProfileDialog(
                                     painter = painterResource(id = avatarToDisplay),
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
-                                    modifier = Modifier. size(92.dp).clip(CircleShape)
+                                    modifier = Modifier.size(92.dp).clip(CircleShape)
                                 )
                             }
                         }
 
                         Box(
-                            modifier = Modifier
-                                .align(Alignment. BottomEnd)
-                                . offset(x = (-5).dp, y = (-5).dp)
+                            modifier = Modifier.align(Alignment.BottomEnd)
+                                .offset(x = (-5).dp, y = (-5).dp)
                                 .size(32.dp)
                                 .clip(CircleShape)
                                 .background(
@@ -1166,14 +1143,14 @@ private fun PlayerProfileDialog(
                                         colors = listOf(Color(0xFFFF6D00), Color(0xFFFFD700))
                                     )
                                 )
-                                .border(2.dp, Color. White, CircleShape),
+                                .border(2.dp, Color.White, CircleShape),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 text = "${player.level}",
                                 fontSize = 12.sp,
-                                fontWeight = FontWeight. ExtraBold,
-                                color = Color. White
+                                fontWeight = FontWeight.ExtraBold,
+                                color = Color.White
                             )
                         }
                     }
@@ -1183,10 +1160,10 @@ private fun PlayerProfileDialog(
 
                 // Player Name
                 Text(
-                    text = player.name. ifBlank { "Player" },
+                    text = player.name.ifBlank { "Player" },
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color. White,
+                    color = Color.White,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
 
@@ -1212,21 +1189,19 @@ private fun PlayerProfileDialog(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 // ===== MEDALS PREVIEW SECTION =====
-                if (! isLoadingMedals && playerMedals. isNotEmpty()) {
+                if (! isLoadingMedals && playerMedals.isNotEmpty()) {
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            . padding(horizontal = 16.dp),
+                        modifier = Modifier.fillMaxWidth()
+                            .padding(horizontal = 16.dp),
                         shape = RoundedCornerShape(16.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = Color(0xFF0F0F1A).copy(alpha = 0.8f)
                         )
                     ) {
                         Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                . padding(16.dp),
-                            horizontalAlignment = Alignment. CenterHorizontally
+                            modifier = Modifier.fillMaxWidth()
+                                .padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(text = "🏅", fontSize = 18.sp)
@@ -1235,20 +1210,20 @@ private fun PlayerProfileDialog(
                                     text = "Top Medals",
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color. White
+                                    color = Color.White
                                 )
                             }
 
                             Spacer(modifier = Modifier.height(16.dp))
 
                             Row(
-                                modifier = Modifier. fillMaxWidth(),
+                                modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceEvenly
                             ) {
                                 playerMedals.forEach { medal ->
                                     Box(
-                                        modifier = Modifier. width(80.dp),
-                                        contentAlignment = Alignment. TopCenter
+                                        modifier = Modifier.width(80.dp),
+                                        contentAlignment = Alignment.TopCenter
                                     ) {
                                         PremiumMedal(
                                             progress = medal,
@@ -1262,11 +1237,10 @@ private fun PlayerProfileDialog(
                                 // Fill empty slots
                                 repeat((3 - playerMedals.size).coerceAtLeast(0)) {
                                     Box(
-                                        modifier = Modifier
-                                            .size(60.dp)
+                                        modifier = Modifier.size(60.dp)
                                             .clip(CircleShape)
-                                            . background(Color.White.copy(alpha = 0.05f)),
-                                        contentAlignment = Alignment. Center
+                                            .background(Color.White.copy(alpha = 0.05f)),
+                                        contentAlignment = Alignment.Center
                                     ) {
                                         Text(
                                             text = "? ",
@@ -1284,15 +1258,14 @@ private fun PlayerProfileDialog(
 
                 // Stats Section
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        . padding(horizontal = 16.dp)
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(horizontal = 16.dp)
                 ) {
                     // Record Card
                     ProfileStatCard(
                         icon = "🏆",
                         title = "Personal Record",
-                        value = formatLargeNumber(player. highScore),
+                        value = formatLargeNumber(player.highScore),
                         valueColor = Color(0xFFFFD700)
                     )
 
@@ -1300,7 +1273,7 @@ private fun PlayerProfileDialog(
 
                     // Stats Grid - Row 1
                     Row(
-                        modifier = Modifier. fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         ProfileStatMiniCard(
@@ -1336,7 +1309,7 @@ private fun PlayerProfileDialog(
                         ProfileStatMiniCard(
                             icon = "📅",
                             title = "Days Streak",
-                            value = if (player. maxConsecutiveDays > 0) "${player.maxConsecutiveDays}" else "—",
+                            value = if (player.maxConsecutiveDays > 0) "${player.maxConsecutiveDays}" else "—",
                             valueColor = Color(0xFF9C27B0),
                             modifier = Modifier.weight(1f)
                         )
@@ -1366,15 +1339,14 @@ private fun PlayerProfileDialog(
                     }
                 }
 
-                Spacer(modifier = Modifier. height(24.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 // Close Button
                 Button(
                     onClick = onDismiss,
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                         .padding(horizontal = 16.dp)
-                        . height(50.dp),
+                        .height(50.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF6D00))
                 ) {
@@ -1386,7 +1358,7 @@ private fun PlayerProfileDialog(
                     )
                 }
 
-                Spacer(modifier = Modifier. height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
@@ -1394,19 +1366,18 @@ private fun PlayerProfileDialog(
 
 // Helper function to create medal progress from a value
 private fun createMedalProgressFromValue(badge: MedalBadge, value: Int): MedalProgress {
-    var currentTier = BadgeTier. LOCKED
+    var currentTier = BadgeTier.LOCKED
     for (t in badge.tiers) {
-        if (value >= t.requirement) currentTier = t. tier
+        if (value >= t.requirement) currentTier = t.tier
     }
 
-    val nextTierReq = badge.tiers
-        .firstOrNull { it. tier. level > currentTier.level }
+    val nextTierReq = badge.tiers.firstOrNull { it.tier.level > currentTier.level }
         ?.requirement
 
     val isMaxed = currentTier == badge.tiers.lastOrNull()?.tier
 
     val progressPercent = if (nextTierReq != null && nextTierReq > 0) {
-        val currentTierReq = badge.tiers. find { it.tier == currentTier }?. requirement ?: 0
+        val currentTierReq = badge.tiers.find { it.tier == currentTier }?.requirement ?: 0
         ((value - currentTierReq).toFloat() / (nextTierReq - currentTierReq)).coerceIn(0f, 1f)
     } else if (isMaxed) 1f else 0f
 
@@ -1428,13 +1399,13 @@ private fun ProfileStatCard(
     valueColor: Color
 ) {
     Card(
-        modifier = Modifier. fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults. cardColors(containerColor = Color(0xFF0F0F1A).copy(alpha = 0.8f))
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF0F0F1A).copy(alpha = 0.8f))
     ) {
         Row(
             modifier = Modifier
-                . fillMaxWidth()
+                .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -1444,7 +1415,7 @@ private fun ProfileStatCard(
                 Text(
                     text = title,
                     fontSize = 12.sp,
-                    color = Color.White. copy(alpha = 0.6f)
+                    color = Color.White.copy(alpha = 0.6f)
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
@@ -1474,24 +1445,24 @@ private fun ProfileStatMiniCard(
     modifier:  Modifier = Modifier
 ) {
     Card(
-        modifier = modifier. height(110.dp),
+        modifier = modifier.height(110.dp),
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = valueColor. copy(alpha = 0.1f))
+        colors = CardDefaults.cardColors(containerColor = valueColor.copy(alpha = 0.1f))
     ) {
         Column(
             modifier = Modifier
-                . fillMaxSize()
+                .fillMaxSize()
                 .padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = icon, fontSize = 24.sp)
-            Spacer(modifier = Modifier. height(6.dp))
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = title,
                 fontSize = 11.sp,
-                color = Color.White. copy(alpha = 0.6f),
-                textAlign = TextAlign. Center,
+                color = Color.White.copy(alpha = 0.6f),
+                textAlign = TextAlign.Center,
                 maxLines = 1
             )
             Spacer(modifier = Modifier.height(4.dp))
@@ -1520,11 +1491,10 @@ private fun RewardsInfoDialog(
             modifier = Modifier.fillMaxWidth(0.95f).fillMaxSize(0.85f),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
-            elevation = CardDefaults. cardElevation(defaultElevation = 16.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = 16.dp)
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
                     .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(Color(0xFF2A1A4A), Color(0xFF1A1A2E))
@@ -1534,7 +1504,7 @@ private fun RewardsInfoDialog(
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement. SpaceBetween,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -1550,15 +1520,14 @@ private fun RewardsInfoDialog(
                             Text(
                                 text = "Compete for amazing prizes!",
                                 fontSize = 12.sp,
-                                color = Color. White.copy(alpha = 0.6f)
+                                color = Color.White.copy(alpha = 0.6f)
                             )
                         }
                     }
                     Box(
-                        modifier = Modifier
-                            .size(36.dp)
+                        modifier = Modifier.size(36.dp)
                             .clip(CircleShape)
-                            .background(Color. White. copy(alpha = 0.1f))
+                            .background(Color.White.copy(alpha = 0.1f))
                             .clickable { onDismiss() },
                         contentAlignment = Alignment.Center
                     ) {
@@ -1566,7 +1535,7 @@ private fun RewardsInfoDialog(
                     }
                 }
 
-                Spacer(modifier = Modifier. height(20.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth().weight(1f),
@@ -1577,7 +1546,7 @@ private fun RewardsInfoDialog(
                     }
                 }
 
-                Spacer(modifier = Modifier. height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 Card(
                     modifier = Modifier.fillMaxWidth(),
@@ -1585,21 +1554,21 @@ private fun RewardsInfoDialog(
                     colors = CardDefaults.cardColors(containerColor = Color(0xFF0F0F1A).copy(alpha = 0.8f))
                 ) {
                     Row(
-                        modifier = Modifier. padding(12.dp),
+                        modifier = Modifier.padding(12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(text = "💡", fontSize = 20.sp)
                         Spacer(modifier = Modifier.width(12.dp))
                         Text(
-                            text = "Rewards are automatically available when the tournament ends.  Don't forget to claim them!",
+                            text = "Rewards are automatically available when the tournament ends. Don't forget to claim them!",
                             fontSize = 12.sp,
-                            color = Color. White.copy(alpha = 0.7f),
+                            color = Color.White.copy(alpha = 0.7f),
                             lineHeight = 16.sp
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier. height(12.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
                 Button(
                     onClick = onDismiss,
@@ -1607,7 +1576,7 @@ private fun RewardsInfoDialog(
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
                 ) {
-                    Text(text = "Got it!", fontSize = 16.sp, fontWeight = FontWeight. Bold, color = Color.White)
+                    Text(text = "Got it!", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
                 }
             }
         }
@@ -1617,7 +1586,7 @@ private fun RewardsInfoDialog(
 @Composable
 private fun RewardTierCard(tier: TournamentRewardTier, isTop: Boolean) {
     val infiniteTransition = rememberInfiniteTransition(label = "tierGlow")
-    val glowAlpha by infiniteTransition. animateFloat(
+    val glowAlpha by infiniteTransition.animateFloat(
         initialValue = 0.3f,
         targetValue = if (isTop) 0.8f else 0.5f,
         animationSpec = infiniteRepeatable(
@@ -1628,7 +1597,7 @@ private fun RewardTierCard(tier: TournamentRewardTier, isTop: Boolean) {
     )
 
     val tierColor = when {
-        tier.rankRange. first == 1 -> Color(0xFFFFD700)
+        tier.rankRange.first == 1 -> Color(0xFFFFD700)
         tier.rankRange.first <= 3 -> Color(0xFFC0C0C0)
         tier.rankRange.first <= 10 -> Color(0xFFCD7F32)
         tier.rankRange.first <= 25 -> Color(0xFF9C27B0)
@@ -1637,11 +1606,10 @@ private fun RewardTierCard(tier: TournamentRewardTier, isTop: Boolean) {
     }
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
             .then(
                 if (isTop) {
-                    Modifier. border(
+                    Modifier.border(
                         width = 2.dp,
                         brush = Brush.linearGradient(
                             colors = listOf(
@@ -1654,19 +1622,17 @@ private fun RewardTierCard(tier: TournamentRewardTier, isTop: Boolean) {
                 } else Modifier
             ),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = tierColor. copy(alpha = 0.15f))
+        colors = CardDefaults.cardColors(containerColor = tierColor.copy(alpha = 0.15f))
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
-                modifier = Modifier
-                    .size(56.dp)
+                modifier = Modifier.size(56.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(tierColor. copy(alpha = 0.3f))
+                    .background(tierColor.copy(alpha = 0.3f))
                     .border(2.dp, tierColor, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
             ) {
@@ -1680,25 +1646,25 @@ private fun RewardTierCard(tier: TournamentRewardTier, isTop: Boolean) {
                     Text(
                         text = rankText,
                         fontSize = 9.sp,
-                        fontWeight = FontWeight. Bold,
+                        fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
                 }
             }
 
-            Spacer(modifier = Modifier. width(14.dp))
+            Spacer(modifier = Modifier.width(14.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = tier.label,
                     fontSize = 16.sp,
-                    fontWeight = FontWeight. Bold,
+                    fontWeight = FontWeight.Bold,
                     color = tierColor
                 )
                 Text(
-                    text = "Rank ${tier.rankRange. first}${if (tier.rankRange.first != tier.rankRange. last) " - ${tier.rankRange.last}" else ""}",
+                    text = "Rank ${tier.rankRange.first}${if (tier.rankRange.first != tier.rankRange.last) " - ${tier.rankRange.last}" else ""}",
                     fontSize = 12.sp,
-                    color = Color. White.copy(alpha = 0.6f)
+                    color = Color.White.copy(alpha = 0.6f)
                 )
             }
 
@@ -1713,7 +1679,7 @@ private fun RewardTierCard(tier: TournamentRewardTier, isTop: Boolean) {
                     Text(
                         text = formatTournamentCurrency(tier.coins),
                         fontSize = 14.sp,
-                        fontWeight = FontWeight. Bold,
+                        fontWeight = FontWeight.Bold,
                         color = Color(0xFFFFD700)
                     )
                 }
@@ -1764,24 +1730,22 @@ private fun TournamentRewardClaimDialog(
     ) {
         Box(
             modifier = Modifier
-                . fillMaxSize()
-                .background(Color. Black.copy(alpha = 0.8f * alpha.value)),
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.8f * alpha.value)),
             contentAlignment = Alignment.Center
         ) {
             Card(
-                modifier = Modifier
-                    .fillMaxWidth(0.9f)
+                modifier = Modifier.fillMaxWidth(0.9f)
                     .wrapContentHeight()
                     .scale(scale.value)
                     .alpha(alpha.value),
                 shape = RoundedCornerShape(28.dp),
                 colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
-                elevation = CardDefaults. cardElevation(defaultElevation = 20.dp)
+                elevation = CardDefaults.cardElevation(defaultElevation = 20.dp)
             ) {
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        . background(
+                    modifier = Modifier.fillMaxWidth()
+                        .background(
                             brush = Brush.verticalGradient(
                                 colors = listOf(
                                     Color(0xFFFFD700).copy(alpha = 0.2f),
@@ -1790,7 +1754,7 @@ private fun TournamentRewardClaimDialog(
                             )
                         )
                         .padding(24.dp),
-                    horizontalAlignment = Alignment. CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(text = "🎉", fontSize = 56.sp)
 
@@ -1810,19 +1774,18 @@ private fun TournamentRewardClaimDialog(
                         )
                     )
 
-                    Spacer(modifier = Modifier. height(8.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
 
                     Text(
                         text = "Tournament Finished",
                         fontSize = 16.sp,
-                        color = Color. White. copy(alpha = 0.8f)
+                        color = Color.White.copy(alpha = 0.8f)
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
 
                     Box(
-                        modifier = Modifier
-                            .size(100.dp)
+                        modifier = Modifier.size(100.dp)
                             .clip(CircleShape)
                             .background(
                                 brush = Brush.radialGradient(
@@ -1839,7 +1802,7 @@ private fun TournamentRewardClaimDialog(
                                 ),
                                 shape = CircleShape
                             ),
-                        contentAlignment = Alignment. Center
+                        contentAlignment = Alignment.Center
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
@@ -1850,7 +1813,7 @@ private fun TournamentRewardClaimDialog(
                                 text = "#${reward.rank}",
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.ExtraBold,
-                                color = Color. White
+                                color = Color.White
                             )
                         }
                     }
@@ -1860,7 +1823,7 @@ private fun TournamentRewardClaimDialog(
                     Text(
                         text = rewardTier?.label ?: "Player",
                         fontSize = 18.sp,
-                        fontWeight = FontWeight. Bold,
+                        fontWeight = FontWeight.Bold,
                         color = Color(0xFFFFD700)
                     )
 
@@ -1874,16 +1837,15 @@ private fun TournamentRewardClaimDialog(
                         )
                     ) {
                         Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                . padding(20.dp),
-                            horizontalAlignment = Alignment. CenterHorizontally
+                            modifier = Modifier.fillMaxWidth()
+                                .padding(20.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
                                 text = "YOUR REWARDS",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color. White.copy(alpha = 0.6f),
+                                color = Color.White.copy(alpha = 0.6f),
                                 letterSpacing = 2.sp
                             )
 
@@ -1891,18 +1853,17 @@ private fun TournamentRewardClaimDialog(
 
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement. SpaceEvenly
+                                horizontalArrangement = Arrangement.SpaceEvenly
                             ) {
                                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                     Box(
-                                        modifier = Modifier
-                                            .size(60.dp)
+                                        modifier = Modifier.size(60.dp)
                                             .clip(CircleShape)
                                             .background(Color(0xFFFFD700).copy(alpha = 0.2f)),
-                                        contentAlignment = Alignment. Center
+                                        contentAlignment = Alignment.Center
                                     ) {
                                         Image(
-                                            painter = painterResource(id = R. drawable.coin),
+                                            painter = painterResource(id = R.drawable.coin),
                                             contentDescription = null,
                                             modifier = Modifier.size(36.dp)
                                         )
@@ -1923,11 +1884,10 @@ private fun TournamentRewardClaimDialog(
 
                                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                     Box(
-                                        modifier = Modifier
-                                            .size(60.dp)
-                                            . clip(CircleShape)
+                                        modifier = Modifier.size(60.dp)
+                                            .clip(CircleShape)
                                             .background(Color(0xFF7B1FA2).copy(alpha = 0.2f)),
-                                        contentAlignment = Alignment. Center
+                                        contentAlignment = Alignment.Center
                                     ) {
                                         Image(
                                             painter = painterResource(id = R.drawable.gemgame),
@@ -1935,7 +1895,7 @@ private fun TournamentRewardClaimDialog(
                                             modifier = Modifier.size(36.dp)
                                         )
                                     }
-                                    Spacer(modifier = Modifier. height(8.dp))
+                                    Spacer(modifier = Modifier.height(8.dp))
                                     Text(
                                         text = "+${reward.lux}",
                                         fontSize = 20.sp,
@@ -1956,14 +1916,13 @@ private fun TournamentRewardClaimDialog(
 
                     Button(
                         onClick = onClaim,
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                             .height(60.dp),
                         shape = RoundedCornerShape(16.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFF4CAF50)
                         ),
-                        elevation = ButtonDefaults. buttonElevation(defaultElevation = 8.dp)
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
                     ) {
                         Text(text = "🎁", fontSize = 24.sp)
                         Spacer(modifier = Modifier.width(12.dp))
@@ -1971,7 +1930,7 @@ private fun TournamentRewardClaimDialog(
                             text = "CLAIM REWARDS",
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color. White
+                            color = Color.White
                         )
                     }
                 }
@@ -1987,18 +1946,18 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
     val context = LocalContext.current
     val dataStore = remember { DataStoreManager(context) }
 
-    val equippedBubble by dataStore. equippedBubbleFlow().collectAsState(initial = 0)
+    val equippedBubble by dataStore.equippedBubbleFlow().collectAsState(initial = 0)
     val bubbleRes = when (equippedBubble) {
         1 -> R.drawable.goldenbubble
         2 -> R.drawable.rainbowbubble
         3 -> R.drawable.greenbubble
-        4 -> R. drawable.pinkbubble
+        4 -> R.drawable.pinkbubble
         5 -> R.drawable.cyberpunkbubble
         6 -> R.drawable.oceanbubble
-        7 -> R. drawable.animebubble1
+        7 -> R.drawable.animebubble1
         8 -> R.drawable.spacebubble
         9 -> R.drawable.levelbubble
-        else -> R.drawable. bubble
+        else -> R.drawable.bubble
     }
     val bubblePainter = painterResource(id = bubbleRes)
 
@@ -2042,7 +2001,7 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
     val topBarPadding = 12.dp
     val totalTopReserved = topBarHeight + topBarPadding
 
-    val maxMultiplierBySpawn = baseSpawn. toDouble() / minSpawn.toDouble()
+    val maxMultiplierBySpawn = baseSpawn.toDouble() / minSpawn.toDouble()
     val maxMultiplierByLifespan = baseLifespan.toDouble() / minLifespan.toDouble()
     val maxAllowedMultiplier = minOf(maxMultiplierBySpawn, maxMultiplierByLifespan)
 
@@ -2060,7 +2019,7 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
     }
 
     fun scheduleTimeoutForBubble(bubble: Bubble, delayMs: Long) {
-        spawnJobs. remove(bubble.id)?. cancel()
+        spawnJobs.remove(bubble.id)?.cancel()
         spawnStart[bubble.id] = System.currentTimeMillis()
         val job = coroutineScope.launch {
             try {
@@ -2075,12 +2034,12 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
     }
 
     fun createParticles(centerX:  Dp, centerY:  Dp, count: Int = 8) {
-        val colors = listOf(Color(0xFFFFD700), Color(0xFFFF6B00), Color(0xFF00FF88), Color(0xFF00BFFF), Color. White)
+        val colors = listOf(Color(0xFFFFD700), Color(0xFFFF6B00), Color(0xFF00FF88), Color(0xFF00BFFF), Color.White)
         repeat(count) { i ->
             val angle = (2 * PI * i / count).toFloat()
             val particle = Particle(
                 id = effectNextId++, x = centerX, y = centerY, angle = angle,
-                speed = Random.nextFloat() * 0.5f + 0.5f, color = colors. random(),
+                speed = Random.nextFloat() * 0.5f + 0.5f, color = colors.random(),
                 size = (Random.nextFloat() * 4f + 4f).dp
             )
             particles.add(particle)
@@ -2140,7 +2099,7 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
             val bubbleSizeDp = 72.dp
             val xDp = (Random.nextFloat() * (maxWidth - bubbleSizeDp).value).dp
             val yRange = maxHeight - bubbleSizeDp - totalTopReserved
-            val yDp = (totalTopReserved. value + Random.nextFloat() * yRange. value).dp
+            val yDp = (totalTopReserved.value + Random.nextFloat() * yRange.value).dp
 
             val bubble = Bubble(
                 id = bubbleSeq++, x = xDp, y = yDp, size = bubbleSizeDp,
@@ -2157,10 +2116,10 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
         if (gameOver) {
             val myUserId = dataStore.userIdFlow().first()
             val myName = dataStore.profileNameFlow().first()
-            val myAvatar = dataStore. profileDrawableFlow().first()
-            val myGeneratedAvatar = dataStore. generatedAvatarIdFlow().first()
+            val myAvatar = dataStore.profileDrawableFlow().first()
+            val myGeneratedAvatar = dataStore.generatedAvatarIdFlow().first()
 
-            val nameToUse = myName. ifBlank { "Player" }
+            val nameToUse = myName.ifBlank { "Player" }
             val avatarToUse = if (myAvatar != 0) myAvatar else R.drawable.profileuser0
             val userIdToUse = myUserId.ifBlank { dataStore.ensureUserId(); dataStore.userIdFlow().first() }
 
@@ -2176,7 +2135,7 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
                 name = nameToUse,
                 avatarRes = avatarToUse,
                 score = pointsBase,
-                nowMillis = System. currentTimeMillis(),
+                nowMillis = System.currentTimeMillis(),
                 generatedAvatarId = myGeneratedAvatar
             )
 
@@ -2187,16 +2146,16 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
         }
     }
 
-    BoxWithConstraints(modifier = Modifier. fillMaxSize()) {
+    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
         maxWidth = this.maxWidth
-        maxHeight = this. maxHeight
+        maxHeight = this.maxHeight
 
         val equippedBg by dataStore.equippedBackgroundFlow().collectAsState(initial = 0)
         val bgRes = when (equippedBg) {
-            1 -> R.drawable. background1; 2 -> R.drawable.background2; 3 -> R.drawable.background3
-            4 -> R.drawable.background4; 5 -> R. drawable.background5; 6 -> R.drawable.background6
-            7 -> R.drawable.background7; 8 -> R.drawable. background8; 9 -> R.drawable.background9
-            10 -> R.drawable.background10; 11 -> R. drawable.background11
+            1 -> R.drawable.background1; 2 -> R.drawable.background2; 3 -> R.drawable.background3
+            4 -> R.drawable.background4; 5 -> R.drawable.background5; 6 -> R.drawable.background6
+            7 -> R.drawable.background7; 8 -> R.drawable.background8; 9 -> R.drawable.background9
+            10 -> R.drawable.background10; 11 -> R.drawable.background11
             else -> 0
         }
 
@@ -2208,8 +2167,8 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
 
         Box(
             modifier = Modifier
-                . fillMaxSize()
-                .pointerInput(bubbles. toList(), gameOver, running) {
+                .fillMaxSize()
+                .pointerInput(bubbles.toList(), gameOver, running) {
                     awaitPointerEventScope {
                         while (true) {
                             val event = awaitPointerEvent()
@@ -2221,18 +2180,18 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
                                         val tap = change.position
                                         var hitBubble:  Bubble? = null
 
-                                        for (b in bubbles. toList().asReversed()) {
+                                        for (b in bubbles.toList().asReversed()) {
                                             val bx = with(density) { b.x.toPx() }
                                             val by = with(density) { b.y.toPx() }
-                                            val bs = with(density) { b.size. toPx() }
+                                            val bs = with(density) { b.size.toPx() }
                                             if (tap.x in bx..(bx + bs) && tap.y in by..(by + bs)) { hitBubble = b; break }
                                         }
 
                                         if (hitBubble != null) {
                                             if (bubbles.removeAll { it.id == hitBubble.id }) {
                                                 spawnJobs.remove(hitBubble.id)?.cancel()
-                                                spawnStart. remove(hitBubble.id)
-                                                remainingMap. remove(hitBubble.id)
+                                                spawnStart.remove(hitBubble.id)
+                                                remainingMap.remove(hitBubble.id)
 
                                                 SoundManager.playBubblePop()
                                                 totalPopped++
@@ -2248,14 +2207,14 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
 
                                                 val popId = effectNextId++
                                                 val effSize = hitBubble.size * 1.25f
-                                                popEffects.add(PopEffect(popId, hitBubble.x + (hitBubble. size - effSize) / 2f, hitBubble.y + (hitBubble.size - effSize) / 2f, effSize))
+                                                popEffects.add(PopEffect(popId, hitBubble.x + (hitBubble.size - effSize) / 2f, hitBubble.y + (hitBubble.size - effSize) / 2f, effSize))
 
                                                 val txtId = effectNextId++
-                                                floatingTexts.add(FloatingText(txtId, hitBubble.x + hitBubble.size / 4, hitBubble. y, "+$pts", if (mult > 1.0) Color(0xFFFFD700) else Color(0xFF00FF88), if (mult > 1.0) 22. sp else 18.sp))
+                                                floatingTexts.add(FloatingText(txtId, hitBubble.x + hitBubble.size / 4, hitBubble.y, "+$pts", if (mult > 1.0) Color(0xFFFFD700) else Color(0xFF00FF88), if (mult > 1.0) 22.sp else 18.sp))
 
-                                                createParticles(hitBubble.x + hitBubble.size / 2, hitBubble. y + hitBubble.size / 2, if (currentStreak >= 10) 12 else 8)
+                                                createParticles(hitBubble.x + hitBubble.size / 2, hitBubble.y + hitBubble.size / 2, if (currentStreak >= 10) 12 else 8)
 
-                                                if (currentStreak >= 3 && currentStreak % 3 == 0) { comboEffects.add(ComboEffect(effectNextId++, currentStreak, hitBubble. x, hitBubble. y)) }
+                                                if (currentStreak >= 3 && currentStreak % 3 == 0) { comboEffects.add(ComboEffect(effectNextId++, currentStreak, hitBubble.x, hitBubble.y)) }
 
                                                 coroutineScope.launch { delay(600); popEffects.removeAll { it.id == popId } }
                                                 coroutineScope.launch { delay(850); floatingTexts.removeAll { it.id == txtId } }
@@ -2273,13 +2232,13 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
                 }
         ) {
             bubbles.toList().forEach { b -> key(b.id) { BubbleView(b, bubblePainter) } }
-            popEffects.toList().forEach { e -> key(e. id) { PopEffectView(e) { popEffects.removeAll { it.id == e.id } } } }
+            popEffects.toList().forEach { e -> key(e.id) { PopEffectView(e) { popEffects.removeAll { it.id == e.id } } } }
             particles.toList().forEach { p -> key(p.id) { ParticleView(p) } }
-            floatingTexts.toList().forEach { f -> key(f. id) { FloatingTextEffect(f) { floatingTexts.removeAll { it.id == f.id } } } }
-            comboEffects. toList().forEach { c -> key(c.id) { ComboEffectView(c) { comboEffects. removeAll { it. id == c.id } } } }
+            floatingTexts.toList().forEach { f -> key(f.id) { FloatingTextEffect(f) { floatingTexts.removeAll { it.id == f.id } } } }
+            comboEffects.toList().forEach { c -> key(c.id) { ComboEffectView(c) { comboEffects.removeAll { it.id == c.id } } } }
 
             Box(Modifier.fillMaxSize().padding(top = 150.dp), Alignment.TopCenter) {
-                streakMilestones.toList().forEach { m -> key(m. id) { StreakMilestoneEffect(m) { streakMilestones.removeAll { it.id == m.id } } } }
+                streakMilestones.toList().forEach { m -> key(m.id) { StreakMilestoneEffect(m) { streakMilestones.removeAll { it.id == m.id } } } }
             }
 
             Box(Modifier.fillMaxSize(), Alignment.TopCenter) {
@@ -2301,14 +2260,14 @@ fun TournamentGameOverScreen(finalScore: Int, onPlayAgain: () -> Unit, onBackToL
 
     LaunchedEffect(Unit) {
         SoundManager.playCoinEarn()
-        launch { overlayAlpha. animateTo(1f, tween(300)) }
+        launch { overlayAlpha.animateTo(1f, tween(300)) }
         delay(150)
         launch { cardAlpha.animateTo(1f, tween(300)) }
         launch { cardScale.animateTo(1f, spring(dampingRatio = 0.6f, stiffness = 300f)) }
     }
 
     Box(
-        modifier = Modifier. fillMaxSize().background(Color(0xCC000000).copy(alpha = overlayAlpha.value)),
+        modifier = Modifier.fillMaxSize().background(Color(0xCC000000).copy(alpha = overlayAlpha.value)),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -2321,29 +2280,28 @@ fun TournamentGameOverScreen(finalScore: Int, onPlayAgain: () -> Unit, onBackToL
                 text = "TOURNAMENT SCORE",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.ExtraBold,
-                color = Color. White,
+                color = Color.White,
                 style = TextStyle(shadow = Shadow(Color.Black.copy(alpha = 0.7f), Offset(2f, 2f), 4f))
             )
 
-            Spacer(modifier = Modifier. height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Card(
                 modifier = Modifier.padding(horizontal = 20.dp).fillMaxWidth(0.9f),
-                colors = CardDefaults. cardColors(containerColor = Color(0xFF1A1A2E).copy(alpha = 0.95f)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E).copy(alpha = 0.95f)),
                 shape = RoundedCornerShape(24.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
             ) {
                 Column(modifier = Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                     Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                             .clip(RoundedCornerShape(16.dp))
                             .background(brush = Brush.horizontalGradient(colors = listOf(Color(0xFFFFD700).copy(alpha = 0.2f), Color(0xFFFF6B00).copy(alpha = 0.2f))))
                             .padding(24.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(text = "YOUR SCORE", fontSize = 14.sp, fontWeight = FontWeight.Medium, color = Color.White. copy(alpha = 0.7f))
+                            Text(text = "YOUR SCORE", fontSize = 14.sp, fontWeight = FontWeight.Medium, color = Color.White.copy(alpha = 0.7f))
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
                                 text = "$finalScore",
@@ -2365,7 +2323,7 @@ fun TournamentGameOverScreen(finalScore: Int, onPlayAgain: () -> Unit, onBackToL
                 }
             }
 
-            Spacer(modifier = Modifier. height(28.dp))
+            Spacer(modifier = Modifier.height(28.dp))
 
             Button(
                 onClick = onPlayAgain,
@@ -2376,10 +2334,10 @@ fun TournamentGameOverScreen(finalScore: Int, onPlayAgain: () -> Unit, onBackToL
             ) {
                 Text(text = "🎮", fontSize = 22.sp)
                 Spacer(modifier = Modifier.width(10.dp))
-                Text(text = "PLAY AGAIN", fontSize = 18.sp, fontWeight = FontWeight. Bold, color = Color. White)
+                Text(text = "PLAY AGAIN", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
             }
 
-            Spacer(modifier = Modifier. height(12.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             Button(
                 onClick = onBackToLobby,
@@ -2390,7 +2348,7 @@ fun TournamentGameOverScreen(finalScore: Int, onPlayAgain: () -> Unit, onBackToL
             ) {
                 Text(text = "📊", fontSize = 22.sp)
                 Spacer(modifier = Modifier.width(10.dp))
-                Text(text = "VIEW LEADERBOARD", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color. White)
+                Text(text = "VIEW LEADERBOARD", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
             }
         }
     }

@@ -1,13 +1,13 @@
 package com.appsdevs.popit
 
-import com.google. firebase.auth.FirebaseAuth
-import com.google.firebase. firestore. FieldValue
-import com.google.firebase. firestore.FirebaseFirestore
-import com.google.firebase. firestore.Query
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow. callbackFlow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import kotlin.math.max
 
@@ -17,7 +17,7 @@ import kotlin.math.max
 class TournamentFirebaseRepository {
 
     private val firestore = FirebaseFirestore.getInstance()
-    private val auth = FirebaseAuth. getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     companion object {
         private const val COLLECTION_TOURNAMENTS = "tournaments"
@@ -50,7 +50,7 @@ class TournamentFirebaseRepository {
      * Obtiene el UID actual de Firebase (null si no está autenticado)
      */
     fun getCurrentFirebaseUid(): String? {
-        return auth.currentUser?. uid
+        return auth.currentUser?.uid
     }
 
     // ==================== TOURNAMENT INFO ====================
@@ -60,19 +60,18 @@ class TournamentFirebaseRepository {
      */
     suspend fun getTournamentInfo(): TournamentInfo?  {
         return try {
-            val doc = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val doc = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_CONFIG)
                 .document(DOC_TOURNAMENT_INFO)
                 .get()
                 .await()
 
-            if (doc. exists()) {
+            if (doc.exists()) {
                 TournamentInfo(
-                    epochMillis = doc. getLong("epochMillis") ?: 0L,
-                    tournamentId = doc. getString("tournamentId") ?: "",
-                    createdAt = doc. getLong("createdAt") ?: 0L
+                    epochMillis = doc.getLong("epochMillis") ?: 0L,
+                    tournamentId = doc.getString("tournamentId") ?: "",
+                    createdAt = doc.getLong("createdAt") ?: 0L
                 )
             } else {
                 null
@@ -96,11 +95,10 @@ class TournamentFirebaseRepository {
                 "createdAt" to System.currentTimeMillis()
             )
 
-            firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_CONFIG)
-                . document(DOC_TOURNAMENT_INFO)
+                .document(DOC_TOURNAMENT_INFO)
                 .set(data)
                 .await()
 
@@ -120,8 +118,7 @@ class TournamentFirebaseRepository {
             createOrUpdateTournamentInfo(newEpochMillis)
 
             // 2. Eliminar todos los documentos del leaderboard actual
-            val leaderboardRef = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val leaderboardRef = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
 
@@ -133,9 +130,9 @@ class TournamentFirebaseRepository {
 
             for (i in documents.indices step batchSize) {
                 val batch = firestore.batch()
-                val end = minOf(i + batchSize, documents. size)
+                val end = minOf(i + batchSize, documents.size)
                 for (j in i until end) {
-                    batch.delete(documents[j]. reference)
+                    batch.delete(documents[j].reference)
                 }
                 batch.commit().await()
             }
@@ -169,15 +166,14 @@ class TournamentFirebaseRepository {
         maxConsecutiveDays: Int
     ): Boolean {
         return try {
-            val docRef = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val docRef = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
                 .document(oduserId)
 
             // Primero verificamos si ya existe para obtener el mejor score
             val existingDoc = docRef.get().await()
-            val existingScore = if (existingDoc. exists()) {
+            val existingScore = if (existingDoc.exists()) {
                 existingDoc.getLong("score")?.toInt() ?: 0
             } else {
                 0
@@ -203,7 +199,7 @@ class TournamentFirebaseRepository {
                 "updatedAt" to System.currentTimeMillis()
             )
 
-            docRef. set(data, SetOptions.merge()).await()
+            docRef.set(data, SetOptions.merge()).await()
             true
         } catch (e: Exception) {
             e.printStackTrace()
@@ -230,15 +226,14 @@ class TournamentFirebaseRepository {
         maxConsecutiveDays: Int
     ): Boolean {
         return try {
-            val docRef = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val docRef = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
                 .document(oduserId)
 
             val existingDoc = docRef.get().await()
 
-            if (existingDoc. exists()) {
+            if (existingDoc.exists()) {
                 // Documento existe, solo actualizar campos de perfil
                 val updates = hashMapOf<String, Any>(
                     "name" to name,
@@ -255,7 +250,7 @@ class TournamentFirebaseRepository {
                     "updatedAt" to System.currentTimeMillis()
                 )
 
-                docRef. update(updates).await()
+                docRef.update(updates).await()
             } else {
                 // Documento no existe, crear uno nuevo con score 0
                 val firebaseUid = getCurrentFirebaseUid() ?: ""
@@ -274,7 +269,7 @@ class TournamentFirebaseRepository {
                     "level" to level,
                     "bestStreak" to bestStreak,
                     "maxConsecutiveDays" to maxConsecutiveDays,
-                    "updatedAt" to System. currentTimeMillis()
+                    "updatedAt" to System.currentTimeMillis()
                 )
                 docRef.set(data).await()
             }
@@ -292,8 +287,7 @@ class TournamentFirebaseRepository {
      */
     suspend fun updateProfileField(oduserId: String, fieldName: String, value: Any): Boolean {
         return try {
-            val docRef = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val docRef = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
                 .document(oduserId)
@@ -321,8 +315,7 @@ class TournamentFirebaseRepository {
      */
     suspend fun updateProfileFields(oduserId: String, fields: Map<String, Any>): Boolean {
         return try {
-            val docRef = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val docRef = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
                 .document(oduserId)
@@ -331,8 +324,8 @@ class TournamentFirebaseRepository {
 
             if (existingDoc.exists()) {
                 val updates = fields.toMutableMap()
-                updates["updatedAt"] = System. currentTimeMillis()
-                docRef. update(updates).await()
+                updates["updatedAt"] = System.currentTimeMillis()
+                docRef.update(updates).await()
                 true
             } else {
                 false
@@ -348,8 +341,7 @@ class TournamentFirebaseRepository {
      */
     suspend fun playerExistsInLeaderboard(oduserId: String): Boolean {
         return try {
-            val doc = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val doc = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
                 .document(oduserId)
@@ -367,11 +359,10 @@ class TournamentFirebaseRepository {
      * Obtiene el leaderboard como Flow (tiempo real)
      */
     fun getLeaderboardFlow(): Flow<List<FirebaseTournamentEntry>> = callbackFlow {
-        val listenerRegistration = firestore
-            .collection(COLLECTION_TOURNAMENTS)
+        val listenerRegistration = firestore.collection(COLLECTION_TOURNAMENTS)
             .document(DOC_CURRENT)
             .collection(COLLECTION_LEADERBOARD)
-            .orderBy("score", Query.Direction. DESCENDING)
+            .orderBy("score", Query.Direction.DESCENDING)
             .limit(LEADERBOARD_LIMIT)
             .addSnapshotListener { snapshot, error ->
                 if (error != null) {
@@ -383,21 +374,21 @@ class TournamentFirebaseRepository {
                 val entries = snapshot?.documents?.mapNotNull { doc ->
                     try {
                         FirebaseTournamentEntry(
-                            oduserId = doc. getString("oduserId") ?: "",
+                            oduserId = doc.getString("oduserId") ?: "",
                             firebaseUid = doc.getString("firebaseUid") ?: "",
                             name = doc.getString("name") ?: "Player",
-                            avatarRes = doc. getLong("avatarRes")?.toInt() ?: 0,
+                            avatarRes = doc.getLong("avatarRes")?.toInt() ?: 0,
                             score = doc.getLong("score")?.toInt() ?: 0,
-                            generatedAvatarId = doc. getLong("generatedAvatarId")?.toInt() ?: -1,
+                            generatedAvatarId = doc.getLong("generatedAvatarId")?.toInt() ?: -1,
                             bannerColorId = doc.getLong("bannerColorId")?.toInt() ?: 0,
-                            highScore = doc. getLong("highScore")?.toInt() ?: 0,
+                            highScore = doc.getLong("highScore")?.toInt() ?: 0,
                             totalPops = doc.getLong("totalPops")?.toInt() ?: 0,
-                            bestClickPercent = doc. getLong("bestClickPercent")?.toInt() ?: 0,
+                            bestClickPercent = doc.getLong("bestClickPercent")?.toInt() ?: 0,
                             challengesCompleted = doc.getLong("challengesCompleted")?.toInt() ?: 0,
                             level = doc.getLong("level")?.toInt() ?: 1,
-                            bestStreak = doc. getLong("bestStreak")?.toInt() ?: 0,
+                            bestStreak = doc.getLong("bestStreak")?.toInt() ?: 0,
                             maxConsecutiveDays = doc.getLong("maxConsecutiveDays")?.toInt() ?: 0,
-                            updatedAt = doc. getLong("updatedAt") ?: 0L
+                            updatedAt = doc.getLong("updatedAt") ?: 0L
                         )
                     } catch (e: Exception) {
                         null
@@ -408,7 +399,7 @@ class TournamentFirebaseRepository {
             }
 
         awaitClose {
-            listenerRegistration. remove()
+            listenerRegistration.remove()
         }
     }
 
@@ -417,8 +408,7 @@ class TournamentFirebaseRepository {
      */
     suspend fun getLeaderboardOnce(): List<FirebaseTournamentEntry> {
         return try {
-            val snapshot = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val snapshot = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
                 .orderBy("score", Query.Direction.DESCENDING)
@@ -434,13 +424,13 @@ class TournamentFirebaseRepository {
                         name = doc.getString("name") ?: "Player",
                         avatarRes = doc.getLong("avatarRes")?.toInt() ?: 0,
                         score = doc.getLong("score")?.toInt() ?: 0,
-                        generatedAvatarId = doc. getLong("generatedAvatarId")?.toInt() ?: -1,
+                        generatedAvatarId = doc.getLong("generatedAvatarId")?.toInt() ?: -1,
                         bannerColorId = doc.getLong("bannerColorId")?.toInt() ?: 0,
                         highScore = doc.getLong("highScore")?.toInt() ?: 0,
                         totalPops = doc.getLong("totalPops")?.toInt() ?: 0,
                         bestClickPercent = doc.getLong("bestClickPercent")?.toInt() ?: 0,
                         challengesCompleted = doc.getLong("challengesCompleted")?.toInt() ?: 0,
-                        level = doc. getLong("level")?.toInt() ?: 1,
+                        level = doc.getLong("level")?.toInt() ?: 1,
                         bestStreak = doc.getLong("bestStreak")?.toInt() ?: 0,
                         maxConsecutiveDays = doc.getLong("maxConsecutiveDays")?.toInt() ?: 0,
                         updatedAt = doc.getLong("updatedAt") ?: 0L
@@ -460,8 +450,7 @@ class TournamentFirebaseRepository {
      */
     suspend fun getPlayerEntry(oduserId:  String): FirebaseTournamentEntry? {
         return try {
-            val doc = firestore
-                .collection(COLLECTION_TOURNAMENTS)
+            val doc = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
                 .document(oduserId)
@@ -470,7 +459,7 @@ class TournamentFirebaseRepository {
 
             if (doc.exists()) {
                 FirebaseTournamentEntry(
-                    oduserId = doc. getString("oduserId") ?: "",
+                    oduserId = doc.getString("oduserId") ?: "",
                     firebaseUid = doc.getString("firebaseUid") ?: "",
                     name = doc.getString("name") ?: "Player",
                     avatarRes = doc.getLong("avatarRes")?.toInt() ?: 0,
@@ -500,7 +489,7 @@ class TournamentFirebaseRepository {
      */
     suspend fun getPlayerRank(oduserId: String): Int {
         val leaderboard = getLeaderboardOnce()
-        val index = leaderboard. indexOfFirst { it. oduserId == oduserId }
+        val index = leaderboard.indexOfFirst { it.oduserId == oduserId }
         return if (index >= 0) index + 1 else leaderboard.size + 1
     }
 }
