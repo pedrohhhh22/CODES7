@@ -171,14 +171,14 @@ fun ProfileOverlayCoil(
 
         Box(
             modifier = Modifier
-                . fillMaxSize()
+                .fillMaxSize()
                 .background(Color.Black.copy(alpha = 0.6f))
                 .pointerInput(Unit) { detectTapGestures { } }
         )
 
         Box(
             modifier = Modifier
-                . fillMaxSize()
+                .fillMaxSize()
                 .graphicsLayer {
                     scaleX = scaleAnim.value
                     scaleY = scaleAnim.value
@@ -198,7 +198,7 @@ fun ProfileOverlayCoil(
             SnackbarHost(
                 hostState = snackbarHostState,
                 modifier = Modifier.align(Alignment.TopCenter)
-                    . padding(top = 8.dp)
+                    .padding(top = 8.dp)
                     .zIndex(10f)
             )
 
@@ -316,7 +316,7 @@ fun ProfileOverlayCoil(
                     currentBannerColor = newColorId
                     scope.launch {
                         ds.saveBannerColor(newColorId)
-                        onProfileUpdated?. invoke()
+                        onProfileUpdated?.invoke()
                     }
                 },
                 onDismiss = { showBannerSelector = false }
@@ -330,7 +330,7 @@ fun ProfileOverlayCoil(
                     currentAvatarId = newAvatarId
                     scope.launch {
                         ds.saveGeneratedAvatarId(newAvatarId)
-                        onProfileUpdated?. invoke()
+                        onProfileUpdated?.invoke()
                     }
                 },
                 onDismiss = { showAvatarSelector = false }
@@ -412,7 +412,7 @@ fun ProfileBannerWithAvatar(
     ) {
         Box(
             modifier = Modifier
-                . align(Alignment.TopCenter)
+                .align(Alignment.TopCenter)
                 .clip(RoundedCornerShape(16.dp))
                 .clickable { onBannerClick() }
         ) {
@@ -424,7 +424,7 @@ fun ProfileBannerWithAvatar(
 
             Box(
                 modifier = Modifier.align(Alignment.TopEnd)
-                    . padding(8.dp)
+                    .padding(8.dp)
                     .size(28.dp)
                     .clip(CircleShape)
                     .background(Color.Black.copy(alpha = 0.5f)),
@@ -436,13 +436,13 @@ fun ProfileBannerWithAvatar(
 
         Box(
             modifier = Modifier
-                . align(Alignment.TopCenter)
+                .align(Alignment.TopCenter)
                 .offset(y = bannerHeight - avatarInsideBanner)
         ) {
             Box(
                 modifier = Modifier.size(avatarSize + 8.dp)
                     .align(Alignment.Center)
-                    . clip(CircleShape)
+                    .clip(CircleShape)
                     .background(
                         brush = Brush.radialGradient(
                             colors = listOf(
@@ -520,7 +520,7 @@ private fun PremiumMedalsShowcase(
 
     Card(
         modifier = Modifier
-            . fillMaxWidth()
+            .fillMaxWidth()
             .wrapContentHeight(),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
@@ -530,7 +530,7 @@ private fun PremiumMedalsShowcase(
     ) {
         Column(
             modifier = Modifier
-                . fillMaxWidth()
+                .fillMaxWidth()
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
@@ -570,7 +570,7 @@ private fun PremiumMedalsShowcase(
                 TextButton(
                     onClick = onViewAllClick,
                     modifier = Modifier
-                        . clip(RoundedCornerShape(12.dp))
+                        .clip(RoundedCornerShape(12.dp))
                         .background(Color(0xFFFF6D00).copy(alpha = 0.15f))
                 ) {
                     Text(
@@ -587,7 +587,7 @@ private fun PremiumMedalsShowcase(
             if (isLoading) {
                 Box(
                     modifier = Modifier.fillMaxWidth()
-                        . height(140.dp),
+                        .height(140.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -599,7 +599,7 @@ private fun PremiumMedalsShowcase(
             } else if (featuredMedals.isEmpty()) {
                 Box(
                     modifier = Modifier
-                        . fillMaxWidth()
+                        .fillMaxWidth()
                         .height(140.dp),
                     contentAlignment = Alignment.Center
                 ) {
@@ -649,7 +649,7 @@ private fun PremiumMedalsShowcase(
                         ) {
                             Box(
                                 modifier = Modifier.size(80.dp)
-                                    . clip(CircleShape)
+                                    .clip(CircleShape)
                                     .background(Color.White.copy(alpha = 0.03f))
                                     .border(
                                         width = 2.dp,
@@ -688,7 +688,7 @@ private fun PremiumMedalsShowcase(
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth()
-                            . padding(14.dp),
+                            .padding(14.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         PremiumMedal(
@@ -726,7 +726,7 @@ private fun PremiumMedalsShowcase(
                                 progress = { progress },
                                 modifier = Modifier.fillMaxWidth()
                                     .height(8.dp)
-                                    . clip(RoundedCornerShape(4.dp)),
+                                    .clip(RoundedCornerShape(4.dp)),
                                 color = Color(0xFFFF6D00),
                                 trackColor = Color.White.copy(alpha = 0.1f),
                                 strokeCap = StrokeCap.Round
@@ -757,7 +757,7 @@ private fun PremiumMedalsShowcase(
         }
     }
 
-    selectedMedal?. let { medal ->
+    selectedMedal?.let { medal ->
         MedalDetailDialog(
             progress = medal,
             onDismiss = { selectedMedal = null }
@@ -781,7 +781,7 @@ private fun ProfileNameSection(
 ) {
     Card(
         modifier = Modifier
-            . fillMaxWidth(0.92f)
+            .fillMaxWidth(0.92f)
             .wrapContentHeight(),
         shape = RoundedCornerShape(18.dp),
         colors = CardDefaults.cardColors(
@@ -791,7 +791,7 @@ private fun ProfileNameSection(
     ) {
         Row(
             modifier = Modifier
-                . fillMaxWidth()
+                .fillMaxWidth()
                 .padding(18.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
@@ -917,7 +917,7 @@ private fun StatisticsSection(
 
     Card(
         modifier = Modifier
-            . fillMaxWidth()
+            .fillMaxWidth()
             .wrapContentHeight(),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
@@ -927,7 +927,7 @@ private fun StatisticsSection(
     ) {
         Column(
             modifier = Modifier
-                . fillMaxWidth()
+                .fillMaxWidth()
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
@@ -1078,7 +1078,7 @@ private fun StatisticsSection(
                                 Box(
                                     modifier = Modifier.clip(RoundedCornerShape(10.dp))
                                         .background(Color(0xFFFF6D00))
-                                        . padding(horizontal = 8.dp, vertical = 3.dp)
+                                        .padding(horizontal = 8.dp, vertical = 3.dp)
                                 ) {
                                     Text(
                                         text = "🎁 $unclaimedCount",
@@ -1150,7 +1150,7 @@ private fun StatCard(
     ) {
         Column(
             modifier = Modifier
-                . fillMaxSize()
+                .fillMaxSize()
                 .padding(12.dp),
             verticalArrangement = Arrangement.Center
         ) {
@@ -1201,7 +1201,7 @@ fun LevelRewardsDialog(
     ) {
         Card(
             modifier = Modifier
-                . fillMaxWidth(0.95f)
+                .fillMaxWidth(0.95f)
                 .fillMaxSize(0.88f),
             shape = RoundedCornerShape(28.dp),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF0A0A14)),
@@ -1243,7 +1243,7 @@ fun LevelRewardsDialog(
                     TextButton(
                         onClick = onDismiss,
                         modifier = Modifier
-                            . clip(CircleShape)
+                            .clip(CircleShape)
                             .background(Color.White.copy(alpha = 0.1f))
                     ) {
                         Text("✕", fontSize = 22.sp, color = Color.White)
@@ -1254,7 +1254,7 @@ fun LevelRewardsDialog(
 
                 Column(
                     modifier = Modifier.fillMaxWidth()
-                        . weight(1f)
+                        .weight(1f)
                         .verticalScroll(scrollState),
                     verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
@@ -1319,7 +1319,7 @@ private fun LevelRewardItem(
     ) {
         Row(
             modifier = Modifier
-                . fillMaxWidth()
+                .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

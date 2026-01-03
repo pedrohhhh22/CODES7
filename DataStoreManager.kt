@@ -1467,7 +1467,7 @@ class DataStoreManager(private val context: Context) {
                     if (parts.size >= 4) {
                         PendingTournamentReward(
                             epochMillis = parts[0].toLong(),
-                            rank = parts[1]. toInt(),
+                            rank = parts[1].toInt(),
                             coins = parts[2].toInt(),
                             lux = parts[3].toInt()
                         )
@@ -1496,10 +1496,10 @@ class DataStoreManager(private val context: Context) {
             try {
                 val parts = data.split(",")
                 if (parts.size >= 4) {
-                    val epochMillis = parts[0]. toLong()
+                    val epochMillis = parts[0].toLong()
                     val rank = parts[1].toInt()
                     val coins = parts[2].toInt()
-                    val lux = parts[3]. toInt()
+                    val lux = parts[3].toInt()
 
                     val currentCoins = prefs[COINS_KEY] ?: 0
                     val currentLux = prefs[LUX_KEY] ?: 0

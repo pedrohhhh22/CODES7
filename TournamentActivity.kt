@@ -411,7 +411,7 @@ fun TournamentLobby(onPlay: () -> Unit, onClose: () -> Unit) {
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth()
-                            . padding(12.dp),
+                            .padding(12.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
                     ) {
@@ -561,7 +561,7 @@ private fun TournamentHeader(
 
         Box(
             modifier = Modifier
-                . size(44.dp)
+                .size(44.dp)
                 .clip(CircleShape)
                 .background(Color.White.copy(alpha = 0.1f))
                 .border(1.dp, Color.White.copy(alpha = 0.2f), CircleShape)
@@ -904,7 +904,7 @@ private fun TournamentRankingRow(
 
     Row(
         modifier = Modifier
-            . fillMaxWidth()
+            .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
             .background(
                 if (isCurrentUser) Color(0xFFFFD700).copy(alpha = glowAlpha * 0.25f)
@@ -953,7 +953,7 @@ private fun TournamentRankingRow(
 
         Box(
             modifier = Modifier
-                . size(40.dp)
+                .size(40.dp)
                 .clip(CircleShape)
                 .background(Color.White.copy(alpha = 0.1f)),
             contentAlignment = Alignment.Center
@@ -1055,7 +1055,7 @@ private fun PlayerProfileDialog(
     ) {
         Card(
             modifier = Modifier
-                . fillMaxWidth(0.95f)
+                .fillMaxWidth(0.95f)
                 .wrapContentHeight(),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E)),
@@ -1063,7 +1063,7 @@ private fun PlayerProfileDialog(
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth()
-                    . verticalScroll(scrollState)
+                    .verticalScroll(scrollState)
                     .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(Color(0xFF2A1A4A), Color(0xFF1A1A2E))
@@ -1073,7 +1073,7 @@ private fun PlayerProfileDialog(
                 // Close button
                 Row(
                     modifier = Modifier.fillMaxWidth()
-                        . padding(16.dp),
+                        .padding(16.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
                     Box(
@@ -1090,7 +1090,7 @@ private fun PlayerProfileDialog(
                 // Banner + Avatar
                 Box(
                     modifier = Modifier
-                        . fillMaxWidth()
+                        .fillMaxWidth()
                         .height(200.dp),
                     contentAlignment = Alignment.TopCenter
                 ) {
@@ -1135,7 +1135,7 @@ private fun PlayerProfileDialog(
 
                         Box(
                             modifier = Modifier.align(Alignment.BottomEnd)
-                                . offset(x = (-5).dp, y = (-5).dp)
+                                .offset(x = (-5).dp, y = (-5).dp)
                                 .size(32.dp)
                                 .clip(CircleShape)
                                 .background(
@@ -1192,7 +1192,7 @@ private fun PlayerProfileDialog(
                 if (! isLoadingMedals && playerMedals.isNotEmpty()) {
                     Card(
                         modifier = Modifier.fillMaxWidth()
-                            . padding(horizontal = 16.dp),
+                            .padding(horizontal = 16.dp),
                         shape = RoundedCornerShape(16.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = Color(0xFF0F0F1A).copy(alpha = 0.8f)
@@ -1200,7 +1200,7 @@ private fun PlayerProfileDialog(
                     ) {
                         Column(
                             modifier = Modifier.fillMaxWidth()
-                                . padding(16.dp),
+                                .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -1239,7 +1239,7 @@ private fun PlayerProfileDialog(
                                     Box(
                                         modifier = Modifier.size(60.dp)
                                             .clip(CircleShape)
-                                            . background(Color.White.copy(alpha = 0.05f)),
+                                            .background(Color.White.copy(alpha = 0.05f)),
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Text(
@@ -1259,7 +1259,7 @@ private fun PlayerProfileDialog(
                 // Stats Section
                 Column(
                     modifier = Modifier.fillMaxWidth()
-                        . padding(horizontal = 16.dp)
+                        .padding(horizontal = 16.dp)
                 ) {
                     // Record Card
                     ProfileStatCard(
@@ -1346,7 +1346,7 @@ private fun PlayerProfileDialog(
                     onClick = onDismiss,
                     modifier = Modifier.fillMaxWidth()
                         .padding(horizontal = 16.dp)
-                        . height(50.dp),
+                        .height(50.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF6D00))
                 ) {
@@ -1377,7 +1377,7 @@ private fun createMedalProgressFromValue(badge: MedalBadge, value: Int): MedalPr
     val isMaxed = currentTier == badge.tiers.lastOrNull()?.tier
 
     val progressPercent = if (nextTierReq != null && nextTierReq > 0) {
-        val currentTierReq = badge.tiers.find { it.tier == currentTier }?. requirement ?: 0
+        val currentTierReq = badge.tiers.find { it.tier == currentTier }?.requirement ?: 0
         ((value - currentTierReq).toFloat() / (nextTierReq - currentTierReq)).coerceIn(0f, 1f)
     } else if (isMaxed) 1f else 0f
 
@@ -1405,7 +1405,7 @@ private fun ProfileStatCard(
     ) {
         Row(
             modifier = Modifier
-                . fillMaxWidth()
+                .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -1451,7 +1451,7 @@ private fun ProfileStatMiniCard(
     ) {
         Column(
             modifier = Modifier
-                . fillMaxSize()
+                .fillMaxSize()
                 .padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -1730,7 +1730,7 @@ private fun TournamentRewardClaimDialog(
     ) {
         Box(
             modifier = Modifier
-                . fillMaxSize()
+                .fillMaxSize()
                 .background(Color.Black.copy(alpha = 0.8f * alpha.value)),
             contentAlignment = Alignment.Center
         ) {
@@ -1745,7 +1745,7 @@ private fun TournamentRewardClaimDialog(
             ) {
                 Column(
                     modifier = Modifier.fillMaxWidth()
-                        . background(
+                        .background(
                             brush = Brush.verticalGradient(
                                 colors = listOf(
                                     Color(0xFFFFD700).copy(alpha = 0.2f),
@@ -1838,7 +1838,7 @@ private fun TournamentRewardClaimDialog(
                     ) {
                         Column(
                             modifier = Modifier.fillMaxWidth()
-                                . padding(20.dp),
+                                .padding(20.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
@@ -1885,7 +1885,7 @@ private fun TournamentRewardClaimDialog(
                                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                     Box(
                                         modifier = Modifier.size(60.dp)
-                                            . clip(CircleShape)
+                                            .clip(CircleShape)
                                             .background(Color(0xFF7B1FA2).copy(alpha = 0.2f)),
                                         contentAlignment = Alignment.Center
                                     ) {
@@ -2019,7 +2019,7 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
     }
 
     fun scheduleTimeoutForBubble(bubble: Bubble, delayMs: Long) {
-        spawnJobs.remove(bubble.id)?. cancel()
+        spawnJobs.remove(bubble.id)?.cancel()
         spawnStart[bubble.id] = System.currentTimeMillis()
         val job = coroutineScope.launch {
             try {
@@ -2167,7 +2167,7 @@ fun TournamentGameScreen(onGameOver: (Int) -> Unit) {
 
         Box(
             modifier = Modifier
-                . fillMaxSize()
+                .fillMaxSize()
                 .pointerInput(bubbles.toList(), gameOver, running) {
                     awaitPointerEventScope {
                         while (true) {

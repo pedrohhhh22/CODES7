@@ -50,7 +50,7 @@ class TournamentFirebaseRepository {
      * Obtiene el UID actual de Firebase (null si no está autenticado)
      */
     fun getCurrentFirebaseUid(): String? {
-        return auth.currentUser?. uid
+        return auth.currentUser?.uid
     }
 
     // ==================== TOURNAMENT INFO ====================
@@ -98,7 +98,7 @@ class TournamentFirebaseRepository {
             firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_CONFIG)
-                . document(DOC_TOURNAMENT_INFO)
+                .document(DOC_TOURNAMENT_INFO)
                 .set(data)
                 .await()
 
@@ -132,7 +132,7 @@ class TournamentFirebaseRepository {
                 val batch = firestore.batch()
                 val end = minOf(i + batchSize, documents.size)
                 for (j in i until end) {
-                    batch.delete(documents[j]. reference)
+                    batch.delete(documents[j].reference)
                 }
                 batch.commit().await()
             }

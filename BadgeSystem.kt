@@ -741,7 +741,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
     ): Int {
         // Determinar si el siguiente tier es basado en completaciones
         val nextTierInfo = medal.tiers.find { it.requirement == nextTierReq }
-        val isNextTierCompletionBased = nextTierInfo?. tier?.level?. let { it > BadgeTier.GOLD.level } ?: false
+        val isNextTierCompletionBased = nextTierInfo?.tier?.level?.let { it > BadgeTier.GOLD.level } ?: false
 
         return when (medal.id) {
             "bubble_king" -> {
