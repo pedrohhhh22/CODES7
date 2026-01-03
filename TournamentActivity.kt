@@ -1560,7 +1560,7 @@ private fun RewardsInfoDialog(
                         Text(text = "💡", fontSize = 20.sp)
                         Spacer(modifier = Modifier.width(12.dp))
                         Text(
-                            text = "Rewards are automatically available when the tournament ends.Don't forget to claim them!",
+                            text = "Rewards are automatically available when the tournament ends. Don't forget to claim them!",
                             fontSize = 12.sp,
                             color = Color.White.copy(alpha = 0.7f),
                             lineHeight = 16.sp

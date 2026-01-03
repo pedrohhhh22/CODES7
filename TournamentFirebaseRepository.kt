@@ -114,10 +114,10 @@ class TournamentFirebaseRepository {
      */
     suspend fun resetTournament(newEpochMillis: Long): Boolean {
         return try {
-            // 1.Actualizar info del torneo
+            // 1. Actualizar info del torneo
             createOrUpdateTournamentInfo(newEpochMillis)
 
-            // 2.Eliminar todos los documentos del leaderboard actual
+            // 2. Eliminar todos los documentos del leaderboard actual
             val leaderboardRef = firestore.collection(COLLECTION_TOURNAMENTS)
                 .document(DOC_CURRENT)
                 .collection(COLLECTION_LEADERBOARD)
