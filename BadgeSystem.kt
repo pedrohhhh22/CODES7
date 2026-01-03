@@ -486,7 +486,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
 
             "bubble_king" -> {
                 // Si ya alcanzó Gold, mostrar completaciones; sino, mostrar score
-                if (currentTier. level >= BadgeTier. GOLD.level) {
+                if (currentTier.level >= BadgeTier.GOLD.level) {
                     dataStore.bubbleKingCompletionsFlow().first()
                 } else {
                     dataStore.highScoreBubbleKingFlow().first()
@@ -495,7 +495,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
 
             "streak_fury" -> {
                 if (currentTier.level >= BadgeTier.GOLD.level) {
-                    dataStore. perfectStreakCompletionsFlow().first()
+                    dataStore.perfectStreakCompletionsFlow().first()
                 } else {
                     dataStore.highScorePerfectStreakFlow().first()
                 }
@@ -511,7 +511,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
 
             "combo_master" -> {
                 if (currentTier.level >= BadgeTier.GOLD.level) {
-                    dataStore. comboMasterCompletionsFlow().first()
+                    dataStore.comboMasterCompletionsFlow().first()
                 } else {
                     dataStore.highScoreComboMasterFlow().first()
                 }
@@ -540,7 +540,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
                 when {
                     currentTier == BadgeTier.LEGENDARY -> 60 // Representa 10 completaciones * 6 desafíos
                     currentTier == BadgeTier.DIAMOND -> 6    // Todos los desafíos en Gold
-                    else -> dataStore. challengesCompletedCountFlow().first()
+                    else -> dataStore.challengesCompletedCountFlow().first()
                 }
             }
 
@@ -598,7 +598,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
             )
 
             "endurance_champion" -> calculateDualTier(
-                highScore = dataStore. highScoreEnduranceChampionFlow().first(),
+                highScore = dataStore.highScoreEnduranceChampionFlow().first(),
                 completions = dataStore.enduranceChampionCompletionsFlow().first(),
                 goldThreshold = 180,
                 medal = medal
@@ -621,19 +621,19 @@ class MedalManager(private val dataStore: DataStoreManager) {
         goldThreshold: Int,
         medal: MedalBadge
     ): BadgeTier {
-        var tier = BadgeTier. LOCKED
+        var tier = BadgeTier.LOCKED
 
         // Primero evaluar tiers basados en score (Bronze, Silver, Gold)
-        for (t in medal.tiers. filter { it.tier.level <= BadgeTier.GOLD. level }) {
+        for (t in medal.tiers.filter { it.tier.level <= BadgeTier.GOLD.level }) {
             if (highScore >= t.requirement) {
-                tier = t. tier
+                tier = t.tier
             }
         }
 
         // Solo si alcanzó Gold, evaluar tiers de completaciones (Diamond, Legendary)
         // IMPORTANTE: Solo avanza si tiene completaciones > 0
         if (tier == BadgeTier.GOLD && completions > 0) {
-            for (t in medal.tiers.filter { it.tier. level > BadgeTier.GOLD. level }) {
+            for (t in medal.tiers.filter { it.tier.level > BadgeTier.GOLD.level }) {
                 if (completions >= t.requirement) {
                     tier = t.tier
                 }
@@ -647,13 +647,13 @@ class MedalManager(private val dataStore: DataStoreManager) {
      * Calcula el tier para la medalla Challenger
      */
     private suspend fun calculateChallengerTier(): BadgeTier {
-        val completedCount = dataStore. challengesCompletedCountFlow().first()
-        var tier = BadgeTier. LOCKED
+        val completedCount = dataStore.challengesCompletedCountFlow().first()
+        var tier = BadgeTier.LOCKED
 
         // Bronze: 1 challenge completed
         if (completedCount >= 1) tier = BadgeTier.BRONZE
         // Silver: 3 challenges completed
-        if (completedCount >= 3) tier = BadgeTier. SILVER
+        if (completedCount >= 3) tier = BadgeTier.SILVER
         // Gold: all 6 challenges completed
         if (completedCount >= 6) tier = BadgeTier.GOLD
 
@@ -691,7 +691,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
             else -> 0
         }
 
-        var tier = BadgeTier. LOCKED
+        var tier = BadgeTier.LOCKED
         for (t in medal.tiers) {
             if (value >= t.requirement) {
                 tier = t.tier
@@ -727,7 +727,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
         if (range <= 0) return 0f
 
         val progress = currentProgressValue - currentTierReq
-        return (progress. toFloat() / range).coerceIn(0f, 1f)
+        return (progress.toFloat() / range).coerceIn(0f, 1f)
     }
 
     /**
@@ -740,13 +740,13 @@ class MedalManager(private val dataStore: DataStoreManager) {
         nextTierReq: Int
     ): Int {
         // Determinar si el siguiente tier es basado en completaciones
-        val nextTierInfo = medal.tiers.find { it. requirement == nextTierReq }
-        val isNextTierCompletionBased = nextTierInfo?. tier?.level?. let { it > BadgeTier.GOLD. level } ?: false
+        val nextTierInfo = medal.tiers.find { it.requirement == nextTierReq }
+        val isNextTierCompletionBased = nextTierInfo?. tier?.level?. let { it > BadgeTier.GOLD.level } ?: false
 
         return when (medal.id) {
             "bubble_king" -> {
                 if (isNextTierCompletionBased) {
-                    dataStore. bubbleKingCompletionsFlow().first()
+                    dataStore.bubbleKingCompletionsFlow().first()
                 } else {
                     dataStore.highScoreBubbleKingFlow().first()
                 }
@@ -755,12 +755,12 @@ class MedalManager(private val dataStore: DataStoreManager) {
                 if (isNextTierCompletionBased) {
                     dataStore.perfectStreakCompletionsFlow().first()
                 } else {
-                    dataStore. highScorePerfectStreakFlow().first()
+                    dataStore.highScorePerfectStreakFlow().first()
                 }
             }
             "time_master" -> {
                 if (isNextTierCompletionBased) {
-                    dataStore. timeMasterCompletionsFlow().first()
+                    dataStore.timeMasterCompletionsFlow().first()
                 } else {
                     dataStore.highScoreTimeMasterFlow().first()
                 }
@@ -774,7 +774,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
             }
             "speed_demon" -> {
                 if (isNextTierCompletionBased) {
-                    dataStore. speedDemonCompletionsFlow().first()
+                    dataStore.speedDemonCompletionsFlow().first()
                 } else {
                     dataStore.highScoreSpeedDemonFlow().first()
                 }
@@ -789,7 +789,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
             "challenger" -> {
                 // Para challenger depende del tier actual
                 when {
-                    currentTier. level >= BadgeTier. DIAMOND.level -> {
+                    currentTier.level >= BadgeTier.DIAMOND.level -> {
                         // Progreso hacia Legendary:  contar total de completaciones
                         getTotalChallengeCompletions()
                     }
@@ -811,7 +811,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
         var count = 0
         if (dataStore.highScoreBubbleKingFlow().first() >= 5000) count++
         if (dataStore.highScorePerfectStreakFlow().first() >= 100) count++
-        if (dataStore. highScoreTimeMasterFlow().first() >= 50) count++
+        if (dataStore.highScoreTimeMasterFlow().first() >= 50) count++
         if (dataStore.highScoreComboMasterFlow().first() >= 50) count++
         if (dataStore.highScoreSpeedDemonFlow().first() >= 100) count++
         if (dataStore.highScoreEnduranceChampionFlow().first() >= 180) count++
@@ -835,7 +835,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
             return medal.tiers.firstOrNull()?.requirement
         }
         val idx = medal.tiers.indexOfFirst { it.tier == currentTier }
-        return if (idx >= 0 && idx < medal.tiers. size - 1) {
+        return if (idx >= 0 && idx < medal.tiers.size - 1) {
             medal.tiers[idx + 1].requirement
         } else {
             null
@@ -855,11 +855,11 @@ class MedalManager(private val dataStore: DataStoreManager) {
 
     // Check if all 6 challenges have been completed 10+ times (Legendary)
     private suspend fun checkAllChallengesLegendary(): Boolean {
-        val bubbleKing = dataStore. bubbleKingCompletionsFlow().first() >= 10
+        val bubbleKing = dataStore.bubbleKingCompletionsFlow().first() >= 10
         val perfectStreak = dataStore.perfectStreakCompletionsFlow().first() >= 10
-        val timeMaster = dataStore. timeMasterCompletionsFlow().first() >= 10
-        val comboMaster = dataStore. comboMasterCompletionsFlow().first() >= 10
-        val speedDemon = dataStore. speedDemonCompletionsFlow().first() >= 10
+        val timeMaster = dataStore.timeMasterCompletionsFlow().first() >= 10
+        val comboMaster = dataStore.comboMasterCompletionsFlow().first() >= 10
+        val speedDemon = dataStore.speedDemonCompletionsFlow().first() >= 10
         val endurance = dataStore.enduranceChampionCompletionsFlow().first() >= 10
         return bubbleKing && perfectStreak && timeMaster && comboMaster && speedDemon && endurance
     }
@@ -868,7 +868,7 @@ class MedalManager(private val dataStore: DataStoreManager) {
         var count = 0
         // Backgrounds (1-21)
         for (i in 1..21) {
-            if (dataStore. isBackgroundPurchasedFlow(i).first()) count++
+            if (dataStore.isBackgroundPurchasedFlow(i).first()) count++
         }
         // Bubbles (1-30)
         for (i in 1..30) {
@@ -2137,8 +2137,7 @@ fun PremiumMedal(
     showTierBadge: Boolean = true
 ) {
     val colors = getMedalColors(progress.currentTier)
-    val tier = progress.
-    currentTier
+    val tier = progress.currentTier
     val isLegendary = tier == BadgeTier.LEGENDARY
     val isDiamond = tier == BadgeTier.DIAMOND
     val isGold = tier == BadgeTier.GOLD
@@ -2217,8 +2216,7 @@ fun PremiumMedal(
             // Outer glow layer
             if (isUnlocked) {
                 Box(
-                    modifier = Modifier
-                        .size(size * 1.5f)
+                    modifier = Modifier.size(size * 1.5f)
                         .alpha(0.3f + glowIntensity * 0.3f)
                         .blur(25.dp)
                         .background(
@@ -2232,8 +2230,7 @@ fun PremiumMedal(
 
             // Medal canvas
             Canvas(
-                modifier = Modifier
-                    .size(size)
+                modifier = Modifier.size(size)
                     .scale(pulseScale)
                     .rotate(rotationDegrees)
                     .alpha(if (isUnlocked) 1f else 0.35f)
@@ -2251,8 +2248,7 @@ fun PremiumMedal(
             // Lock overlay for locked medals
             if (! isUnlocked) {
                 Box(
-                    modifier = Modifier
-                        .size(size * 0.45f)
+                    modifier = Modifier.size(size * 0.45f)
                         .clip(CircleShape)
                         .background(
                             brush = Brush.radialGradient(
@@ -2272,8 +2268,7 @@ fun PremiumMedal(
             // Tier badge
             if (showTierBadge && isUnlocked) {
                 Box(
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
+                    modifier = Modifier.align(Alignment.BottomEnd)
                         .offset(x = (-size.value * 0.05f).dp, y = (-size.value * 0.05f).dp)
                         .size(size * 0.32f)
                         .clip(CircleShape)
@@ -2344,8 +2339,7 @@ fun ProfileFeaturedMedals(
 
     LaunchedEffect(Unit) {
         val allMedals = medalManager.getAllMedalsProgress()
-        topMedals = allMedals
-            .filter { it.currentTier != BadgeTier.LOCKED }
+        topMedals = allMedals.filter { it.currentTier != BadgeTier.LOCKED }
             .sortedByDescending { it.currentTier.level }
             .take(maxDisplay)
         totalUnlocked = allMedals.count { it.currentTier != BadgeTier.LOCKED }
@@ -2395,8 +2389,7 @@ fun ProfileFeaturedMedals(
 
         if (isLoading) {
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
                     .height(120.dp),
                 contentAlignment = Alignment.Center
             ) {
@@ -2404,8 +2397,7 @@ fun ProfileFeaturedMedals(
             }
         } else if (topMedals.isEmpty()) {
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
                     .height(120.dp),
                 contentAlignment = Alignment.Center
             ) {
@@ -2444,8 +2436,7 @@ fun ProfileFeaturedMedals(
                 // Placeholder slots
                 repeat((maxDisplay - topMedals.size).coerceAtLeast(0)) {
                     Box(
-                        modifier = Modifier
-                            .size(medalSize)
+                        modifier = Modifier.size(medalSize)
                             .clip(CircleShape)
                             .background(Color.White.copy(alpha = 0.03f))
                             .border(2.dp, Color.White.copy(alpha = 0.1f), CircleShape)
@@ -2480,16 +2471,14 @@ fun MedalDetailDialog(
         properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
         Card(
-            modifier = Modifier
-                .fillMaxWidth(0.92f)
+            modifier = Modifier.fillMaxWidth(0.92f)
                 .wrapContentHeight(),
             shape = RoundedCornerShape(28.dp),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF0A0A14)),
             elevation = CardDefaults.cardElevation(defaultElevation = 20.dp)
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
                     .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(
@@ -2542,8 +2531,7 @@ fun MedalDetailDialog(
                 if (progress.currentTier != BadgeTier.LOCKED) {
                     Spacer(modifier = Modifier.height(12.dp))
                     Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(12.dp))
+                        modifier = Modifier.clip(RoundedCornerShape(12.dp))
                             .background(
                                 brush = Brush.linearGradient(
                                     colors = listOf(colors.primary.copy(alpha = 0.3f), colors.secondary.copy(alpha = 0.2f))
@@ -2578,12 +2566,11 @@ fun MedalDetailDialog(
                 // Tier list
                 progress.badge.tiers.forEach { tierInfo ->
                     val tierColors = getMedalColors(tierInfo.tier)
-                    val isCompleted = tierInfo.tier.level <= progress. currentTier.level
+                    val isCompleted = tierInfo.tier.level <= progress.currentTier.level
                     val isCurrent = tierInfo.tier == progress.currentTier
 
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                             .padding(vertical = 4.dp),
                         shape = RoundedCornerShape(14.dp),
                         colors = CardDefaults.cardColors(
@@ -2597,15 +2584,13 @@ fun MedalDetailDialog(
                         ) else null
                     ) {
                         Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth()
                                 .padding(14.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             // Tier indicator
                             Box(
-                                modifier = Modifier
-                                    .size(44.dp)
+                                modifier = Modifier.size(44.dp)
                                     .clip(CircleShape)
                                     .background(
                                         brush = if (isCompleted)
@@ -2653,8 +2638,7 @@ fun MedalDetailDialog(
 
                             if (isCompleted) {
                                 Box(
-                                    modifier = Modifier
-                                        .size(30.dp)
+                                    modifier = Modifier.size(30.dp)
                                         .clip(CircleShape)
                                         .background(Color(0xFF4CAF50)),
                                     contentAlignment = Alignment.Center
@@ -2690,8 +2674,7 @@ fun MedalDetailDialog(
                         )
                     ) {
                         Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth()
                                 .padding(16.dp)
                         ) {
                             Row(
@@ -2716,8 +2699,7 @@ fun MedalDetailDialog(
 
                             LinearProgressIndicator(
                                 progress = { progress.progressPercent },
-                                modifier = Modifier
-                                    .fillMaxWidth()
+                                modifier = Modifier.fillMaxWidth()
                                     .height(12.dp)
                                     .clip(RoundedCornerShape(6.dp)),
                                 color = Color(0xFFFF6D00),
@@ -2741,8 +2723,7 @@ fun MedalDetailDialog(
                 if (progress.isMaxed) {
                     Spacer(modifier = Modifier.height(20.dp))
                     Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(14.dp))
+                        modifier = Modifier.clip(RoundedCornerShape(14.dp))
                             .background(
                                 brush = Brush.linearGradient(
                                     colors = listOf(Color(0xFFFFD700), Color(0xFFFF6D00))
@@ -2796,16 +2777,14 @@ fun AllMedalsDialog(
         properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
         Card(
-            modifier = Modifier
-                .fillMaxWidth(0.95f)
+            modifier = Modifier.fillMaxWidth(0.95f)
                 .fillMaxSize(0.9f),
             shape = RoundedCornerShape(28.dp),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF0A0A14)),
             elevation = CardDefaults.cardElevation(defaultElevation = 20.dp)
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
                     .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(Color(0xFF1A1A2E), Color(0xFF0A0A14))
@@ -2842,8 +2821,7 @@ fun AllMedalsDialog(
 
                 // Category filters
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                         .horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
@@ -2882,8 +2860,7 @@ fun AllMedalsDialog(
                 } else {
                     val scrollState = rememberScrollState()
                     Column(
-                        modifier = Modifier
-                            .fillMaxSize()
+                        modifier = Modifier.fillMaxSize()
                             .verticalScroll(scrollState),
                         verticalArrangement = Arrangement.spacedBy(20.dp)
                     ) {
@@ -2929,8 +2906,7 @@ private fun CategoryChip(
     onClick: () -> Unit
 ) {
     Box(
-        modifier = Modifier
-            .clip(RoundedCornerShape(20.dp))
+        modifier = Modifier.clip(RoundedCornerShape(20.dp))
             .background(
                 if (isSelected) Color(0xFFFF6D00).copy(alpha = 0.25f)
                 else Color.White.copy(alpha = 0.05f)

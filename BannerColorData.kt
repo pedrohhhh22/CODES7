@@ -1,52 +1,52 @@
 package com.appsdevs.popit
 
 import androidx.compose.animation.core.EaseInOutSine
-import androidx.compose.animation.core. FastOutSlowInEasing
-import androidx. compose.animation.core.LinearEasing
-import androidx.compose.animation. core.RepeatMode
-import androidx.compose.animation. core.animateFloat
-import androidx.compose.animation.core. animateFloatAsState
-import androidx. compose.animation.core.infiniteRepeatable
-import androidx.compose. animation.core.rememberInfiniteTransition
-import androidx. compose.animation.core.spring
-import androidx.compose.animation.core. tween
-import androidx.compose.foundation. Canvas
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose. foundation.clickable
-import androidx. compose.foundation.layout. Box
-import androidx.compose.foundation.layout. fillMaxSize
-import androidx.compose.foundation. layout.height
-import androidx.compose.foundation.layout. offset
-import androidx.compose.foundation.layout. padding
-import androidx.compose.foundation.layout. size
-import androidx. compose.foundation.layout.width
-import androidx.compose.foundation. shape.CircleShape
-import androidx.compose.foundation. shape.RoundedCornerShape
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime. Composable
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime. remember
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose. ui.draw.scale
-import androidx.compose.ui.geometry. CornerRadius
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry. Size
-import androidx.compose.ui.graphics. Brush
-import androidx. compose.ui.graphics.Color
-import androidx.compose.ui. graphics.Path
-import androidx.compose.ui.graphics. drawscope. Stroke
-import androidx. compose.ui.graphics.drawscope. rotate
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.layout.ContentScale
-import androidx. compose.ui.res.painterResource
-import androidx.compose. ui.text.font.FontWeight
-import androidx.compose.ui.unit. Dp
-import androidx. compose.ui.unit.dp
-import androidx.compose.ui. unit.sp
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.random.Random
@@ -148,7 +148,7 @@ fun HorizontalProfileBanner(
 ) {
     val bannerColor = BannerColors.getById(bannerColorId)
 
-    if (bannerColor. isAnimated) {
+    if (bannerColor.isAnimated) {
         when (bannerColorId) {
             100 -> SpaceAnimationBanner(modifier, width, height)
             101 -> AuroraBorealisBanner(modifier, width, height)
@@ -195,19 +195,18 @@ private fun StaticHorizontalBanner(
     height: Dp = 180.dp
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "staticBanner")
-    val shimmerOffset by infiniteTransition. animateFloat(
+    val shimmerOffset by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(3000, easing = EaseInOutSine),
-            repeatMode = RepeatMode. Reverse
+            repeatMode = RepeatMode.Reverse
         ),
         label = "shimmer"
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -219,7 +218,7 @@ private fun StaticHorizontalBanner(
                 colors = listOf(
                     bannerColor.primaryColor,
                     bannerColor.secondaryColor,
-                    bannerColor.primaryColor. copy(alpha = 0.9f)
+                    bannerColor.primaryColor.copy(alpha = 0.9f)
                 )
             ),
             cornerRadius = CornerRadius(24.dp.toPx())
@@ -229,9 +228,9 @@ private fun StaticHorizontalBanner(
         drawRect(
             brush = Brush.horizontalGradient(
                 colors = listOf(
-                    Color. Transparent,
-                    Color.White. copy(alpha = 0.2f),
-                    Color. Transparent
+                    Color.Transparent,
+                    Color.White.copy(alpha = 0.2f),
+                    Color.Transparent
                 ),
                 startX = shimmerX - canvasWidth * 0.4f,
                 endX = shimmerX + canvasWidth * 0.4f
@@ -242,7 +241,7 @@ private fun StaticHorizontalBanner(
         drawRoundRect(
             brush = Brush.linearGradient(
                 colors = listOf(
-                    bannerColor.accentColor. copy(alpha = 0.5f),
+                    bannerColor.accentColor.copy(alpha = 0.5f),
                     bannerColor.secondaryColor.copy(alpha = 0.3f),
                     bannerColor.accentColor.copy(alpha = 0.5f)
                 )
@@ -273,10 +272,10 @@ fun SpaceAnimationBanner(
     val stars = remember {
         List(70) {
             Star(
-                x = Random. nextFloat(),
+                x = Random.nextFloat(),
                 y = Random.nextFloat(),
-                size = Random. nextFloat() * 3f + 1f,
-                speed = Random. nextFloat() * 0.003f + 0.001f,
+                size = Random.nextFloat() * 3f + 1f,
+                speed = Random.nextFloat() * 0.003f + 0.001f,
                 alpha = Random.nextFloat() * 0.5f + 0.5f,
                 twinkleSpeed = Random.nextFloat() * 1500f + 800f
             )
@@ -300,7 +299,7 @@ fun SpaceAnimationBanner(
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(6000, easing = EaseInOutSine),
-            repeatMode = RepeatMode. Reverse
+            repeatMode = RepeatMode.Reverse
         ),
         label = "nebula"
     )
@@ -316,8 +315,7 @@ fun SpaceAnimationBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -333,7 +331,7 @@ fun SpaceAnimationBanner(
                     Color(0xFF0D0D2B)
                 )
             ),
-            cornerRadius = CornerRadius(24.dp. toPx())
+            cornerRadius = CornerRadius(24.dp.toPx())
         )
 
         drawCircle(
@@ -341,7 +339,7 @@ fun SpaceAnimationBanner(
                 colors = listOf(
                     Color(0xFF4A90D9).copy(alpha = 0.25f * nebulaOffset),
                     Color(0xFF9B59B6).copy(alpha = 0.15f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = canvasWidth * 0.5f,
@@ -362,12 +360,12 @@ fun SpaceAnimationBanner(
 
         stars.forEach { star ->
             val twinkle = (sin(time / star.twinkleSpeed * Math.PI).toFloat() + 1f) / 2f
-            val currentAlpha = star. alpha * (0.4f + twinkle * 0.6f)
+            val currentAlpha = star.alpha * (0.4f + twinkle * 0.6f)
             val adjustedX = (star.x + time * star.speed) % 1f
 
             drawCircle(
                 color = Color.White.copy(alpha = currentAlpha),
-                radius = star. size,
+                radius = star.size,
                 center = Offset(adjustedX * canvasWidth, star.y * canvasHeight)
             )
 
@@ -375,12 +373,12 @@ fun SpaceAnimationBanner(
                 drawCircle(
                     brush = Brush.radialGradient(
                         colors = listOf(
-                            Color. White.copy(alpha = currentAlpha * 0.4f),
-                            Color. Transparent
+                            Color.White.copy(alpha = currentAlpha * 0.4f),
+                            Color.Transparent
                         )
                     ),
                     radius = star.size * 4f,
-                    center = Offset(adjustedX * canvasWidth, star. y * canvasHeight)
+                    center = Offset(adjustedX * canvasWidth, star.y * canvasHeight)
                 )
             }
         }
@@ -402,7 +400,7 @@ fun SpaceAnimationBanner(
             drawLine(
                 brush = Brush.linearGradient(
                     colors = listOf(
-                        Color. Transparent,
+                        Color.Transparent,
                         Color.White.copy(alpha = alpha * 0.6f),
                         Color.White.copy(alpha = alpha)
                     )
@@ -413,7 +411,7 @@ fun SpaceAnimationBanner(
             )
 
             drawCircle(
-                color = Color.White. copy(alpha = alpha),
+                color = Color.White.copy(alpha = alpha),
                 radius = 4f,
                 center = Offset(currentX, currentY)
             )
@@ -462,8 +460,7 @@ fun AuroraBorealisBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -496,7 +493,7 @@ fun AuroraBorealisBanner(
             drawRect(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color. Transparent,
+                        Color.Transparent,
                         colorSets[colorIndex][0].copy(alpha = 0.35f - i * 0.05f),
                         colorSets[colorIndex][1].copy(alpha = 0.25f - i * 0.04f),
                         Color.Transparent
@@ -508,10 +505,10 @@ fun AuroraBorealisBanner(
         }
 
         for (i in 0..25) {
-            val starX = ((i * 47 + 17) % canvasWidth. toInt()).toFloat()
+            val starX = ((i * 47 + 17) % canvasWidth.toInt()).toFloat()
             val starY = ((i * 31 + 11) % (canvasHeight * 0.5f).toInt()).toFloat()
             drawCircle(
-                color = Color.White. copy(alpha = 0.8f),
+                color = Color.White.copy(alpha = 0.8f),
                 radius = if (i % 3 == 0) 1.5f else 1f,
                 center = Offset(starX, starY)
             )
@@ -547,24 +544,24 @@ fun FireStormBanner(
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
-        val canvasWidth = size. width
-        val canvasHeight = size. height
+        val canvasWidth = size.width
+        val canvasHeight = size.height
 
         drawRoundRect(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF1A0000),
                     Color(0xFF2D0000),
                     Color(0xFF1A0000)
                 )
             ),
-            cornerRadius = CornerRadius(24.dp. toPx())
+            cornerRadius = CornerRadius(24.dp.toPx())
         )
 
         drawRect(
             brush = Brush.verticalGradient(
                 colors = listOf(
-                    Color. Transparent,
+                    Color.Transparent,
                     Color(0xFFFF4500).copy(alpha = 0.35f * intensity),
                     Color(0xFFFFD700).copy(alpha = 0.5f * intensity)
                 )
@@ -580,20 +577,20 @@ fun FireStormBanner(
             val particleAlpha = (1f - animOffset) * intensity
 
             val colors = if (i % 2 == 0) {
-                listOf(Color(0xFFFFD700), Color(0xFFFF4500), Color. Transparent)
+                listOf(Color(0xFFFFD700), Color(0xFFFF4500), Color.Transparent)
             } else {
                 listOf(Color(0xFFFF6600), Color(0xFFFF0000), Color.Transparent)
             }
 
             drawCircle(
-                brush = Brush.radialGradient(colors = colors. map { it.copy(alpha = particleAlpha) }),
+                brush = Brush.radialGradient(colors = colors.map { it.copy(alpha = particleAlpha) }),
                 radius = 20f * (1f - animOffset * 0.4f),
                 center = Offset(baseX + sin(animOffset * 12f).toFloat() * 12f, particleY)
             )
         }
 
         drawRoundRect(
-            brush = Brush. linearGradient(
+            brush = Brush.linearGradient(
                 colors = listOf(Color(0xFFFF4500), Color(0xFFFFD700), Color(0xFFFF4500))
             ),
             cornerRadius = CornerRadius(24.dp.toPx()),
@@ -625,8 +622,7 @@ fun NeonPulseBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -635,7 +631,7 @@ fun NeonPulseBanner(
 
         drawRoundRect(
             color = Color(0xFF080812),
-            cornerRadius = CornerRadius(24.dp. toPx())
+            cornerRadius = CornerRadius(24.dp.toPx())
         )
 
         val gridSpacing = 20f
@@ -659,7 +655,7 @@ fun NeonPulseBanner(
         val scanY = canvasHeight * scanLine
         drawLine(
             brush = Brush.horizontalGradient(
-                colors = listOf(Color. Transparent, Color(0xFF00FFFF).copy(alpha = 0.9f), Color. Transparent)
+                colors = listOf(Color.Transparent, Color(0xFF00FFFF).copy(alpha = 0.9f), Color.Transparent)
             ),
             start = Offset(0f, scanY),
             end = Offset(canvasWidth, scanY),
@@ -718,8 +714,7 @@ fun GalaxySwirlBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -737,7 +732,7 @@ fun GalaxySwirlBanner(
                 ),
                 center = Offset(centerX, centerY)
             ),
-            cornerRadius = CornerRadius(24.dp. toPx())
+            cornerRadius = CornerRadius(24.dp.toPx())
         )
 
         for (arm in 0..2) {
@@ -758,7 +753,7 @@ fun GalaxySwirlBanner(
                 if (x in 0f..canvasWidth && y in 0f..canvasHeight) {
                     drawCircle(
                         brush = Brush.radialGradient(
-                            colors = listOf(starColor. copy(alpha = alpha), Color.Transparent)
+                            colors = listOf(starColor.copy(alpha = alpha), Color.Transparent)
                         ),
                         radius = 10f - i * 0.2f,
                         center = Offset(x, y)
@@ -770,9 +765,9 @@ fun GalaxySwirlBanner(
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.8f),
+                    Color.White.copy(alpha = 0.8f),
                     Color(0xFFE040FB).copy(alpha = 0.5f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = 25f * pulse,
@@ -780,7 +775,7 @@ fun GalaxySwirlBanner(
         )
 
         for (i in 0..40) {
-            val starX = ((i * 53 + 17) % canvasWidth. toInt()).toFloat()
+            val starX = ((i * 53 + 17) % canvasWidth.toInt()).toFloat()
             val starY = ((i * 37 + 13) % canvasHeight.toInt()).toFloat()
             drawCircle(
                 color = Color.White.copy(alpha = 0.6f),
@@ -817,7 +812,7 @@ fun OceanWavesBanner(
 
     val wave2 by infiniteTransition.animateFloat(
         initialValue = 0f, targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(2500, easing = EaseInOutSine), RepeatMode. Reverse),
+        animationSpec = infiniteRepeatable(tween(2500, easing = EaseInOutSine), RepeatMode.Reverse),
         label = "wave2"
     )
 
@@ -828,8 +823,7 @@ fun OceanWavesBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -849,9 +843,9 @@ fun OceanWavesBanner(
 
         val wavePath1 = Path().apply {
             moveTo(0f, canvasHeight * (0.45f + wave1 * 0.1f))
-            for (x in 0.. canvasWidth. toInt() step 20) {
+            for (x in 0.. canvasWidth.toInt() step 20) {
                 val y = canvasHeight * (0.45f + sin(x * 0.02 + wave1 * Math.PI * 2).toFloat() * 0.08f)
-                lineTo(x. toFloat(), y)
+                lineTo(x.toFloat(), y)
             }
             lineTo(canvasWidth, canvasHeight)
             lineTo(0f, canvasHeight)
@@ -870,7 +864,7 @@ fun OceanWavesBanner(
 
         val wavePath2 = Path().apply {
             moveTo(0f, canvasHeight * (0.6f + wave2 * 0.08f))
-            for (x in 0..canvasWidth. toInt() step 15) {
+            for (x in 0..canvasWidth.toInt() step 15) {
                 val y = canvasHeight * (0.6f + sin(x * 0.025 + wave2 * Math.PI * 2 + 1).toFloat() * 0.06f)
                 lineTo(x.toFloat(), y)
             }
@@ -893,8 +887,8 @@ fun OceanWavesBanner(
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.4f),
-                    Color. Transparent
+                    Color.White.copy(alpha = 0.4f),
+                    Color.Transparent
                 )
             ),
             radius = 35f,
@@ -937,15 +931,14 @@ fun RainbowFlowBanner(
         label = "colorShift"
     )
 
-    val wave by infiniteTransition. animateFloat(
+    val wave by infiniteTransition.animateFloat(
         initialValue = 0f, targetValue = 1f,
         animationSpec = infiniteRepeatable(tween(2000, easing = EaseInOutSine), RepeatMode.Reverse),
         label = "wave"
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -987,7 +980,7 @@ fun RainbowFlowBanner(
             val sparkAlpha = (sin(colorShift * Math.PI * 4 + i).toFloat() + 1f) / 2f
 
             drawCircle(
-                color = Color.White. copy(alpha = sparkAlpha * 0.8f),
+                color = Color.White.copy(alpha = sparkAlpha * 0.8f),
                 radius = 3f,
                 center = Offset(sparkX, sparkY)
             )
@@ -996,16 +989,16 @@ fun RainbowFlowBanner(
         drawRect(
             brush = Brush.verticalGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.3f),
-                    Color. Transparent,
-                    Color. Black. copy(alpha = 0.1f)
+                    Color.White.copy(alpha = 0.3f),
+                    Color.Transparent,
+                    Color.Black.copy(alpha = 0.1f)
                 )
             ),
             size = Size(canvasWidth, canvasHeight)
         )
 
         drawRoundRect(
-            color = Color.White. copy(alpha = 0.5f),
+            color = Color.White.copy(alpha = 0.5f),
             cornerRadius = CornerRadius(24.dp.toPx()),
             style = Stroke(width = 2f)
         )
@@ -1041,8 +1034,7 @@ fun ElectricStormBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -1073,7 +1065,7 @@ fun ElectricStormBanner(
                 brush = Brush.radialGradient(
                     colors = listOf(
                         Color(0xFF3D3D5C).copy(alpha = 0.8f),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 ),
                 radius = 45f + i * 12f,
@@ -1099,7 +1091,7 @@ fun ElectricStormBanner(
 
             drawPath(
                 path = boltPath,
-                color = Color. White.copy(alpha = 1f - bolt / 0.3f),
+                color = Color.White.copy(alpha = 1f - bolt / 0.3f),
                 style = Stroke(width = 3f)
             )
         }
@@ -1127,7 +1119,7 @@ fun ElectricStormBanner(
 
         for (i in 0..12) {
             val particleX = ((i * 53 + bolt * 200) % canvasWidth.toInt()).toFloat()
-            val particleY = ((i * 37) % canvasHeight. toInt()).toFloat()
+            val particleY = ((i * 37) % canvasHeight.toInt()).toFloat()
             val particleAlpha = if ((i + (bolt * 10).toInt()) % 3 == 0) 0.8f else 0.3f
 
             drawCircle(
@@ -1138,7 +1130,7 @@ fun ElectricStormBanner(
         }
 
         drawRoundRect(
-            brush = Brush. linearGradient(
+            brush = Brush.linearGradient(
                 colors = listOf(
                     Color(0xFFFFEB3B).copy(alpha = 0.5f + flash * 0.3f),
                     Color(0xFF2196F3).copy(alpha = 0.5f),
@@ -1179,18 +1171,18 @@ fun LavaFlowBanner(
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
-        val canvasWidth = size. width
-        val canvasHeight = size. height
+        val canvasWidth = size.width
+        val canvasHeight = size.height
 
         drawRoundRect(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF1A0500),
                     Color(0xFF3D0A00),
                     Color(0xFF4A0000)
                 )
             ),
-            cornerRadius = CornerRadius(24.dp. toPx())
+            cornerRadius = CornerRadius(24.dp.toPx())
         )
 
         // Lava rivers
@@ -1228,7 +1220,7 @@ fun LavaFlowBanner(
                         Color(0xFFFF3D00).copy(alpha = 0.5f)
                     )
                 ),
-                radius = bubbleSize. coerceAtLeast(4f),
+                radius = bubbleSize.coerceAtLeast(4f),
                 center = Offset(bubbleX, bubbleY - bubble * 20f)
             )
         }
@@ -1237,7 +1229,7 @@ fun LavaFlowBanner(
         drawRect(
             brush = Brush.verticalGradient(
                 colors = listOf(
-                    Color. Transparent,
+                    Color.Transparent,
                     Color(0xFFFF6D00).copy(alpha = 0.4f),
                     Color(0xFFFFAB00).copy(alpha = 0.6f)
                 )
@@ -1250,7 +1242,7 @@ fun LavaFlowBanner(
             brush = Brush.linearGradient(
                 colors = listOf(Color(0xFFFF3D00), Color(0xFFFFAB00), Color(0xFFFF3D00))
             ),
-            cornerRadius = CornerRadius(24.dp. toPx()),
+            cornerRadius = CornerRadius(24.dp.toPx()),
             style = Stroke(width = 2.5f)
         )
     }
@@ -1284,8 +1276,8 @@ fun CyberGridBanner(
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
-        val canvasWidth = size. width
-        val canvasHeight = size. height
+        val canvasWidth = size.width
+        val canvasHeight = size.height
 
         drawRoundRect(
             color = Color(0xFF0A0A0A),
@@ -1319,7 +1311,7 @@ fun CyberGridBanner(
         // Data packets moving
         for (i in 0.. 8) {
             val packetX = ((dataPulse * canvasWidth * 3 + i * 80) % canvasWidth)
-            val packetY = (i * 37 % canvasHeight. toInt()).toFloat()
+            val packetY = (i * 37 % canvasHeight.toInt()).toFloat()
 
             drawRect(
                 color = Color(0xFF39FF14),
@@ -1337,7 +1329,7 @@ fun CyberGridBanner(
                 colors = listOf(
                     Color(0xFF00FF41).copy(alpha = 0.8f),
                     Color(0xFF00FF41).copy(alpha = 0.3f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = 40f + gridPulse * 15f,
@@ -1386,8 +1378,8 @@ fun PlasmaSphereBanner(
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
-        val canvasWidth = size. width
-        val canvasHeight = size. height
+        val canvasWidth = size.width
+        val canvasHeight = size.height
         val centerX = canvasWidth / 2
         val centerY = canvasHeight / 2
 
@@ -1419,7 +1411,7 @@ fun PlasmaSphereBanner(
             drawLine(
                 brush = Brush.linearGradient(
                     colors = listOf(
-                        Color. White,
+                        Color.White,
                         tendrilColor,
                         tendrilColor.copy(alpha = 0.3f)
                     ),
@@ -1433,7 +1425,7 @@ fun PlasmaSphereBanner(
 
             // Spark at end
             drawCircle(
-                color = Color. White.copy(alpha = pulse),
+                color = Color.White.copy(alpha = pulse),
                 radius = 4f,
                 center = Offset(endX, endY)
             )
@@ -1443,7 +1435,7 @@ fun PlasmaSphereBanner(
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White,
+                    Color.White,
                     Color(0xFFE040FB),
                     Color(0xFF9C27B0).copy(alpha = 0.5f)
                 )
@@ -1491,8 +1483,7 @@ fun NorthernLightsBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -1515,11 +1506,11 @@ fun NorthernLightsBanner(
         for (i in 0.. 5) {
             val curtainPath = Path().apply {
                 moveTo(0f, canvasHeight * (0.2f + i * 0.12f))
-                for (x in 0..canvasWidth. toInt() step 10) {
+                for (x in 0..canvasWidth.toInt() step 10) {
                     val waveVal = if (i % 2 == 0) wave1 else wave2
                     val y = canvasHeight * (0.2f + i * 0.12f) +
                             sin(x * 0.015 + waveVal * Math.PI * 2 + i).toFloat() * 20f
-                    lineTo(x. toFloat(), y)
+                    lineTo(x.toFloat(), y)
                 }
                 lineTo(canvasWidth, canvasHeight)
                 lineTo(0f, canvasHeight)
@@ -1534,11 +1525,11 @@ fun NorthernLightsBanner(
 
             drawPath(
                 path = curtainPath,
-                brush = Brush. verticalGradient(
+                brush = Brush.verticalGradient(
                     colors = listOf(
-                        curtainColor. copy(alpha = 0.4f - i * 0.05f),
+                        curtainColor.copy(alpha = 0.4f - i * 0.05f),
                         curtainColor.copy(alpha = 0.2f - i * 0.03f),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 )
             )
@@ -1546,12 +1537,12 @@ fun NorthernLightsBanner(
 
         // Stars
         for (i in 0..30) {
-            val starX = ((i * 43 + 17) % canvasWidth. toInt()).toFloat()
+            val starX = ((i * 43 + 17) % canvasWidth.toInt()).toFloat()
             val starY = ((i * 29 + 11) % (canvasHeight * 0.5f).toInt()).toFloat()
             val twinkle = (sin(shimmer * Math.PI * 2 + i).toFloat() + 1f) / 2f
 
             drawCircle(
-                color = Color. White.copy(alpha = 0.5f + twinkle * 0.5f),
+                color = Color.White.copy(alpha = 0.5f + twinkle * 0.5f),
                 radius = if (i % 5 == 0) 2f else 1f,
                 center = Offset(starX, starY)
             )
@@ -1583,7 +1574,7 @@ fun SunsetBeachBanner(
         label = "sunPulse"
     )
 
-    val wave by infiniteTransition. animateFloat(
+    val wave by infiniteTransition.animateFloat(
         initialValue = 0f, targetValue = 1f,
         animationSpec = infiniteRepeatable(tween(2500, easing = EaseInOutSine), RepeatMode.Reverse),
         label = "wave"
@@ -1596,8 +1587,7 @@ fun SunsetBeachBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -1642,8 +1632,8 @@ fun SunsetBeachBanner(
         // Water
         val waterPath = Path().apply {
             moveTo(0f, canvasHeight * 0.55f)
-            for (x in 0..canvasWidth. toInt() step 15) {
-                val y = canvasHeight * 0.55f + sin(x * 0.02 + wave * Math. PI * 2).toFloat() * 5f
+            for (x in 0..canvasWidth.toInt() step 15) {
+                val y = canvasHeight * 0.55f + sin(x * 0.02 + wave * Math.PI * 2).toFloat() * 5f
                 lineTo(x.toFloat(), y)
             }
             lineTo(canvasWidth, canvasHeight)
@@ -1670,9 +1660,9 @@ fun SunsetBeachBanner(
             drawRect(
                 brush = Brush.horizontalGradient(
                     colors = listOf(
-                        Color. Transparent,
+                        Color.Transparent,
                         Color(0xFFFFC947).copy(alpha = 0.6f - i * 0.05f),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 ),
                 topLeft = Offset(refX - 30f, refY),
@@ -1700,15 +1690,14 @@ fun MatrixRainBanner(
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "matrix")
 
-    val rain by infiniteTransition. animateFloat(
+    val rain by infiniteTransition.animateFloat(
         initialValue = 0f, targetValue = 1f,
         animationSpec = infiniteRepeatable(tween(1500, easing = LinearEasing), RepeatMode.Restart),
         label = "rain"
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -1737,7 +1726,7 @@ fun MatrixRainBanner(
                 if (charY in 0f..canvasHeight) {
                     val color = if (i == 0) Color(0xFFAAFFAA) else Color(0xFF00FF00)
                     drawCircle(
-                        color = color. copy(alpha = alpha),
+                        color = color.copy(alpha = alpha),
                         radius = 3f,
                         center = Offset(x, charY)
                     )
@@ -1750,7 +1739,7 @@ fun MatrixRainBanner(
             brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF00FF00).copy(alpha = 0.1f),
-                    Color. Transparent,
+                    Color.Transparent,
                     Color(0xFF003300).copy(alpha = 0.2f)
                 )
             ),
@@ -1788,8 +1777,7 @@ fun CrystalCaveBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -1861,7 +1849,7 @@ fun CrystalCaveBanner(
             // Crystal highlight
             val shimmerAlpha = if ((index + (shimmer * 8).toInt()) % 3 == 0) 0.8f else 0.3f
             drawLine(
-                color = Color. White.copy(alpha = shimmerAlpha),
+                color = Color.White.copy(alpha = shimmerAlpha),
                 start = Offset(baseX, if (isTop) 5f else canvasHeight - 5f),
                 end = Offset(baseX, if (isTop) crystalHeight * 0.6f else baseY - crystalHeight * 0.6f),
                 strokeWidth = 2f
@@ -1870,8 +1858,8 @@ fun CrystalCaveBanner(
 
         // Ambient particles
         for (i in 0..20) {
-            val particleX = ((i * 53 + shimmer * 100) % canvasWidth. toInt()).toFloat()
-            val particleY = ((i * 37) % canvasHeight. toInt()).toFloat()
+            val particleX = ((i * 53 + shimmer * 100) % canvasWidth.toInt()).toFloat()
+            val particleY = ((i * 37) % canvasHeight.toInt()).toFloat()
             val particleAlpha = (sin(shimmer * Math.PI * 2 + i).toFloat() + 1f) / 2f * 0.6f
 
             drawCircle(
@@ -1914,8 +1902,7 @@ fun ToxicWasteBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -1924,7 +1911,7 @@ fun ToxicWasteBanner(
 
         // Dark industrial background
         drawRoundRect(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF0A1A0A),
                     Color(0xFF1A2E1A),
@@ -1937,8 +1924,8 @@ fun ToxicWasteBanner(
         // Toxic pool
         val poolPath = Path().apply {
             moveTo(0f, canvasHeight * 0.5f)
-            for (x in 0..canvasWidth. toInt() step 20) {
-                val y = canvasHeight * 0.5f + sin(x * 0.03 + bubble * Math. PI * 2).toFloat() * 8f
+            for (x in 0..canvasWidth.toInt() step 20) {
+                val y = canvasHeight * 0.5f + sin(x * 0.03 + bubble * Math.PI * 2).toFloat() * 8f
                 lineTo(x.toFloat(), y)
             }
             lineTo(canvasWidth, canvasHeight)
@@ -1971,7 +1958,7 @@ fun ToxicWasteBanner(
                         colors = listOf(
                             Color(0xFFB2FF59).copy(alpha = bubbleAlpha),
                             Color(0xFF76FF03).copy(alpha = bubbleAlpha * 0.5f),
-                            Color. Transparent
+                            Color.Transparent
                         )
                     ),
                     radius = bubbleSize,
@@ -1986,7 +1973,7 @@ fun ToxicWasteBanner(
             brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFFB2FF59).copy(alpha = warningGlow),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = 50f,
@@ -1997,7 +1984,7 @@ fun ToxicWasteBanner(
             brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFF76FF03).copy(alpha = warningGlow),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = 40f,
@@ -2048,8 +2035,8 @@ fun BloodMoonBanner(
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
-        val canvasWidth = size. width
-        val canvasHeight = size. height
+        val canvasWidth = size.width
+        val canvasHeight = size.height
 
         // Dark night sky
         drawRoundRect(
@@ -2074,7 +2061,7 @@ fun BloodMoonBanner(
                 colors = listOf(
                     Color(0xFFB71C1C).copy(alpha = 0.4f),
                     Color(0xFFB71C1C).copy(alpha = 0.1f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = moonRadius * 2f,
@@ -2115,7 +2102,7 @@ fun BloodMoonBanner(
                 brush = Brush.radialGradient(
                     colors = listOf(
                         Color(0xFF1A0A0A).copy(alpha = 0.9f),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 ),
                 radius = 40f + i * 10f,
@@ -2126,7 +2113,7 @@ fun BloodMoonBanner(
         // Bats silhouettes
         for (i in 0..2) {
             val batX = ((batFly * canvasWidth * 1.5f + i * 100) % (canvasWidth + 50)) - 25f
-            val batY = 30f + sin(batFly * Math. PI * 4 + i).toFloat() * 15f + i * 20f
+            val batY = 30f + sin(batFly * Math.PI * 4 + i).toFloat() * 15f + i * 20f
 
             // Simple bat shape
             val batPath = Path().apply {
@@ -2147,11 +2134,11 @@ fun BloodMoonBanner(
 
         // Stars
         for (i in 0..20) {
-            val starX = ((i * 47 + 23) % canvasWidth. toInt()).toFloat()
+            val starX = ((i * 47 + 23) % canvasWidth.toInt()).toFloat()
             val starY = ((i * 31 + 11) % canvasHeight.toInt()).toFloat()
             if (starY < canvasHeight * 0.7f) {
                 drawCircle(
-                    color = Color. White.copy(alpha = 0.4f + (i % 3) * 0.2f),
+                    color = Color.White.copy(alpha = 0.4f + (i % 3) * 0.2f),
                     radius = 1f,
                     center = Offset(starX, starY)
                 )
@@ -2197,8 +2184,7 @@ fun HolographicBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -2220,7 +2206,7 @@ fun HolographicBanner(
         // Holographic stripes
         val stripeCount = 20
         for (i in 0 until stripeCount) {
-            val y = (i. toFloat() / stripeCount) * canvasHeight
+            val y = (i.toFloat() / stripeCount) * canvasHeight
             val colorPhase = (colorShift + i * 0.05f) % 1f
 
             val stripeColor = when {
@@ -2241,9 +2227,9 @@ fun HolographicBanner(
         drawRect(
             brush = Brush.verticalGradient(
                 colors = listOf(
-                    Color. Transparent,
-                    Color. White.copy(alpha = 0.4f),
-                    Color. Transparent
+                    Color.Transparent,
+                    Color.White.copy(alpha = 0.4f),
+                    Color.Transparent
                 )
             ),
             topLeft = Offset(0f, scanY - 10f),
@@ -2284,7 +2270,7 @@ fun HolographicBanner(
             brush = Brush.linearGradient(
                 colors = listOf(Color(0xFFFF00FF), Color(0xFF00FFFF), Color(0xFFFF00FF))
             ),
-            cornerRadius = CornerRadius(24.dp. toPx()),
+            cornerRadius = CornerRadius(24.dp.toPx()),
             style = Stroke(width = 2f)
         )
     }
@@ -2317,8 +2303,7 @@ fun StarfieldBanner(
     }
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -2352,7 +2337,7 @@ fun StarfieldBanner(
 
             if (x in 0f..canvasWidth && y in 0f..canvasHeight) {
                 val streakLength = warpedDistance * 15f
-                val alpha = warpedDistance. coerceIn(0.1f, 1f)
+                val alpha = warpedDistance.coerceIn(0.1f, 1f)
 
                 // Star streak
                 val startX = centerX + (cos(angle) * (distance - streakLength)).toFloat()
@@ -2361,8 +2346,8 @@ fun StarfieldBanner(
                 drawLine(
                     brush = Brush.linearGradient(
                         colors = listOf(
-                            Color. Transparent,
-                            Color.White. copy(alpha = alpha * 0.5f),
+                            Color.Transparent,
+                            Color.White.copy(alpha = alpha * 0.5f),
                             Color.White.copy(alpha = alpha)
                         ),
                         start = Offset(startX, startY),
@@ -2375,7 +2360,7 @@ fun StarfieldBanner(
 
                 // Star point
                 drawCircle(
-                    color = Color. White.copy(alpha = alpha),
+                    color = Color.White.copy(alpha = alpha),
                     radius = 2f,
                     center = Offset(x, y)
                 )
@@ -2386,9 +2371,9 @@ fun StarfieldBanner(
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.3f),
+                    Color.White.copy(alpha = 0.3f),
                     Color(0xFF4A90D9).copy(alpha = 0.1f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = 30f,
@@ -2397,9 +2382,9 @@ fun StarfieldBanner(
 
         drawRoundRect(
             brush = Brush.linearGradient(
-                colors = listOf(Color(0xFF4A90D9), Color. White, Color(0xFF4A90D9))
+                colors = listOf(Color(0xFF4A90D9), Color.White, Color(0xFF4A90D9))
             ),
-            cornerRadius = CornerRadius(24.dp. toPx()),
+            cornerRadius = CornerRadius(24.dp.toPx()),
             style = Stroke(width = 2f)
         )
     }
@@ -2428,8 +2413,7 @@ fun HeartbeatBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -2451,7 +2435,7 @@ fun HeartbeatBanner(
 
         // Grid lines
         for (i in 0.. 8) {
-            val y = (i. toFloat() / 8) * canvasHeight
+            val y = (i.toFloat() / 8) * canvasHeight
             drawLine(
                 color = Color(0xFFE91E63).copy(alpha = 0.1f),
                 start = Offset(0f, y),
@@ -2460,7 +2444,7 @@ fun HeartbeatBanner(
             )
         }
         for (i in 0..16) {
-            val x = (i. toFloat() / 16) * canvasWidth
+            val x = (i.toFloat() / 16) * canvasWidth
             drawLine(
                 color = Color(0xFFE91E63).copy(alpha = 0.1f),
                 start = Offset(x, 0f),
@@ -2475,7 +2459,7 @@ fun HeartbeatBanner(
 
             val scrollOffset = beat * canvasWidth
 
-            for (x in 0.. canvasWidth. toInt() step 5) {
+            for (x in 0.. canvasWidth.toInt() step 5) {
                 val normalizedX = ((x + scrollOffset) % canvasWidth) / canvasWidth
 
                 val y = when {
@@ -2563,8 +2547,7 @@ fun IceCrystalBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -2573,7 +2556,7 @@ fun IceCrystalBanner(
 
         // Icy background
         drawRoundRect(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF0A1A2E),
                     Color(0xFF1A3A5E),
@@ -2596,9 +2579,9 @@ fun IceCrystalBanner(
                 val endY = centerY + (sin(angle) * length).toFloat()
 
                 drawLine(
-                    brush = Brush. linearGradient(
+                    brush = Brush.linearGradient(
                         colors = listOf(
-                            Color. White.copy(alpha = 0.8f),
+                            Color.White.copy(alpha = 0.8f),
                             Color(0xFF4FC3F7).copy(alpha = 0.4f)
                         ),
                         start = Offset(centerX, centerY),
@@ -2640,7 +2623,7 @@ fun IceCrystalBanner(
         // Sparkles
         for (i in 0.. 30) {
             val sparkX = ((i * 53 + shimmer * 100) % canvasWidth.toInt()).toFloat()
-            val sparkY = ((i * 37) % canvasHeight. toInt()).toFloat()
+            val sparkY = ((i * 37) % canvasHeight.toInt()).toFloat()
             val sparkAlpha = (sin(sparkle * Math.PI * 2 + i).toFloat() + 1f) / 2f
 
             drawCircle(
@@ -2655,9 +2638,9 @@ fun IceCrystalBanner(
         drawRect(
             brush = Brush.horizontalGradient(
                 colors = listOf(
-                    Color. Transparent,
+                    Color.Transparent,
                     Color.White.copy(alpha = 0.15f),
-                    Color. Transparent
+                    Color.Transparent
                 ),
                 startX = shimmerX,
                 endX = shimmerX + canvasWidth * 0.3f
@@ -2693,14 +2676,14 @@ fun GoldenParticlesBanner(
 
     val shimmer by infiniteTransition.animateFloat(
         initialValue = 0f, targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(2000, easing = EaseInOutSine), RepeatMode. Reverse),
+        animationSpec = infiniteRepeatable(tween(2000, easing = EaseInOutSine), RepeatMode.Reverse),
         label = "shimmer"
     )
 
     val particles = remember {
         List(50) {
             Triple(
-                Random. nextFloat(),  // x position
+                Random.nextFloat(),  // x position
                 Random.nextFloat(),  // y position base
                 Random.nextFloat() * 0.5f + 0.5f  // speed
             )
@@ -2708,8 +2691,7 @@ fun GoldenParticlesBanner(
     }
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -2718,7 +2700,7 @@ fun GoldenParticlesBanner(
 
         // Rich dark background
         drawRoundRect(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF1A1500),
                     Color(0xFF2A2000),
@@ -2741,7 +2723,7 @@ fun GoldenParticlesBanner(
                     brush = Brush.radialGradient(
                         colors = listOf(
                             Color(0xFFFFD700).copy(alpha = alpha * 0.5f),
-                            Color. Transparent
+                            Color.Transparent
                         )
                     ),
                     radius = size * 3f,
@@ -2771,7 +2753,7 @@ fun GoldenParticlesBanner(
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         Color(0xFFFFD700).copy(alpha = rayAlpha),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 ),
                 topLeft = Offset(rayX - 5f, 0f),
@@ -2783,7 +2765,7 @@ fun GoldenParticlesBanner(
             brush = Brush.linearGradient(
                 colors = listOf(Color(0xFFFFD700), Color(0xFFFFF59D), Color(0xFFFFD700))
             ),
-            cornerRadius = CornerRadius(24.dp. toPx()),
+            cornerRadius = CornerRadius(24.dp.toPx()),
             style = Stroke(width = 2.5f)
         )
     }
@@ -2812,8 +2794,7 @@ fun VortexPortalBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -2832,7 +2813,7 @@ fun VortexPortalBanner(
                 ),
                 center = Offset(centerX, centerY)
             ),
-            cornerRadius = CornerRadius(24.dp. toPx())
+            cornerRadius = CornerRadius(24.dp.toPx())
         )
 
         // Vortex rings
@@ -2843,11 +2824,11 @@ fun VortexPortalBanner(
 
             rotate(degrees = ringRotation, pivot = Offset(centerX, centerY)) {
                 drawCircle(
-                    brush = Brush. sweepGradient(
+                    brush = Brush.sweepGradient(
                         colors = listOf(
                             Color(0xFF7C4DFF).copy(alpha = alpha),
                             Color(0xFFB388FF).copy(alpha = alpha * 0.5f),
-                            Color. Transparent,
+                            Color.Transparent,
                             Color(0xFF7C4DFF).copy(alpha = alpha)
                         ),
                         center = Offset(centerX, centerY)
@@ -2891,7 +2872,7 @@ fun VortexPortalBanner(
             brush = Brush.linearGradient(
                 colors = listOf(Color(0xFF7C4DFF), Color(0xFFB388FF), Color(0xFF7C4DFF))
             ),
-            cornerRadius = CornerRadius(24.dp. toPx()),
+            cornerRadius = CornerRadius(24.dp.toPx()),
             style = Stroke(width = 2f)
         )
     }
@@ -2918,16 +2899,15 @@ fun FirefliesBanner(
             listOf(
                 Random.nextFloat(),  // base x
                 Random.nextFloat(),  // base y
-                Random. nextFloat() * 0.02f + 0.005f,  // speed x
+                Random.nextFloat() * 0.02f + 0.005f,  // speed x
                 Random.nextFloat() * 0.015f + 0.005f,  // speed y
-                Random. nextFloat() * 2000f + 1000f  // blink speed
+                Random.nextFloat() * 2000f + 1000f  // blink speed
             )
         }
     }
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -2936,7 +2916,7 @@ fun FirefliesBanner(
 
         // Night forest background
         drawRoundRect(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF0A1A0A),
                     Color(0xFF0D2A0D),
@@ -2992,7 +2972,7 @@ fun FirefliesBanner(
                         colors = listOf(
                             Color(0xFFFFEB3B).copy(alpha = blink * 0.6f),
                             Color(0xFFFFF176).copy(alpha = blink * 0.2f),
-                            Color. Transparent
+                            Color.Transparent
                         )
                     ),
                     radius = 15f * blink,
@@ -3012,7 +2992,7 @@ fun FirefliesBanner(
             brush = Brush.linearGradient(
                 colors = listOf(Color(0xFFFFEB3B), Color(0xFF8BC34A), Color(0xFFFFEB3B))
             ),
-            cornerRadius = CornerRadius(24.dp. toPx()),
+            cornerRadius = CornerRadius(24.dp.toPx()),
             style = Stroke(width = 2f)
         )
     }
@@ -3047,8 +3027,7 @@ fun NebulaCloudBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -3093,7 +3072,7 @@ fun NebulaCloudBanner(
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        cloudColor. copy(alpha = 0.4f * pulse),
+                        cloudColor.copy(alpha = 0.4f * pulse),
                         cloudColor.copy(alpha = 0.2f),
                         Color.Transparent
                     ),
@@ -3106,12 +3085,12 @@ fun NebulaCloudBanner(
 
         // Stars
         for (i in 0..50) {
-            val starX = ((i * 47 + 17) % canvasWidth. toInt()).toFloat()
+            val starX = ((i * 47 + 17) % canvasWidth.toInt()).toFloat()
             val starY = ((i * 31 + 13) % canvasHeight.toInt()).toFloat()
             val twinkle = (sin(colorShift * Math.PI * 2 + i).toFloat() + 1f) / 2f
 
             drawCircle(
-                color = Color. White.copy(alpha = 0.4f + twinkle * 0.4f),
+                color = Color.White.copy(alpha = 0.4f + twinkle * 0.4f),
                 radius = if (i % 7 == 0) 2f else 1f,
                 center = Offset(starX, starY)
             )
@@ -3156,8 +3135,7 @@ fun ThunderStrikeBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -3180,7 +3158,7 @@ fun ThunderStrikeBanner(
         if (strike < 0.15f) {
             val flashIntensity = (0.15f - strike) / 0.15f
             drawRoundRect(
-                color = Color. White.copy(alpha = flashIntensity * 0.4f),
+                color = Color.White.copy(alpha = flashIntensity * 0.4f),
                 cornerRadius = CornerRadius(24.dp.toPx())
             )
         }
@@ -3195,7 +3173,7 @@ fun ThunderStrikeBanner(
                     colors = listOf(
                         Color(0xFF2A2A4A),
                         Color(0xFF1A1A3A).copy(alpha = 0.5f),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 ),
                 radius = 50f + i * 10f,
@@ -3226,7 +3204,7 @@ fun ThunderStrikeBanner(
             // Core
             drawPath(
                 path = mainBolt,
-                color = Color. White.copy(alpha = boltAlpha),
+                color = Color.White.copy(alpha = boltAlpha),
                 style = Stroke(width = 4f)
             )
 
@@ -3245,7 +3223,7 @@ fun ThunderStrikeBanner(
 
             drawPath(
                 path = branch,
-                color = Color.White. copy(alpha = boltAlpha * 0.9f),
+                color = Color.White.copy(alpha = boltAlpha * 0.9f),
                 style = Stroke(width = 2f)
             )
         }
@@ -3276,7 +3254,7 @@ fun ThunderStrikeBanner(
 
         // Rain
         for (i in 0..30) {
-            val rainX = ((i * 37 + strike * 50) % canvasWidth. toInt()).toFloat()
+            val rainX = ((i * 37 + strike * 50) % canvasWidth.toInt()).toFloat()
             val rainY = ((i * 53 + strike * canvasHeight) % canvasHeight.toInt()).toFloat()
 
             drawLine(
@@ -3325,15 +3303,14 @@ fun SakuraPetalsBanner(
                 Random.nextFloat(),  // x position
                 Random.nextFloat(),  // y offset
                 Random.nextFloat() * 0.5f + 0.5f,  // fall speed
-                Random. nextFloat() * 20f + 10f,  // sway amplitude
+                Random.nextFloat() * 20f + 10f,  // sway amplitude
                 Random.nextFloat() * 360f  // rotation
             )
         }
     }
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -3383,11 +3360,11 @@ fun SakuraPetalsBanner(
             val blossomY = canvasHeight * (0.25f + Random(i * 2).nextFloat() * 0.25f)
 
             drawCircle(
-                brush = Brush. radialGradient(
+                brush = Brush.radialGradient(
                     colors = listOf(
                         Color(0xFFF8BBD0).copy(alpha = 0.6f),
                         Color(0xFFE91E63).copy(alpha = 0.2f),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 ),
                 radius = 12f + (i % 3) * 5f,
@@ -3412,7 +3389,7 @@ fun SakuraPetalsBanner(
                 rotate(degrees = rotation, pivot = Offset(x, y)) {
                     // Petal shape (ellipse)
                     drawOval(
-                        brush = Brush. radialGradient(
+                        brush = Brush.radialGradient(
                             colors = listOf(
                                 Color(0xFFFCE4EC),
                                 Color(0xFFF8BBD0)
@@ -3431,7 +3408,7 @@ fun SakuraPetalsBanner(
             brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFFF8BBD0).copy(alpha = 0.1f),
-                    Color. Transparent,
+                    Color.Transparent,
                     Color(0xFFE91E63).copy(alpha = 0.05f)
                 )
             ),
@@ -3477,8 +3454,7 @@ fun UnderwaterBanner(
     )
 
     Canvas(
-        modifier = modifier
-            .width(width)
+        modifier = modifier.width(width)
             .height(height)
             .clip(RoundedCornerShape(24.dp))
     ) {
@@ -3515,7 +3491,7 @@ fun UnderwaterBanner(
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         Color(0xFF7FDBFF).copy(alpha = rayAlpha),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 )
             )
@@ -3542,7 +3518,7 @@ fun UnderwaterBanner(
 
             drawPath(
                 path = seaweedPath,
-                brush = Brush. verticalGradient(
+                brush = Brush.verticalGradient(
                     colors = listOf(
                         Color(0xFF2D6A4F),
                         Color(0xFF1B4332)
@@ -3553,7 +3529,7 @@ fun UnderwaterBanner(
 
         // Bubbles
         for (i in 0.. 20) {
-            val bubbleX = (i * 47 % canvasWidth. toInt()).toFloat() + sin(bubble * Math. PI + i).toFloat() * 5f
+            val bubbleX = (i * 47 % canvasWidth.toInt()).toFloat() + sin(bubble * Math.PI + i).toFloat() * 5f
             val bubbleProgress = (bubble + i * 0.05f) % 1f
             val bubbleY = canvasHeight * (1f - bubbleProgress)
             val bubbleSize = 4f + (i % 4) * 2f
@@ -3562,9 +3538,9 @@ fun UnderwaterBanner(
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        Color. White.copy(alpha = bubbleAlpha * 0.3f),
+                        Color.White.copy(alpha = bubbleAlpha * 0.3f),
                         Color(0xFF7FDBFF).copy(alpha = bubbleAlpha * 0.5f),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 ),
                 radius = bubbleSize,
@@ -3573,7 +3549,7 @@ fun UnderwaterBanner(
 
             // Bubble highlight
             drawCircle(
-                color = Color.White. copy(alpha = bubbleAlpha * 0.6f),
+                color = Color.White.copy(alpha = bubbleAlpha * 0.6f),
                 radius = bubbleSize * 0.3f,
                 center = Offset(bubbleX - bubbleSize * 0.3f, bubbleY - bubbleSize * 0.3f)
             )
@@ -3582,7 +3558,7 @@ fun UnderwaterBanner(
         // Small fish silhouettes
         for (i in 0..3) {
             val fishX = ((bubble * canvasWidth * 1.5f + i * 100) % (canvasWidth + 50)) - 25f
-            val fishY = canvasHeight * (0.3f + i * 0.15f) + sin(wave * Math. PI + i).toFloat() * 10f
+            val fishY = canvasHeight * (0.3f + i * 0.15f) + sin(wave * Math.PI + i).toFloat() * 10f
 
             val fishPath = Path().apply {
                 moveTo(fishX, fishY)
@@ -3627,14 +3603,13 @@ fun BannerThumbnail(
     )
 
     Box(
-        modifier = modifier
-            .width(100.dp)
+        modifier = modifier.width(100.dp)
             .height(55.dp)
             .scale(scale)
             .clip(RoundedCornerShape(12.dp))
             .border(
-                width = if (isSelected) 3. dp else 1.dp,
-                color = if (isSelected) Color(0xFFFFD700) else Color.White. copy(alpha = 0.3f),
+                width = if (isSelected) 3.dp else 1.dp,
+                color = if (isSelected) Color(0xFFFFD700) else Color.White.copy(alpha = 0.3f),
                 shape = RoundedCornerShape(12.dp)
             )
             .clickable { onClick() }
@@ -3647,15 +3622,14 @@ fun BannerThumbnail(
 
         if (isSelected) {
             Box(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
+                modifier = Modifier.align(Alignment.TopEnd)
                     .padding(4.dp)
                     .size(18.dp)
                     .clip(CircleShape)
                     .background(Color(0xFFFFD700)),
                 contentAlignment = Alignment.Center
             ) {
-                Text("✓", fontSize = 11.sp, color = Color. Black, fontWeight = FontWeight.Bold)
+                Text("✓", fontSize = 11.sp, color = Color.Black, fontWeight = FontWeight.Bold)
             }
         }
     }
@@ -3689,8 +3663,7 @@ fun ProfileAvatarWithBanner(
     ) {
         // Banner
         Box(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
+            modifier = Modifier.align(Alignment.TopCenter)
                 .clickable { onBannerClick() }
         ) {
             HorizontalProfileBanner(
@@ -3702,15 +3675,13 @@ fun ProfileAvatarWithBanner(
 
         // Avatar
         Box(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
+            modifier = Modifier.align(Alignment.TopCenter)
                 .offset(y = bannerHeight - avatarInsideBanner)
         ) {
             Surface(
                 shape = CircleShape,
                 color = Color(0xFF1E1E2E),
-                modifier = Modifier
-                    .size(avatarSize)
+                modifier = Modifier.size(avatarSize)
                     .border(3.dp, Color(0xFF2A2A4A), CircleShape)
             ) {
                 if (generatedAvatarId >= 0) {
@@ -3723,19 +3694,17 @@ fun ProfileAvatarWithBanner(
                     Image(
                         painter = painterResource(id = avatarDrawableRes),
                         contentDescription = "avatar",
-                        modifier = Modifier
-                            .fillMaxSize()
+                        modifier = Modifier.fillMaxSize()
                             .clip(CircleShape),
                         contentScale = ContentScale.Crop
                     )
                 } else {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
+                        modifier = Modifier.fillMaxSize()
                             .background(Color(0xFF2A2A4A)),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("👤", fontSize = (avatarSize. value * 0.4f).sp)
+                        Text("👤", fontSize = (avatarSize.value * 0.4f).sp)
                     }
                 }
             }
@@ -3743,13 +3712,12 @@ fun ProfileAvatarWithBanner(
             // Edit button
             if (showEditButton && pencilDrawable != 0) {
                 Box(
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        . offset(x = 0. dp, y = 0.dp)
+                    modifier = Modifier.align(Alignment.BottomEnd)
+                        . offset(x = 0.dp, y = 0.dp)
                         .size(32.dp)
                         .clip(CircleShape)
                         .background(Color(0xFF4CAF50))
-                        .border(2.dp, Color. White, CircleShape)
+                        .border(2.dp, Color.White, CircleShape)
                         . clickable { onEditClick() },
                     contentAlignment = Alignment.Center
                 ) {

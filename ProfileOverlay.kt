@@ -2,35 +2,35 @@ package com.appsdevs.popit
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx. compose.animation.core. Animatable
-import androidx.compose.animation. core.FastOutSlowInEasing
-import androidx. compose.animation.core.tween
-import androidx. compose.animation.fadeIn
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
 import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose. foundation.clickable
-import androidx. compose.foundation.gestures.detectTapGestures
-import androidx.compose. foundation.layout. Arrangement
-import androidx.compose.foundation. layout.Box
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation. layout.Column
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose. foundation.layout. Spacer
-import androidx.compose.foundation. layout.fillMaxSize
-import androidx.compose.foundation.layout. fillMaxWidth
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose. foundation.layout.offset
-import androidx.compose.foundation.layout. padding
-import androidx.compose.foundation.layout. size
-import androidx. compose.foundation.layout.width
-import androidx.compose.foundation. layout.wrapContentHeight
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation. shape.RoundedCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text. KeyboardOptions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -38,47 +38,47 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.IconButton
-import androidx. compose.material3.LinearProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx. compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx. compose.material3.Text
-import androidx. compose.material3.TextButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose. runtime.LaunchedEffect
-import androidx. compose.runtime.collectAsState
-import androidx.compose.runtime. getValue
-import androidx. compose.runtime.mutableIntStateOf
-import androidx. compose.runtime.mutableStateOf
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose. ui.Alignment
-import androidx.compose. ui.Modifier
-import androidx.compose. ui.draw.alpha
-import androidx.compose.ui.draw. clip
-import androidx. compose.ui.draw.scale
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics. Brush
-import androidx. compose.ui.graphics.Color
-import androidx.compose.ui. graphics.Shadow
-import androidx.compose.ui.graphics. StrokeCap
-import androidx. compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui. input.pointer.pointerInput
-import androidx. compose.ui.platform.LocalContext
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui. text.TextStyle
-import androidx. compose.ui.text.font.FontWeight
-import androidx.compose.ui.text. input.ImeAction
-import androidx.compose. ui.text.style.TextAlign
-import androidx.compose.ui.unit. Dp
-import androidx. compose.ui.unit.dp
-import androidx.compose.ui. unit.sp
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window. DialogProperties
-import androidx.compose.ui. zIndex
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.zIndex
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -97,8 +97,7 @@ fun ProfileOverlayCoil(
     val bannerHeightDefault = 180.dp
 
     BoxWithConstraints(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
             .zIndex(5f)
     ) {
         val transformOrigin = TransformOrigin(0.5f, 0.2f)
@@ -185,7 +184,7 @@ fun ProfileOverlayCoil(
                     scaleY = scaleAnim.value
                     this.transformOrigin = transformOrigin
                 }
-                .clip(RoundedCornerShape(percent = cornerPercentAnim. value. toInt()))
+                .clip(RoundedCornerShape(percent = cornerPercentAnim.value.toInt()))
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
@@ -198,8 +197,7 @@ fun ProfileOverlayCoil(
         ) {
             SnackbarHost(
                 hostState = snackbarHostState,
-                modifier = Modifier
-                    .align(Alignment.TopCenter)
+                modifier = Modifier.align(Alignment.TopCenter)
                     . padding(top = 8.dp)
                     .zIndex(10f)
             )
@@ -212,8 +210,7 @@ fun ProfileOverlayCoil(
                 )
             ) {
                 Column(
-                    modifier = Modifier
-                        .fillMaxSize()
+                    modifier = Modifier.fillMaxSize()
                         .verticalScroll(scrollState)
                         .padding(20.dp)
                         .animateContentSize(),
@@ -224,11 +221,11 @@ fun ProfileOverlayCoil(
                             scope.launch {
                                 contentVisible = false
                                 delay(80)
-                                cornerPercentAnim. animateTo(
+                                cornerPercentAnim.animateTo(
                                     50f,
                                     animationSpec = tween(durationMillis = 220, easing = FastOutSlowInEasing)
                                 )
-                                scaleAnim. animateTo(
+                                scaleAnim.animateTo(
                                     0f,
                                     animationSpec = tween(durationMillis = 280, easing = FastOutSlowInEasing)
                                 )
@@ -259,21 +256,21 @@ fun ProfileOverlayCoil(
                         Text(
                             text = "Tap banner to customize",
                             fontSize = 10.sp,
-                            color = Color.White. copy(alpha = 0.4f)
+                            color = Color.White.copy(alpha = 0.4f)
                         )
                         Text(
                             text = "•",
                             fontSize = 10.sp,
-                            color = Color.White. copy(alpha = 0.3f)
+                            color = Color.White.copy(alpha = 0.3f)
                         )
                         Text(
                             text = "Tap avatar to change",
                             fontSize = 10.sp,
-                            color = Color.White. copy(alpha = 0.4f)
+                            color = Color.White.copy(alpha = 0.4f)
                         )
                     }
 
-                    Spacer(modifier = Modifier. height(16.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     ProfileNameSection(
                         storedProfileName = storedProfileName,
@@ -307,7 +304,7 @@ fun ProfileOverlayCoil(
                         ds = ds
                     )
 
-                    Spacer(modifier = Modifier. height(24.dp))
+                    Spacer(modifier = Modifier.height(24.dp))
                 }
             }
         }
@@ -353,9 +350,9 @@ fun ProfileOverlayCoil(
 @Composable
 private fun ProfileHeader(onClose: () -> Unit) {
     Row(
-        modifier = Modifier. fillMaxWidth(),
-        horizontalArrangement = Arrangement. SpaceBetween,
-        verticalAlignment = Alignment. CenterVertically
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(text = "👤", fontSize = 26.sp)
@@ -367,7 +364,7 @@ private fun ProfileHeader(onClose: () -> Unit) {
                 color = Color.White,
                 style = TextStyle(
                     shadow = Shadow(
-                        color = Color. Black. copy(alpha = 0.5f),
+                        color = Color.Black.copy(alpha = 0.5f),
                         offset = Offset(2f, 2f),
                         blurRadius = 4f
                     )
@@ -377,14 +374,13 @@ private fun ProfileHeader(onClose: () -> Unit) {
 
         TextButton(
             onClick = onClose,
-            modifier = Modifier
-                .clip(RoundedCornerShape(12.dp))
-                .background(Color.White. copy(alpha = 0.1f))
+            modifier = Modifier.clip(RoundedCornerShape(12.dp))
+                .background(Color.White.copy(alpha = 0.1f))
         ) {
             Text(
                 text = "✕ Close",
-                color = Color.White. copy(alpha = 0.9f),
-                fontWeight = FontWeight. Medium,
+                color = Color.White.copy(alpha = 0.9f),
+                fontWeight = FontWeight.Medium,
                 fontSize = 14.sp
             )
         }
@@ -410,8 +406,7 @@ fun ProfileBannerWithAvatar(
     val totalHeight = bannerHeight + avatarOutsideBanner
 
     Box(
-        modifier = Modifier
-            .width(bannerWidth)
+        modifier = Modifier.width(bannerWidth)
             .height(totalHeight),
         contentAlignment = Alignment.TopCenter
     ) {
@@ -428,8 +423,7 @@ fun ProfileBannerWithAvatar(
             )
 
             Box(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
+                modifier = Modifier.align(Alignment.TopEnd)
                     . padding(8.dp)
                     .size(28.dp)
                     .clip(CircleShape)
@@ -446,23 +440,21 @@ fun ProfileBannerWithAvatar(
                 .offset(y = bannerHeight - avatarInsideBanner)
         ) {
             Box(
-                modifier = Modifier
-                    .size(avatarSize + 8.dp)
+                modifier = Modifier.size(avatarSize + 8.dp)
                     .align(Alignment.Center)
                     . clip(CircleShape)
                     .background(
                         brush = Brush.radialGradient(
                             colors = listOf(
                                 Color(0xFF4CAF50).copy(alpha = 0.4f),
-                                Color. Transparent
+                                Color.Transparent
                             )
                         )
                     )
             )
 
             Box(
-                modifier = Modifier
-                    .size(avatarSize)
+                modifier = Modifier.size(avatarSize)
                     .clip(CircleShape)
                     .border(4.dp, Color(0xFF1A1A2E), CircleShape)
                     .border(2.dp, Color(0xFF4CAF50), CircleShape)
@@ -476,8 +468,7 @@ fun ProfileBannerWithAvatar(
 
             if (showEditButton && pencilDrawable != 0) {
                 Box(
-                    modifier = Modifier
-                        .align(Alignment. BottomEnd)
+                    modifier = Modifier.align(Alignment.BottomEnd)
                         .offset(x = 4.dp, y = 4.dp)
                         .size(36.dp)
                         .clip(CircleShape)
@@ -486,7 +477,7 @@ fun ProfileBannerWithAvatar(
                                 colors = listOf(Color(0xFF4CAF50), Color(0xFF2E7D32))
                             )
                         )
-                        .border(2.dp, Color. White, CircleShape)
+                        .border(2.dp, Color.White, CircleShape)
                         .clickable { onEditClick() },
                     contentAlignment = Alignment.Center
                 ) {
@@ -507,7 +498,7 @@ fun ProfileBannerWithAvatar(
 private fun PremiumMedalsShowcase(
     onViewAllClick:  () -> Unit
 ) {
-    val context = LocalContext. current
+    val context = LocalContext.current
     val dataStore = remember { DataStoreManager(context) }
     val medalManager = remember { MedalManager(dataStore) }
 
@@ -520,12 +511,11 @@ private fun PremiumMedalsShowcase(
         isLoading = false
     }
 
-    val featuredMedals = allMedals
-        .filter { it.currentTier != BadgeTier. LOCKED }
-        .sortedByDescending { it. currentTier. level }
+    val featuredMedals = allMedals.filter { it.currentTier != BadgeTier.LOCKED }
+        .sortedByDescending { it.currentTier.level }
         .take(3)
 
-    val unlockedCount = allMedals.count { it. currentTier != BadgeTier. LOCKED }
+    val unlockedCount = allMedals.count { it.currentTier != BadgeTier.LOCKED }
     val totalMedals = allMedals.size
 
     Card(
@@ -533,10 +523,10 @@ private fun PremiumMedalsShowcase(
             . fillMaxWidth()
             .wrapContentHeight(),
         shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults. cardColors(
+        colors = CardDefaults.cardColors(
             containerColor = Color(0xFF0A0A14)
         ),
-        elevation = CardDefaults. cardElevation(defaultElevation = 12.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
     ) {
         Column(
             modifier = Modifier
@@ -596,14 +586,13 @@ private fun PremiumMedalsShowcase(
 
             if (isLoading) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                         . height(140.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         "Loading medals...",
-                        color = Color.White. copy(alpha = 0.5f),
+                        color = Color.White.copy(alpha = 0.5f),
                         fontSize = 14.sp
                     )
                 }
@@ -619,7 +608,7 @@ private fun PremiumMedalsShowcase(
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
                             text = "Play games to unlock medals! ",
-                            color = Color.White. copy(alpha = 0.6f),
+                            color = Color.White.copy(alpha = 0.6f),
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Medium
                         )
@@ -634,13 +623,13 @@ private fun PremiumMedalsShowcase(
             } else {
                 // FIXED: All medals same size, no scaling for first one
                 Row(
-                    modifier = Modifier. fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.Top
                 ) {
-                    featuredMedals. forEach { medal ->
+                    featuredMedals.forEach { medal ->
                         Box(
-                            modifier = Modifier. width(100.dp),
+                            modifier = Modifier.width(100.dp),
                             contentAlignment = Alignment.TopCenter
                         ) {
                             PremiumMedal(
@@ -655,17 +644,16 @@ private fun PremiumMedalsShowcase(
 
                     repeat((3 - featuredMedals.size).coerceAtLeast(0)) {
                         Box(
-                            modifier = Modifier. width(100.dp),
-                            contentAlignment = Alignment. TopCenter
+                            modifier = Modifier.width(100.dp),
+                            contentAlignment = Alignment.TopCenter
                         ) {
                             Box(
-                                modifier = Modifier
-                                    .size(80.dp)
+                                modifier = Modifier.size(80.dp)
                                     . clip(CircleShape)
-                                    .background(Color. White.copy(alpha = 0.03f))
+                                    .background(Color.White.copy(alpha = 0.03f))
                                     .border(
                                         width = 2.dp,
-                                        color = Color.White. copy(alpha = 0.08f),
+                                        color = Color.White.copy(alpha = 0.08f),
                                         shape = CircleShape
                                     )
                                     .clickable { onViewAllClick() },
@@ -674,7 +662,7 @@ private fun PremiumMedalsShowcase(
                                 Text(
                                     text = "? ",
                                     fontSize = 28.sp,
-                                    color = Color.White. copy(alpha = 0.2f),
+                                    color = Color.White.copy(alpha = 0.2f),
                                     fontWeight = FontWeight.Bold
                                 )
                             }
@@ -685,23 +673,21 @@ private fun PremiumMedalsShowcase(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            val nextToUnlock = allMedals
-                .filter { it.currentTier == BadgeTier. LOCKED }
+            val nextToUnlock = allMedals.filter { it.currentTier == BadgeTier.LOCKED }
                 .minByOrNull { medal ->
-                    medal. badge.tiers.firstOrNull()?.requirement ?: Int.MAX_VALUE
+                    medal.badge.tiers.firstOrNull()?.requirement ?: Int.MAX_VALUE
                 }
 
             nextToUnlock?.let { medal ->
                 Card(
-                    modifier = Modifier. fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(14.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = Color. White.copy(alpha = 0.05f)
+                        containerColor = Color.White.copy(alpha = 0.05f)
                     )
                 ) {
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                             . padding(14.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -724,22 +710,21 @@ private fun PremiumMedalsShowcase(
                                 Text(
                                     text = medal.badge.name,
                                     fontSize = 14.sp,
-                                    fontWeight = FontWeight. Bold,
-                                    color = Color. White
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.White
                                 )
                             }
 
-                            val req = medal.badge. tiers.firstOrNull()?.requirement ?: 0
+                            val req = medal.badge.tiers.firstOrNull()?.requirement ?: 0
                             val progress = if (req > 0) {
-                                (medal.currentValue. toFloat() / req).coerceIn(0f, 1f)
+                                (medal.currentValue.toFloat() / req).coerceIn(0f, 1f)
                             } else 0f
 
                             Spacer(modifier = Modifier.height(6.dp))
 
                             LinearProgressIndicator(
                                 progress = { progress },
-                                modifier = Modifier
-                                    .fillMaxWidth()
+                                modifier = Modifier.fillMaxWidth()
                                     .height(8.dp)
                                     . clip(RoundedCornerShape(4.dp)),
                                 color = Color(0xFFFF6D00),
@@ -751,7 +736,7 @@ private fun PremiumMedalsShowcase(
 
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement. SpaceBetween
+                                horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
                                     text = "${medal.currentValue} / $req",
@@ -819,23 +804,22 @@ private fun ProfileNameSection(
                     Text(
                         text = "Username",
                         fontSize = 11.sp,
-                        color = Color.White. copy(alpha = 0.5f),
+                        color = Color.White.copy(alpha = 0.5f),
                         letterSpacing = 1.sp
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
                         text = if (storedProfileName.isNotBlank()) storedProfileName else "Tap to set name",
                         fontSize = 20.sp,
-                        fontWeight = FontWeight. Bold,
+                        fontWeight = FontWeight.Bold,
                         color = if (storedProfileName.isNotBlank()) Color.White else Color.White.copy(alpha = 0.4f),
-                        textAlign = TextAlign. Center
+                        textAlign = TextAlign.Center
                     )
                 }
 
                 IconButton(
                     onClick = { onEditingNameChange(true) },
-                    modifier = Modifier
-                        .size(40.dp)
+                    modifier = Modifier.size(40.dp)
                         .clip(CircleShape)
                         .background(
                             brush = Brush.linearGradient(
@@ -849,14 +833,14 @@ private fun ProfileNameSection(
                     Image(
                         painter = painterResource(id = pencilDrawable),
                         contentDescription = "edit_name",
-                        modifier = Modifier. size(20.dp)
+                        modifier = Modifier.size(20.dp)
                     )
                 }
             } else {
                 OutlinedTextField(
                     value = nameField,
                     onValueChange = onNameFieldChange,
-                    modifier = Modifier. weight(1f),
+                    modifier = Modifier.weight(1f),
                     singleLine = true,
                     textStyle = TextStyle(
                         color = Color.White,
@@ -866,10 +850,10 @@ private fun ProfileNameSection(
                     placeholder = {
                         Text(
                             "Enter your name",
-                            color = Color.White. copy(alpha = 0.4f)
+                            color = Color.White.copy(alpha = 0.4f)
                         )
                     },
-                    keyboardOptions = KeyboardOptions. Default.copy(imeAction = ImeAction. Done),
+                    keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                     keyboardActions = KeyboardActions(onDone = {
                         scope.launch {
                             ds.saveProfileName(nameField)
@@ -885,7 +869,7 @@ private fun ProfileNameSection(
                     shape = RoundedCornerShape(14.dp)
                 )
 
-                Spacer(modifier = Modifier. width(10.dp))
+                Spacer(modifier = Modifier.width(10.dp))
 
                 Button(
                     onClick = {
@@ -895,7 +879,7 @@ private fun ProfileNameSection(
                             onEditingNameChange(false)
                         }
                     },
-                    colors = ButtonDefaults. buttonColors(
+                    colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF4CAF50)
                     ),
                     shape = RoundedCornerShape(12.dp),
@@ -939,7 +923,7 @@ private fun StatisticsSection(
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFF0A0A14)
         ),
-        elevation = CardDefaults. cardElevation(defaultElevation = 10.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp)
     ) {
         Column(
             modifier = Modifier
@@ -969,8 +953,8 @@ private fun StatisticsSection(
 
             // Row 1: Best Score & Total Pops
             Row(
-                modifier = Modifier. fillMaxWidth(),
-                horizontalArrangement = Arrangement. spacedBy(12.dp)
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 StatCard(
                     icon = "🏆",
@@ -992,8 +976,8 @@ private fun StatisticsSection(
 
             // Row 2: Best Accuracy & Best Streak
             Row(
-                modifier = Modifier. fillMaxWidth(),
-                horizontalArrangement = Arrangement. spacedBy(12.dp)
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 StatCard(
                     icon = "🎯",
@@ -1034,10 +1018,10 @@ private fun StatisticsSection(
                 )
             }
 
-            Spacer(modifier = Modifier. height(18.dp))
+            Spacer(modifier = Modifier.height(18.dp))
 
             HorizontalDivider(
-                color = Color. White. copy(alpha = 0.08f),
+                color = Color.White.copy(alpha = 0.08f),
                 thickness = 1.dp
             )
 
@@ -1049,8 +1033,7 @@ private fun StatisticsSection(
             val unclaimedCount = (1.. level).count { it !in currentClaimedRewards }
 
             Card(
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
                     .clickable { showLevelRewards = true },
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
@@ -1058,14 +1041,12 @@ private fun StatisticsSection(
                 )
             ) {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                         .padding(14.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(
-                        modifier = Modifier
-                            .size(54.dp)
+                        modifier = Modifier.size(54.dp)
                             .clip(RoundedCornerShape(14.dp))
                             .background(
                                 brush = Brush.linearGradient(
@@ -1077,8 +1058,8 @@ private fun StatisticsSection(
                         Text(
                             text = "$level",
                             fontSize = 24.sp,
-                            fontWeight = FontWeight. ExtraBold,
-                            color = Color. White
+                            fontWeight = FontWeight.ExtraBold,
+                            color = Color.White
                         )
                     }
 
@@ -1089,22 +1070,21 @@ private fun StatisticsSection(
                             Text(
                                 text = "Player Level",
                                 fontSize = 15.sp,
-                                fontWeight = FontWeight. Bold,
+                                fontWeight = FontWeight.Bold,
                                 color = Color.White
                             )
-                            Spacer(modifier = Modifier. width(10.dp))
+                            Spacer(modifier = Modifier.width(10.dp))
                             if (unclaimedCount > 0) {
                                 Box(
-                                    modifier = Modifier
-                                        .clip(RoundedCornerShape(10.dp))
+                                    modifier = Modifier.clip(RoundedCornerShape(10.dp))
                                         .background(Color(0xFFFF6D00))
                                         . padding(horizontal = 8.dp, vertical = 3.dp)
                                 ) {
                                     Text(
                                         text = "🎁 $unclaimedCount",
                                         fontSize = 11.sp,
-                                        fontWeight = FontWeight. Bold,
-                                        color = Color. White
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.White
                                     )
                                 }
                             } else {
@@ -1120,13 +1100,12 @@ private fun StatisticsSection(
 
                         LinearProgressIndicator(
                             progress = { levelProgress },
-                            modifier = Modifier
-                                .fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth()
                                 .height(10.dp)
                                 .clip(RoundedCornerShape(5.dp)),
                             color = Color(0xFFFF6D00),
                             trackColor = Color.White.copy(alpha = 0.1f),
-                            strokeCap = StrokeCap. Round
+                            strokeCap = StrokeCap.Round
                         )
 
                         Spacer(modifier = Modifier.height(4.dp))
@@ -1134,7 +1113,7 @@ private fun StatisticsSection(
                         Text(
                             text = "${(levelProgress * 100).toInt()}% to Level ${level + 1}",
                             fontSize = 11.sp,
-                            color = Color. White.copy(alpha = 0.5f)
+                            color = Color.White.copy(alpha = 0.5f)
                         )
                     }
                 }
@@ -1163,10 +1142,10 @@ private fun StatCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier. height(85.dp),
+        modifier = modifier.height(85.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = color. copy(alpha = 0.1f)
+            containerColor = color.copy(alpha = 0.1f)
         )
     ) {
         Column(
@@ -1181,7 +1160,7 @@ private fun StatCard(
                 Text(
                     text = label,
                     fontSize = 11.sp,
-                    color = Color. White.copy(alpha = 0.6f),
+                    color = Color.White.copy(alpha = 0.6f),
                     maxLines = 1
                 )
             }
@@ -1189,7 +1168,7 @@ private fun StatCard(
             Text(
                 text = value,
                 fontSize = 22.sp,
-                fontWeight = FontWeight. Bold,
+                fontWeight = FontWeight.Bold,
                 color = color,
                 maxLines = 1
             )
@@ -1226,11 +1205,10 @@ fun LevelRewardsDialog(
                 .fillMaxSize(0.88f),
             shape = RoundedCornerShape(28.dp),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF0A0A14)),
-            elevation = CardDefaults. cardElevation(defaultElevation = 20.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = 20.dp)
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
                     .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(Color(0xFF2A1A4A), Color(0xFF1A1A2E), Color(0xFF0A0A14))
@@ -1240,7 +1218,7 @@ fun LevelRewardsDialog(
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement. SpaceBetween,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -1251,7 +1229,7 @@ fun LevelRewardsDialog(
                                 text = "Level Rewards",
                                 fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color. White
+                                color = Color.White
                             )
                             Text(
                                 text = "Current Level: $currentLevel",
@@ -1266,7 +1244,7 @@ fun LevelRewardsDialog(
                         onClick = onDismiss,
                         modifier = Modifier
                             . clip(CircleShape)
-                            .background(Color. White.copy(alpha = 0.1f))
+                            .background(Color.White.copy(alpha = 0.1f))
                     ) {
                         Text("✕", fontSize = 22.sp, color = Color.White)
                     }
@@ -1275,8 +1253,7 @@ fun LevelRewardsDialog(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                         . weight(1f)
                         .verticalScroll(scrollState),
                     verticalArrangement = Arrangement.spacedBy(14.dp)
@@ -1331,15 +1308,14 @@ private fun LevelRewardItem(
     }
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
             .border(
                 width = if (isSpecial && ! isClaimed) 2.dp else 1.dp,
                 color = borderColor,
                 shape = RoundedCornerShape(18.dp)
             ),
         shape = RoundedCornerShape(18.dp),
-        colors = CardDefaults. cardColors(containerColor = bgColor)
+        colors = CardDefaults.cardColors(containerColor = bgColor)
     ) {
         Row(
             modifier = Modifier
@@ -1348,8 +1324,7 @@ private fun LevelRewardItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
-                modifier = Modifier
-                    .size(54.dp)
+                modifier = Modifier.size(54.dp)
                     .clip(RoundedCornerShape(14.dp))
                     .background(
                         brush = if (isSpecial) {
@@ -1359,7 +1334,7 @@ private fun LevelRewardItem(
                         }
                     )
                     .alpha(if (isUnlocked) 1f else 0.35f),
-                contentAlignment = Alignment. Center
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "${reward.level}",
@@ -1438,20 +1413,19 @@ private fun LevelRewardItem(
                 if (reward.description.isNotEmpty() && ! isSpecial) {
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = reward. description,
+                        text = reward.description,
                         fontSize = 11.sp,
-                        color = Color. White.copy(alpha = 0.5f)
+                        color = Color.White.copy(alpha = 0.5f)
                     )
                 }
             }
 
-            Spacer(modifier = Modifier. width(10.dp))
+            Spacer(modifier = Modifier.width(10.dp))
 
             when {
                 isClaimed -> {
                     Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(10.dp))
+                        modifier = Modifier.clip(RoundedCornerShape(10.dp))
                             .background(Color(0xFF555555))
                             .padding(horizontal = 14.dp, vertical = 8.dp)
                     ) {
@@ -1459,7 +1433,7 @@ private fun LevelRewardItem(
                             text = "✓",
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color. White
+                            color = Color.White
                         )
                     }
                 }
@@ -1476,14 +1450,13 @@ private fun LevelRewardItem(
                             text = "CLAIM",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
-                            color = if (isSpecial) Color. Black else Color.White
+                            color = if (isSpecial) Color.Black else Color.White
                         )
                     }
                 }
                 else -> {
                     Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(10.dp))
+                        modifier = Modifier.clip(RoundedCornerShape(10.dp))
                             .background(Color(0xFF2A2A2A))
                             .padding(horizontal = 14.dp, vertical = 8.dp)
                     ) {
@@ -1505,7 +1478,7 @@ private fun formatNumber(number: Int): String {
         }
         number >= 1_000 -> {
             val value = number / 1_000f
-            String.format(java.util. Locale.US, "%.1fK", value)
+            String.format(java.util.Locale.US, "%.1fK", value)
         }
         else -> number.toString()
     }
@@ -1516,7 +1489,7 @@ private fun calculateLevel(totalPops:  Int): Int {
         0, 100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000,
         150000, 200000, 300000, 400000, 500000, 650000, 800000, 1000000, 1250000, 1500000
     )
-    for (i in thresholds. indices. reversed()) {
+    for (i in thresholds.indices.reversed()) {
         if (totalPops >= thresholds[i]) {
             return i + 1
         }
@@ -1529,7 +1502,7 @@ private fun calculateLevelProgress(totalPops: Int): Float {
         0, 100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000,
         150000, 200000, 300000, 400000, 500000, 650000, 800000, 1000000, 1250000, 1500000
     )
-    for (i in thresholds. indices) {
+    for (i in thresholds.indices) {
         if (i == thresholds.lastIndex) {
             return 1f
         }

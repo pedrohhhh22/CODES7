@@ -1,38 +1,38 @@
 package com.appsdevs.popit
 
-import androidx.compose.animation. core.EaseInOutSine
-import androidx.compose. animation.core.LinearEasing
-import androidx.compose.animation. core.RepeatMode
-import androidx.compose.animation.core. animateFloat
+import androidx.compose.animation.core.EaseInOutSine
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx. compose.animation.core.tween
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation. background
-import androidx. compose.foundation.border
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout. Box
-import androidx.compose.foundation.layout. fillMaxSize
-import androidx.compose.foundation. layout.size
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose. runtime.Composable
-import androidx.compose. runtime.getValue
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose. ui.geometry.Offset
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics. Brush
-import androidx.compose.ui. graphics.Color
-import androidx.compose.ui. draw.scale
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics. drawscope.Stroke
-import androidx.compose. ui.graphics.drawscope.rotate
-import androidx.compose.ui.unit. Dp
-import androidx. compose.ui.unit.dp
-import kotlin.math. cos
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.random.Random
 
@@ -89,7 +89,7 @@ object GeneratedAvatars {
 
     val allAvatars = staticAvatars + animatedAvatars
 
-    fun getById(id: Int): GeneratedAvatarData = allAvatars. find { it.id == id } ?: staticAvatars[0]
+    fun getById(id: Int): GeneratedAvatarData = allAvatars.find { it.id == id } ?: staticAvatars[0]
     fun isAnimated(id:  Int): Boolean = getById(id).isAnimated
 }
 
@@ -104,8 +104,7 @@ fun GeneratedAvatar(
     val avatarData = GeneratedAvatars.getById(avatarId)
 
     Box(
-        modifier = modifier
-            .size(size)
+        modifier = modifier.size(size)
             .clip(CircleShape)
     ) {
         when (avatarId) {
@@ -158,7 +157,7 @@ fun GeneratedAvatar(
 private fun BlueOrbAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
         val center = Offset(size.width / 2, size.height / 2)
-        val radius = size. minDimension / 2
+        val radius = size.minDimension / 2
 
         drawCircle(
             brush = Brush.radialGradient(
@@ -177,10 +176,10 @@ private fun BlueOrbAvatar() {
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.6f),
-                    Color. Transparent
+                    Color.White.copy(alpha = 0.6f),
+                    Color.Transparent
                 ),
-                center = Offset(center.x - radius * 0.3f, center. y - radius * 0.4f)
+                center = Offset(center.x - radius * 0.3f, center.y - radius * 0.4f)
             ),
             radius = radius * 0.4f,
             center = Offset(center.x - radius * 0.3f, center.y - radius * 0.4f)
@@ -212,14 +211,14 @@ private fun FireSpiritAvatar() {
         for (i in 0..4) {
             val angle = Math.toRadians((i * 72 - 90).toDouble())
             val flameX = center.x + cos(angle).toFloat() * radius * 0.4f
-            val flameY = center. y + sin(angle).toFloat() * radius * 0.4f
+            val flameY = center.y + sin(angle).toFloat() * radius * 0.4f
 
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
                         Color(0xFFFFF59D),
                         Color(0xFFFFB74D).copy(alpha = 0.5f),
-                        Color. Transparent
+                        Color.Transparent
                     )
                 ),
                 radius = radius * 0.3f,
@@ -273,8 +272,8 @@ private fun NatureSoulAvatar() {
 
 @Composable
 private fun PurpleGemAvatar() {
-    Canvas(modifier = Modifier. fillMaxSize()) {
-        val center = Offset(size. width / 2, size.height / 2)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -285,7 +284,7 @@ private fun PurpleGemAvatar() {
                     Color(0xFF4A148C)
                 ),
                 start = Offset(0f, 0f),
-                end = Offset(size.width, size. height)
+                end = Offset(size.width, size.height)
             ),
             radius = radius,
             center = center
@@ -304,7 +303,7 @@ private fun PurpleGemAvatar() {
             path = facetPath,
             brush = Brush.linearGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.4f),
+                    Color.White.copy(alpha = 0.4f),
                     Color.Transparent
                 )
             )
@@ -312,9 +311,9 @@ private fun PurpleGemAvatar() {
 
         // Sparkle
         drawCircle(
-            color = Color. White.copy(alpha = 0.7f),
+            color = Color.White.copy(alpha = 0.7f),
             radius = radius * 0.1f,
-            center = Offset(center.x - radius * 0.2f, center. y - radius * 0.3f)
+            center = Offset(center.x - radius * 0.2f, center.y - radius * 0.3f)
         )
     }
 }
@@ -323,7 +322,7 @@ private fun PurpleGemAvatar() {
 private fun GoldenSunAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
         val center = Offset(size.width / 2, size.height / 2)
-        val radius = size. minDimension / 2
+        val radius = size.minDimension / 2
 
         // Sun rays
         for (i in 0.. 11) {
@@ -369,10 +368,10 @@ private fun GoldenSunAvatar() {
 private fun IceCrystalAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
         val center = Offset(size.width / 2, size.height / 2)
-        val radius = size. minDimension / 2
+        val radius = size.minDimension / 2
 
         drawCircle(
-            brush = Brush. radialGradient(
+            brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFFE1F5FE),
                     Color(0xFF81D4FA),
@@ -390,7 +389,7 @@ private fun IceCrystalAvatar() {
             val endY = center.y + sin(angle).toFloat() * radius * 0.8f
 
             drawLine(
-                color = Color. White.copy(alpha = 0.8f),
+                color = Color.White.copy(alpha = 0.8f),
                 start = center,
                 end = Offset(endX, endY),
                 strokeWidth = 2f
@@ -402,7 +401,7 @@ private fun IceCrystalAvatar() {
             val branchY = center.y + sin(angle).toFloat() * radius * branchStart
 
             for (j in listOf(-30, 30)) {
-                val branchAngle = angle + Math.toRadians(j. toDouble())
+                val branchAngle = angle + Math.toRadians(j.toDouble())
                 drawLine(
                     color = Color.White.copy(alpha = 0.6f),
                     start = Offset(branchX, branchY),
@@ -421,10 +420,10 @@ private fun IceCrystalAvatar() {
 private fun RoseHeartAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
         val center = Offset(size.width / 2, size.height / 2)
-        val radius = size. minDimension / 2
+        val radius = size.minDimension / 2
 
         drawCircle(
-            brush = Brush. radialGradient(
+            brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFFF8BBD0),
                     Color(0xFFE91E63),
@@ -442,10 +441,10 @@ private fun RoseHeartAvatar() {
             cubicTo(
                 center.x - heartSize, center.y - heartSize * 0.3f,
                 center.x - heartSize * 0.5f, center.y - heartSize * 0.8f,
-                center.x, center. y - heartSize * 0.3f
+                center.x, center.y - heartSize * 0.3f
             )
             cubicTo(
-                center.x + heartSize * 0.5f, center. y - heartSize * 0.8f,
+                center.x + heartSize * 0.5f, center.y - heartSize * 0.8f,
                 center.x + heartSize, center.y - heartSize * 0.3f,
                 center.x, center.y + heartSize * 0.3f
             )
@@ -453,12 +452,12 @@ private fun RoseHeartAvatar() {
 
         drawPath(
             path = heartPath,
-            brush = Brush. radialGradient(
+            brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFFFFCDD2),
                     Color(0xFFE91E63)
                 ),
-                center = Offset(center.x - heartSize * 0.2f, center. y - heartSize * 0.2f)
+                center = Offset(center.x - heartSize * 0.2f, center.y - heartSize * 0.2f)
             )
         )
     }
@@ -471,7 +470,7 @@ private fun StormCloudAvatar() {
         val radius = size.minDimension / 2
 
         drawCircle(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF546E7A),
                     Color(0xFF37474F),
@@ -487,7 +486,7 @@ private fun StormCloudAvatar() {
             Offset(center.x - radius * 0.3f, center.y - radius * 0.1f),
             Offset(center.x + radius * 0.2f, center.y - radius * 0.2f),
             Offset(center.x, center.y + radius * 0.1f),
-            Offset(center. x - radius * 0.15f, center.y - radius * 0.3f)
+            Offset(center.x - radius * 0.15f, center.y - radius * 0.3f)
         )
 
         cloudCenters.forEachIndexed { index, cloudCenter ->
@@ -503,7 +502,7 @@ private fun StormCloudAvatar() {
             moveTo(center.x + radius * 0.1f, center.y)
             lineTo(center.x - radius * 0.05f, center.y + radius * 0.25f)
             lineTo(center.x + radius * 0.05f, center.y + radius * 0.25f)
-            lineTo(center. x - radius * 0.1f, center. y + radius * 0.5f)
+            lineTo(center.x - radius * 0.1f, center.y + radius * 0.5f)
         }
 
         drawPath(
@@ -561,7 +560,7 @@ private fun EmeraldEyeAvatar() {
 
         // Highlight
         drawCircle(
-            color = Color.White. copy(alpha = 0.8f),
+            color = Color.White.copy(alpha = 0.8f),
             radius = radius * 0.05f,
             center = Offset(center.x - radius * 0.08f, center.y - radius * 0.08f)
         )
@@ -575,7 +574,7 @@ private fun SunsetGlowAvatar() {
         val radius = size.minDimension / 2
 
         drawCircle(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFFFF7043),
                     Color(0xFFFF5722),
@@ -610,8 +609,8 @@ private fun SunsetGlowAvatar() {
 
 @Composable
 private fun OceanWaveAvatar() {
-    Canvas(modifier = Modifier. fillMaxSize()) {
-        val center = Offset(size. width / 2, size.height / 2)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -640,7 +639,7 @@ private fun OceanWaveAvatar() {
 
             drawPath(
                 path = wavePath,
-                color = Color. White.copy(alpha = 0.4f - i * 0.1f),
+                color = Color.White.copy(alpha = 0.4f - i * 0.1f),
                 style = Stroke(width = 3f)
             )
         }
@@ -685,7 +684,7 @@ private fun ForestSpiritAvatar() {
         // Glowing particles
         for (i in 0.. 5) {
             val particleX = center.x + cos(i * 1.2).toFloat() * radius * 0.5f
-            val particleY = center. y + sin(i * 1.5).toFloat() * radius * 0.4f
+            val particleY = center.y + sin(i * 1.5).toFloat() * radius * 0.4f
             drawCircle(
                 color = Color(0xFFFFF59D).copy(alpha = 0.7f),
                 radius = 4f,
@@ -698,7 +697,7 @@ private fun ForestSpiritAvatar() {
 @Composable
 private fun LavaCoreAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
-        val center = Offset(size.width / 2, size. height / 2)
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -739,7 +738,7 @@ private fun LavaCoreAvatar() {
 @Composable
 private fun DiamondShineAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
-        val center = Offset(size.width / 2, size. height / 2)
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -759,7 +758,7 @@ private fun DiamondShineAvatar() {
 
         // Diamond shape
         val diamondPath = Path().apply {
-            moveTo(center. x, center.y - radius * 0.6f)
+            moveTo(center.x, center.y - radius * 0.6f)
             lineTo(center.x + radius * 0.5f, center.y)
             lineTo(center.x, center.y + radius * 0.6f)
             lineTo(center.x - radius * 0.5f, center.y)
@@ -770,9 +769,9 @@ private fun DiamondShineAvatar() {
             path = diamondPath,
             brush = Brush.linearGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.9f),
+                    Color.White.copy(alpha = 0.9f),
                     Color(0xFF64B5F6).copy(alpha = 0.6f),
-                    Color. White.copy(alpha = 0.7f)
+                    Color.White.copy(alpha = 0.7f)
                 )
             )
         )
@@ -792,7 +791,7 @@ private fun DiamondShineAvatar() {
 
         sparklePositions.forEach { pos ->
             drawCircle(
-                color = Color. White,
+                color = Color.White,
                 radius = 3f,
                 center = pos
             )
@@ -821,7 +820,7 @@ private fun NeonSparkAvatar() {
 
         colors.forEachIndexed { index, color ->
             drawCircle(
-                color = color. copy(alpha = 0.8f),
+                color = color.copy(alpha = 0.8f),
                 radius = radius * (0.7f - index * 0.15f),
                 center = center,
                 style = Stroke(width = 3f)
@@ -832,9 +831,9 @@ private fun NeonSparkAvatar() {
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White,
+                    Color.White,
                     Color(0xFF00FFFF),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = radius * 0.25f,
@@ -847,10 +846,10 @@ private fun NeonSparkAvatar() {
 private fun MysticMoonAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
         val center = Offset(size.width / 2, size.height / 2)
-        val radius = size. minDimension / 2
+        val radius = size.minDimension / 2
 
         drawCircle(
-            brush = Brush. radialGradient(
+            brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFF1A237E),
                     Color(0xFF0D1B4A),
@@ -892,7 +891,7 @@ private fun MysticMoonAvatar() {
             val starX = center.x + cos(i * 0.8).toFloat() * radius * 0.75f
             val starY = center.y + sin(i * 1.1).toFloat() * radius * 0.7f
             drawCircle(
-                color = Color. White.copy(alpha = 0.8f),
+                color = Color.White.copy(alpha = 0.8f),
                 radius = if (i % 2 == 0) 2f else 1.5f,
                 center = Offset(starX, starY)
             )
@@ -931,14 +930,14 @@ private fun CherryBlossomAvatar() {
                 val controlY2 = center.y + sin(angle + 0.3).toFloat() * radius * 0.4f
 
                 quadraticBezierTo(controlX1, controlY1, endX, endY)
-                quadraticBezierTo(controlX2, controlY2, center.x, center. y)
+                quadraticBezierTo(controlX2, controlY2, center.x, center.y)
             }
 
             drawPath(
                 path = petalPath,
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        Color. White.copy(alpha = 0.9f),
+                        Color.White.copy(alpha = 0.9f),
                         Color(0xFFF8BBD0)
                     ),
                     center = center
@@ -984,7 +983,7 @@ private fun ThunderBoltAvatar() {
             lineTo(center.x - radius * 0.15f, center.y - radius * 0.05f)
             lineTo(center.x + radius * 0.1f, center.y)
             lineTo(center.x - radius * 0.1f, center.y + radius * 0.6f)
-            lineTo(center.x + radius * 0.15f, center. y + radius * 0.05f)
+            lineTo(center.x + radius * 0.15f, center.y + radius * 0.05f)
             lineTo(center.x - radius * 0.1f, center.y)
             close()
         }
@@ -1013,7 +1012,7 @@ private fun ThunderBoltAvatar() {
 @Composable
 private fun CosmicDustAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
-        val center = Offset(size.width / 2, size. height / 2)
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -1030,18 +1029,18 @@ private fun CosmicDustAvatar() {
 
         // Cosmic dust particles
         for (i in 0..40) {
-            val particleX = center. x + cos(i * 0.4).toFloat() * radius * (0.3f + (i % 5) * 0.12f)
+            val particleX = center.x + cos(i * 0.4).toFloat() * radius * (0.3f + (i % 5) * 0.12f)
             val particleY = center.y + sin(i * 0.6).toFloat() * radius * (0.3f + (i % 4) * 0.13f)
 
             val particleColor = when (i % 4) {
                 0 -> Color(0xFFE040FB)
                 1 -> Color(0xFF7C4DFF)
                 2 -> Color(0xFF536DFE)
-                else -> Color. White
+                else -> Color.White
             }
 
             drawCircle(
-                color = particleColor. copy(alpha = 0.7f),
+                color = particleColor.copy(alpha = 0.7f),
                 radius = if (i % 3 == 0) 3f else 2f,
                 center = Offset(particleX, particleY)
             )
@@ -1052,7 +1051,7 @@ private fun CosmicDustAvatar() {
             brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFFE040FB).copy(alpha = 0.4f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = radius * 0.4f,
@@ -1064,7 +1063,7 @@ private fun CosmicDustAvatar() {
 @Composable
 private fun JadeStoneAvatar() {
     Canvas(modifier = Modifier.fillMaxSize()) {
-        val center = Offset(size.width / 2, size. height / 2)
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -1107,8 +1106,8 @@ private fun JadeStoneAvatar() {
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.5f),
-                    Color. Transparent
+                    Color.White.copy(alpha = 0.5f),
+                    Color.Transparent
                 )
             ),
             radius = radius * 0.3f,
@@ -1123,7 +1122,7 @@ private fun JadeStoneAvatar() {
 private fun PulsingStarAvatar() {
     val infiniteTransition = rememberInfiniteTransition(label = "pulsingStar")
 
-    val pulse by infiniteTransition. animateFloat(
+    val pulse by infiniteTransition.animateFloat(
         initialValue = 0.8f, targetValue = 1.2f,
         animationSpec = infiniteRepeatable(tween(1000, easing = EaseInOutSine), RepeatMode.Reverse),
         label = "pulse"
@@ -1136,7 +1135,7 @@ private fun PulsingStarAvatar() {
     )
 
     Canvas(modifier = Modifier.fillMaxSize()) {
-        val center = Offset(size.width / 2, size. height / 2)
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -1152,10 +1151,10 @@ private fun PulsingStarAvatar() {
 
         // Outer glow
         drawCircle(
-            brush = Brush. radialGradient(
+            brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFFFFD700).copy(alpha = glow * 0.4f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = radius * pulse,
@@ -1176,7 +1175,7 @@ private fun PulsingStarAvatar() {
                 )
                 lineTo(
                     center.x + cos(innerAngle).toFloat() * innerRadius,
-                    center. y + sin(innerAngle).toFloat() * innerRadius
+                    center.y + sin(innerAngle).toFloat() * innerRadius
                 )
             }
 
@@ -1191,7 +1190,7 @@ private fun PulsingStarAvatar() {
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White,
+                    Color.White,
                     Color(0xFFFFD700)
                 )
             ),
@@ -1205,14 +1204,14 @@ private fun PulsingStarAvatar() {
 private fun SpinningGalaxyAvatar() {
     val infiniteTransition = rememberInfiniteTransition(label = "spinningGalaxy")
 
-    val rotation by infiniteTransition. animateFloat(
+    val rotation by infiniteTransition.animateFloat(
         initialValue = 0f, targetValue = 360f,
         animationSpec = infiniteRepeatable(tween(8000, easing = LinearEasing), RepeatMode.Restart),
         label = "rotation"
     )
 
-    Canvas(modifier = Modifier. fillMaxSize()) {
-        val center = Offset(size. width / 2, size.height / 2)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -1257,9 +1256,9 @@ private fun SpinningGalaxyAvatar() {
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White,
+                    Color.White,
                     Color(0xFFE040FB),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = radius * 0.2f,
@@ -1284,8 +1283,8 @@ private fun BreathingFireAvatar() {
         label = "flicker"
     )
 
-    Canvas(modifier = Modifier. fillMaxSize()) {
-        val center = Offset(size. width / 2, size.height / 2)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -1311,13 +1310,13 @@ private fun BreathingFireAvatar() {
                 moveTo(flameX - radius * 0.08f, center.y + radius * 0.3f)
                 quadraticBezierTo(
                     flameX, center.y - flameHeight,
-                    flameX + radius * 0.08f, center. y + radius * 0.3f
+                    flameX + radius * 0.08f, center.y + radius * 0.3f
                 )
             }
 
             drawPath(
                 path = flamePath,
-                brush = Brush. verticalGradient(
+                brush = Brush.verticalGradient(
                     colors = listOf(
                         Color(0xFFFFF59D),
                         Color(0xFFFF9800).copy(alpha = 0.7f)
@@ -1338,8 +1337,8 @@ private fun FlowingWaterAvatar() {
         label = "wave"
     )
 
-    Canvas(modifier = Modifier. fillMaxSize()) {
-        val center = Offset(size. width / 2, size.height / 2)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -1369,7 +1368,7 @@ private fun FlowingWaterAvatar() {
 
             drawPath(
                 path = wavePath,
-                color = Color. White.copy(alpha = 0.4f - i * 0.08f),
+                color = Color.White.copy(alpha = 0.4f - i * 0.08f),
                 style = Stroke(width = 2f)
             )
         }
@@ -1377,11 +1376,11 @@ private fun FlowingWaterAvatar() {
         // Bubbles
         for (i in 0.. 5) {
             val bubbleX = center.x + cos(i * 1.3).toFloat() * radius * 0.4f
-            val bubbleY = center. y + ((wave + i * 0.15f) % 1f - 0.5f) * radius * 1.5f
+            val bubbleY = center.y + ((wave + i * 0.15f) % 1f - 0.5f) * radius * 1.5f
 
             if (bubbleY > center.y - radius * 0.8f && bubbleY < center.y + radius * 0.8f) {
                 drawCircle(
-                    color = Color. White.copy(alpha = 0.5f),
+                    color = Color.White.copy(alpha = 0.5f),
                     radius = 4f,
                     center = Offset(bubbleX, bubbleY)
                 )
@@ -1447,9 +1446,9 @@ private fun ElectricPulseAvatar() {
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = 0.5f + flash * 0.5f),
+                    Color.White.copy(alpha = 0.5f + flash * 0.5f),
                     Color(0xFF00FFFF).copy(alpha = 0.3f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = radius * 0.3f,
@@ -1481,8 +1480,8 @@ private fun RainbowCycleAvatar() {
         label = "colorShift"
     )
 
-    Canvas(modifier = Modifier. fillMaxSize()) {
-        val center = Offset(size. width / 2, size.height / 2)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         val rainbowColors = listOf(
@@ -1513,7 +1512,7 @@ private fun RainbowCycleAvatar() {
             brush = Brush.radialGradient(
                 colors = listOf(
                     Color.White,
-                    Color. White.copy(alpha = 0.7f)
+                    Color.White.copy(alpha = 0.7f)
                 )
             ),
             radius = radius * 0.2f,
@@ -1530,7 +1529,7 @@ private fun HeartbeatAvatar() {
         initialValue = 1f, targetValue = 1.2f,
         animationSpec = infiniteRepeatable(
             animation = tween(600, easing = EaseInOutSine),
-            repeatMode = RepeatMode. Reverse
+            repeatMode = RepeatMode.Reverse
         ),
         label = "beat"
     )
@@ -1557,7 +1556,7 @@ private fun HeartbeatAvatar() {
             brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFFE91E63).copy(alpha = 0.4f * beat),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = heartSize * 1.5f,
@@ -1597,14 +1596,14 @@ private fun HeartbeatAvatar() {
 private fun OrbitingRingsAvatar() {
     val infiniteTransition = rememberInfiniteTransition(label = "orbitingRings")
 
-    val rotation by infiniteTransition. animateFloat(
+    val rotation by infiniteTransition.animateFloat(
         initialValue = 0f, targetValue = 360f,
         animationSpec = infiniteRepeatable(tween(4000, easing = LinearEasing), RepeatMode.Restart),
         label = "rotation"
     )
 
-    Canvas(modifier = Modifier. fillMaxSize()) {
-        val center = Offset(size. width / 2, size.height / 2)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -1628,7 +1627,7 @@ private fun OrbitingRingsAvatar() {
         ringColors.forEachIndexed { index, color ->
             rotate(degrees = rotation + index * 60f, pivot = center) {
                 drawOval(
-                    color = color. copy(alpha = 0.7f),
+                    color = color.copy(alpha = 0.7f),
                     topLeft = Offset(center.x - radius * 0.7f, center.y - radius * 0.3f),
                     size = Size(radius * 1.4f, radius * 0.6f),
                     style = Stroke(width = 2f)
@@ -1685,8 +1684,8 @@ private fun GlowingAuraAvatar() {
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        auraColor. copy(alpha = 0.4f - i * 0.08f),
-                        Color. Transparent
+                        auraColor.copy(alpha = 0.4f - i * 0.08f),
+                        Color.Transparent
                     )
                 ),
                 radius = layerRadius,
@@ -1745,14 +1744,14 @@ private fun PlasmaBallAvatar() {
             val arcLength = radius * 0.6f * pulse
 
             val arcPath = Path().apply {
-                moveTo(center. x, center.y)
+                moveTo(center.x, center.y)
                 val controlAngle = startAngle + 0.3
                 val endAngle = startAngle + 0.5
                 quadraticBezierTo(
                     center.x + cos(controlAngle).toFloat() * arcLength * 0.7f,
                     center.y + sin(controlAngle).toFloat() * arcLength * 0.7f,
                     center.x + cos(endAngle).toFloat() * arcLength,
-                    center. y + sin(endAngle).toFloat() * arcLength
+                    center.y + sin(endAngle).toFloat() * arcLength
                 )
             }
 
@@ -1764,11 +1763,11 @@ private fun PlasmaBallAvatar() {
 
             // Arc tip
             drawCircle(
-                color = Color. White.copy(alpha = pulse),
+                color = Color.White.copy(alpha = pulse),
                 radius = 3f,
                 center = Offset(
                     center.x + cos(startAngle + 0.5).toFloat() * arcLength,
-                    center. y + sin(startAngle + 0.5).toFloat() * arcLength
+                    center.y + sin(startAngle + 0.5).toFloat() * arcLength
                 )
             )
         }
@@ -1777,7 +1776,7 @@ private fun PlasmaBallAvatar() {
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White,
+                    Color.White,
                     Color(0xFFE040FB),
                     Color(0xFF9C27B0)
                 )
@@ -1809,7 +1808,7 @@ private fun NorthernGlowAvatar() {
         val radius = size.minDimension / 2
 
         drawCircle(
-            brush = Brush. verticalGradient(
+            brush = Brush.verticalGradient(
                 colors = listOf(
                     Color(0xFF001529),
                     Color(0xFF000A14)
@@ -1833,9 +1832,9 @@ private fun NorthernGlowAvatar() {
             drawRect(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color. Transparent,
-                        auroraColor. copy(alpha = 0.4f - i * 0.07f),
-                        Color. Transparent
+                        Color.Transparent,
+                        auroraColor.copy(alpha = 0.4f - i * 0.07f),
+                        Color.Transparent
                     )
                 ),
                 topLeft = Offset(0f, waveY + waveOffset),
@@ -1849,7 +1848,7 @@ private fun NorthernGlowAvatar() {
             val starY = center.y + sin(i * 0.9).toFloat() * radius * 0.6f - radius * 0.2f
 
             drawCircle(
-                color = Color. White.copy(alpha = 0.7f),
+                color = Color.White.copy(alpha = 0.7f),
                 radius = 1.5f,
                 center = Offset(starX, starY)
             )
@@ -1867,8 +1866,8 @@ private fun FlameDanceAvatar() {
         label = "dance"
     )
 
-    Canvas(modifier = Modifier. fillMaxSize()) {
-        val center = Offset(size. width / 2, size.height / 2)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
@@ -1936,7 +1935,7 @@ private fun CrystalSpinAvatar() {
         val radius = size.minDimension / 2
 
         drawCircle(
-            brush = Brush. radialGradient(
+            brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFF1A1A3E),
                     Color(0xFF0D0D2A)
@@ -1950,7 +1949,7 @@ private fun CrystalSpinAvatar() {
             // Crystal facets
             for (i in 0..5) {
                 val angle = Math.toRadians((i * 60).toDouble())
-                val nextAngle = Math. toRadians(((i + 1) * 60).toDouble())
+                val nextAngle = Math.toRadians(((i + 1) * 60).toDouble())
 
                 val crystalPath = Path().apply {
                     moveTo(center.x, center.y)
@@ -1988,9 +1987,9 @@ private fun CrystalSpinAvatar() {
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    Color. White.copy(alpha = shimmer),
+                    Color.White.copy(alpha = shimmer),
                     Color(0xFF00BCD4).copy(alpha = 0.3f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = radius * 0.25f,
@@ -2011,7 +2010,7 @@ private fun NeonWaveAvatar() {
 
     Canvas(modifier = Modifier.fillMaxSize()) {
         val center = Offset(size.width / 2, size.height / 2)
-        val radius = size. minDimension / 2
+        val radius = size.minDimension / 2
 
         drawCircle(
             color = Color(0xFF0A0A0A),
@@ -2068,7 +2067,7 @@ private fun StarfieldAvatar() {
     val stars = remember {
         List(40) {
             Triple(
-                Random. nextFloat() * 360f,  // angle
+                Random.nextFloat() * 360f,  // angle
                 Random.nextFloat(),  // distance ratio
                 Random.nextFloat() * 0.5f + 0.5f  // speed
             )
@@ -2076,11 +2075,11 @@ private fun StarfieldAvatar() {
     }
 
     Canvas(modifier = Modifier.fillMaxSize()) {
-        val center = Offset(size.width / 2, size. height / 2)
+        val center = Offset(size.width / 2, size.height / 2)
         val radius = size.minDimension / 2
 
         drawCircle(
-            brush = Brush. radialGradient(
+            brush = Brush.radialGradient(
                 colors = listOf(
                     Color(0xFF0A0A1A),
                     Color(0xFF000005)
@@ -2092,7 +2091,7 @@ private fun StarfieldAvatar() {
 
         // Warp stars
         stars.forEach { (angleDeg, distRatio, speed) ->
-            val angle = Math.toRadians(angleDeg. toDouble())
+            val angle = Math.toRadians(angleDeg.toDouble())
             val distance = ((distRatio + warp * speed) % 1f) * radius * 0.9f
 
             if (distance > radius * 0.1f) {
@@ -2108,8 +2107,8 @@ private fun StarfieldAvatar() {
                 drawLine(
                     brush = Brush.linearGradient(
                         colors = listOf(
-                            Color. Transparent,
-                            Color. White.copy(alpha = alpha)
+                            Color.Transparent,
+                            Color.White.copy(alpha = alpha)
                         ),
                         start = Offset(startX, startY),
                         end = Offset(x, y)
@@ -2126,7 +2125,7 @@ private fun StarfieldAvatar() {
             brush = Brush.radialGradient(
                 colors = listOf(
                     Color.White.copy(alpha = 0.5f),
-                    Color. Transparent
+                    Color.Transparent
                 )
             ),
             radius = radius * 0.15f,
@@ -2148,7 +2147,7 @@ private fun BubbleRiseAvatar() {
     val bubbles = remember {
         List(15) {
             Triple(
-                Random. nextFloat(),  // x position
+                Random.nextFloat(),  // x position
                 Random.nextFloat(),  // start y offset
                 Random.nextFloat() * 8f + 4f  // size
             )
@@ -2178,16 +2177,16 @@ private fun BubbleRiseAvatar() {
             val y = center.y + radius * 0.8f - progress * radius * 1.8f
 
             if (y > center.y - radius * 0.9f && y < center.y + radius * 0.9f) {
-                val wobble = sin(progress * Math. PI * 4).toFloat() * 5f
+                val wobble = sin(progress * Math.PI * 4).toFloat() * 5f
                 val alpha = if (progress > 0.8f) (1f - progress) * 5f else 0.7f
 
                 // Bubble
                 drawCircle(
                     brush = Brush.radialGradient(
                         colors = listOf(
-                            Color. White.copy(alpha = alpha * 0.3f),
+                            Color.White.copy(alpha = alpha * 0.3f),
                             Color(0xFF81D4FA).copy(alpha = alpha * 0.5f),
-                            Color. Transparent
+                            Color.Transparent
                         )
                     ),
                     radius = bubbleSize,
@@ -2196,7 +2195,7 @@ private fun BubbleRiseAvatar() {
 
                 // Highlight
                 drawCircle(
-                    color = Color.White. copy(alpha = alpha * 0.7f),
+                    color = Color.White.copy(alpha = alpha * 0.7f),
                     radius = bubbleSize * 0.3f,
                     center = Offset(x + wobble - bubbleSize * 0.3f, y - bubbleSize * 0.3f)
                 )
@@ -2216,18 +2215,17 @@ fun GeneratedAvatarThumbnail(
 ) {
     val scale by androidx.compose.animation.core.animateFloatAsState(
         targetValue = if (isSelected) 1.1f else 1f,
-        animationSpec = androidx.compose.animation. core.spring(dampingRatio = 0.6f),
+        animationSpec = androidx.compose.animation.core.spring(dampingRatio = 0.6f),
         label = "scale"
     )
 
     Box(
-        modifier = modifier
-            .size(56.dp)
+        modifier = modifier.size(56.dp)
             .scale(scale)
             .clip(CircleShape)
             .border(
                 width = if (isSelected) 3.dp else 1.dp,
-                color = if (isSelected) Color(0xFF4CAF50) else Color. White. copy(alpha = 0.3f),
+                color = if (isSelected) Color(0xFF4CAF50) else Color.White.copy(alpha = 0.3f),
                 shape = CircleShape
             )
             .clickable { onClick() },
@@ -2240,19 +2238,18 @@ fun GeneratedAvatarThumbnail(
 
         if (isSelected) {
             Box(
-                modifier = Modifier
-                    .align(Alignment. BottomEnd)
+                modifier = Modifier.align(Alignment.BottomEnd)
                     . size(16.dp)
                     .clip(CircleShape)
                     .background(Color(0xFF4CAF50))
-                    .border(1.dp, Color. White, CircleShape),
+                    .border(1.dp, Color.White, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 androidx.compose.material3.Text(
                     "✓",
                     fontSize = 10.sp,
-                    color = Color. White,
-                    fontWeight = androidx.compose.ui. text.font.FontWeight.Bold
+                    color = Color.White,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
                 )
             }
         }

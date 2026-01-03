@@ -2,14 +2,14 @@ package com.appsdevs.popit
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore. preferences.core.Preferences
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx. datastore.preferences.core.longPreferencesKey
-import androidx. datastore.preferences.core.stringPreferencesKey
-import androidx. datastore.preferences.preferencesDataStore
-import kotlinx.coroutines. CoroutineScope
-import kotlinx.coroutines. Dispatchers
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -310,7 +310,7 @@ class DataStoreManager(private val context: Context) {
     }
 
     fun highScoreTimeMasterFlow(): Flow<Int> =
-        context.dataStore. data.map { prefs -> prefs[HIGH_SCORE_TIME_MASTER] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[HIGH_SCORE_TIME_MASTER] ?: 0 }
 
     suspend fun saveHighScoreTimeMaster(score:  Int) {
         context.dataStore.edit { prefs -> prefs[HIGH_SCORE_TIME_MASTER] = score }
@@ -324,7 +324,7 @@ class DataStoreManager(private val context: Context) {
     }
 
     fun highScoreSpeedDemonFlow(): Flow<Int> =
-        context.dataStore.data. map { prefs -> prefs[HIGH_SCORE_SPEED_DEMON] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[HIGH_SCORE_SPEED_DEMON] ?: 0 }
 
     suspend fun saveHighScoreSpeedDemon(score:  Int) {
         context.dataStore.edit { prefs -> prefs[HIGH_SCORE_SPEED_DEMON] = score }
@@ -343,7 +343,7 @@ class DataStoreManager(private val context: Context) {
         context.dataStore.data.map { prefs -> prefs[COINS_KEY] ?:  0 }
 
     suspend fun saveCoins(coins: Int) {
-        context.dataStore. edit { prefs -> prefs[COINS_KEY] = coins }
+        context.dataStore.edit { prefs -> prefs[COINS_KEY] = coins }
     }
 
     suspend fun addCoins(amount: Int) {
@@ -368,7 +368,7 @@ class DataStoreManager(private val context: Context) {
     // ==================== LUX ====================
 
     fun luxFlow(): Flow<Int> =
-        context. dataStore.data.map { prefs -> prefs[LUX_KEY] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[LUX_KEY] ?: 0 }
 
     suspend fun saveLux(value: Int) {
         context.dataStore.edit { prefs -> prefs[LUX_KEY] = value }
@@ -383,7 +383,7 @@ class DataStoreManager(private val context: Context) {
 
     suspend fun spendLux(amount: Int): Boolean {
         var success = false
-        context. dataStore.edit { prefs ->
+        context.dataStore.edit { prefs ->
             val current = prefs[LUX_KEY] ?:  0
             if (current >= amount) {
                 prefs[LUX_KEY] = current - amount
@@ -412,7 +412,7 @@ class DataStoreManager(private val context: Context) {
         context.dataStore.edit { prefs ->
             val purchasedStr = prefs[PURCHASED_ANIMATED_BANNERS] ?:  ""
             val purchasedSet = if (purchasedStr.isEmpty()) mutableSetOf()
-            else purchasedStr. split(",").mapNotNull { it.toIntOrNull() }.toMutableSet()
+            else purchasedStr.split(",").mapNotNull { it.toIntOrNull() }.toMutableSet()
 
             // Ya comprado
             if (bannerId in purchasedSet) {
@@ -463,7 +463,7 @@ class DataStoreManager(private val context: Context) {
 
     suspend fun purchaseAnimatedAvatar(avatarId: Int): Boolean {
         var success = false
-        context. dataStore.edit { prefs ->
+        context.dataStore.edit { prefs ->
             val purchasedStr = prefs[PURCHASED_ANIMATED_AVATARS] ?: ""
             val purchasedSet = if (purchasedStr.isEmpty()) mutableSetOf()
             else purchasedStr.split(",").mapNotNull { it.toIntOrNull() }.toMutableSet()
@@ -478,7 +478,7 @@ class DataStoreManager(private val context: Context) {
             val currentLux = prefs[LUX_KEY] ?: 0
             if (currentLux >= ANIMATED_AVATAR_PRICE_LUX) {
                 prefs[LUX_KEY] = currentLux - ANIMATED_AVATAR_PRICE_LUX
-                purchasedSet. add(avatarId)
+                purchasedSet.add(avatarId)
                 prefs[PURCHASED_ANIMATED_AVATARS] = purchasedSet.joinToString(",")
                 success = true
             }
@@ -594,7 +594,7 @@ class DataStoreManager(private val context: Context) {
         context.dataStore.data.map { prefs -> prefs[EQUIPPED_BG] ?: 0 }
 
     suspend fun resetBackgroundToDefault() {
-        context.dataStore. edit { prefs -> prefs[EQUIPPED_BG] = 0 }
+        context.dataStore.edit { prefs -> prefs[EQUIPPED_BG] = 0 }
     }
 
     // ==================== BUBBLES ====================
@@ -710,7 +710,7 @@ class DataStoreManager(private val context: Context) {
 
     fun isMainMenuPurchasedFlow(id: Int): Flow<Boolean> {
         val key = purchaseMainMenuKeyForId(id)
-        return context.dataStore. data.map { prefs -> (prefs[key] ?: 0) == 1 }
+        return context.dataStore.data.map { prefs -> (prefs[key] ?: 0) == 1 }
     }
 
     suspend fun buyMainMenu(id: Int, price: Int): Boolean {
@@ -779,7 +779,7 @@ class DataStoreManager(private val context: Context) {
     // ==================== PROFILE ====================
 
     fun profileDrawableFlow(): Flow<Int> =
-        context.dataStore.data. map { prefs -> prefs[PROFILE_DRAWABLE] ?:  0 }
+        context.dataStore.data.map { prefs -> prefs[PROFILE_DRAWABLE] ?:  0 }
 
     suspend fun saveProfileDrawable(resId: Int) {
         context.dataStore.edit { prefs -> prefs[PROFILE_DRAWABLE] = resId }
@@ -793,7 +793,7 @@ class DataStoreManager(private val context: Context) {
     }
 
     fun profileNameFlow(): Flow<String> =
-        context.dataStore.data. map { prefs -> prefs[PROFILE_NAME] ?: "" }
+        context.dataStore.data.map { prefs -> prefs[PROFILE_NAME] ?: "" }
 
     suspend fun saveProfileName(name: String) {
         context.dataStore.edit { prefs -> prefs[PROFILE_NAME] = name }
@@ -804,7 +804,7 @@ class DataStoreManager(private val context: Context) {
     // ==================== BANNER COLOR ====================
 
     fun bannerColorFlow(): Flow<Int> =
-        context.dataStore.data. map { prefs -> prefs[BANNER_COLOR] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[BANNER_COLOR] ?: 0 }
 
     suspend fun saveBannerColor(colorId: Int) {
         context.dataStore.edit { prefs -> prefs[BANNER_COLOR] = colorId }
@@ -815,7 +815,7 @@ class DataStoreManager(private val context: Context) {
     // ==================== GENERATED AVATAR ====================
 
     fun generatedAvatarIdFlow(): Flow<Int> =
-        context.dataStore.data. map { prefs -> prefs[GENERATED_AVATAR_ID] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[GENERATED_AVATAR_ID] ?: 0 }
 
     suspend fun saveGeneratedAvatarId(avatarId: Int) {
         context.dataStore.edit { prefs -> prefs[GENERATED_AVATAR_ID] = avatarId }
@@ -850,7 +850,7 @@ class DataStoreManager(private val context: Context) {
     suspend fun updateSpecificProfileFieldInFirebase(fieldName: String, value: Any): Boolean {
         return try {
             val oduserId = getUserId()
-            if (oduserId. isBlank()) return false
+            if (oduserId.isBlank()) return false
 
             firebaseRepository.updateProfileField(oduserId, fieldName, value)
         } catch (e: Exception) {
@@ -870,7 +870,7 @@ class DataStoreManager(private val context: Context) {
     }
 
     fun challengesCompletedCountFlow(): Flow<Int> =
-        context.dataStore.data. map { prefs -> prefs[CHALLENGES_COMPLETED_COUNT] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[CHALLENGES_COMPLETED_COUNT] ?: 0 }
 
     suspend fun incrementChallengesCompletedCount() {
         context.dataStore.edit { prefs ->
@@ -961,7 +961,7 @@ class DataStoreManager(private val context: Context) {
     // ==================== TOURNAMENT STATS FOR BADGES ====================
 
     fun tournamentBestRankFlow(): Flow<Int> =
-        context.dataStore.data. map { prefs -> prefs[TOURNAMENT_BEST_RANK] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[TOURNAMENT_BEST_RANK] ?: 0 }
 
     suspend fun updateTournamentBestRank(rank: Int) {
         context.dataStore.edit { prefs ->
@@ -983,7 +983,7 @@ class DataStoreManager(private val context: Context) {
     }
 
     fun tournamentPodiumsFlow(): Flow<Int> =
-        context.dataStore.data. map { prefs -> prefs[TOURNAMENT_PODIUMS] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[TOURNAMENT_PODIUMS] ?: 0 }
 
     suspend fun incrementTournamentPodiums() {
         context.dataStore.edit { prefs ->
@@ -1018,7 +1018,7 @@ class DataStoreManager(private val context: Context) {
         context.dataStore.data.map { prefs -> prefs[CONSECUTIVE_DAYS] ?: 0 }
 
     fun maxConsecutiveDaysFlow(): Flow<Int> =
-        context. dataStore.data.map { prefs -> prefs[MAX_CONSECUTIVE_DAYS] ?: 0 }
+        context.dataStore.data.map { prefs -> prefs[MAX_CONSECUTIVE_DAYS] ?: 0 }
 
     suspend fun updateConsecutiveDays() {
         var shouldUpdateFirebase = false
@@ -1062,7 +1062,7 @@ class DataStoreManager(private val context: Context) {
     // ==================== FIRST INSTALL DATE (FOR OG BADGE) ====================
 
     fun firstInstallDateFlow(): Flow<Long> =
-        context.dataStore. data.map { prefs -> prefs[FIRST_INSTALL_DATE] ?: 0L }
+        context.dataStore.data.map { prefs -> prefs[FIRST_INSTALL_DATE] ?: 0L }
 
     suspend fun ensureFirstInstallDate() {
         context.dataStore.edit { prefs ->
@@ -1201,7 +1201,7 @@ class DataStoreManager(private val context: Context) {
     )
 
     fun calculateLevelFromPops(totalPops: Int): Int {
-        for (i in levelThresholds.indices. reversed()) {
+        for (i in levelThresholds.indices.reversed()) {
             if (totalPops >= levelThresholds[i]) {
                 return (i + 1).coerceAtMost(20)
             }
@@ -1223,7 +1223,7 @@ class DataStoreManager(private val context: Context) {
         context.dataStore.edit { prefs ->
             val claimedStr = prefs[LEVEL_REWARDS_CLAIMED] ?: ""
             val claimedSet = if (claimedStr.isEmpty()) mutableSetOf()
-            else claimedStr. split(",").mapNotNull { it.toIntOrNull() }.toMutableSet()
+            else claimedStr.split(",").mapNotNull { it.toIntOrNull() }.toMutableSet()
 
             if (level in claimedSet) {
                 success = false
@@ -1242,12 +1242,12 @@ class DataStoreManager(private val context: Context) {
                 prefs[COINS_KEY] = currentCoins + rewards.coins
             }
 
-            if (rewards. lux > 0) {
+            if (rewards.lux > 0) {
                 val currentLux = prefs[LUX_KEY] ?: 0
                 prefs[LUX_KEY] = currentLux + rewards.lux
             }
 
-            if (rewards. unlockBubble > 0) {
+            if (rewards.unlockBubble > 0) {
                 prefs[PURCHASE_BUBBLE_10] = 1
                 prefs[LEVEL_UNLOCK_BUBBLE] = 1
             }
@@ -1276,7 +1276,7 @@ class DataStoreManager(private val context: Context) {
         context.dataStore.data.map { prefs -> (prefs[LEVEL_UNLOCK_BUBBLE] ?: 0) == 1 }
 
     fun isLevel7BackgroundUnlockedFlow(): Flow<Boolean> =
-        context.dataStore.data. map { prefs -> (prefs[LEVEL_UNLOCK_BG] ?: 0) == 1 }
+        context.dataStore.data.map { prefs -> (prefs[LEVEL_UNLOCK_BG] ?: 0) == 1 }
 
     fun isLevel7MainMenuUnlockedFlow(): Flow<Boolean> =
         context.dataStore.data.map { prefs -> (prefs[LEVEL_UNLOCK_MAINMENU] ?: 0) == 1 }
@@ -1284,7 +1284,7 @@ class DataStoreManager(private val context: Context) {
     // ==================== TOURNAMENT ====================
 
     fun tournamentEpochMillisFlow(): Flow<Long> =
-        context.dataStore.data. map { prefs -> prefs[TOURNAMENT_EPOCH_MILLIS] ?: 0L }
+        context.dataStore.data.map { prefs -> prefs[TOURNAMENT_EPOCH_MILLIS] ?: 0L }
 
     suspend fun ensureTournamentEpoch(nowMillis: Long) {
         context.dataStore.edit { prefs ->
@@ -1302,7 +1302,7 @@ class DataStoreManager(private val context: Context) {
     }
 
     suspend fun startNewTournament() {
-        context.dataStore. edit { prefs ->
+        context.dataStore.edit { prefs ->
             prefs[TOURNAMENT_EPOCH_MILLIS] = System.currentTimeMillis()
             prefs[TOURNAMENT_LEADERBOARD_JSON] = ""
             prefs[TOURNAMENT_SCORE] = 0
@@ -1337,11 +1337,11 @@ class DataStoreManager(private val context: Context) {
             val arr = JSONArray(json)
             val list = mutableListOf<TournamentEntry>()
             for (i in 0 until arr.length()) {
-                val obj = arr. getJSONObject(i)
+                val obj = arr.getJSONObject(i)
                 list.add(TournamentEntry(
                     oduserId = obj.optString("oduserId", ""),
                     name = obj.optString("name", "Player"),
-                    score = obj. optInt("score", 0),
+                    score = obj.optInt("score", 0),
                     avatarRes = obj.optInt("avatarRes", 0),
                     updatedAt = obj.optLong("updatedAt", 0L),
                     generatedAvatarId = obj.optInt("generatedAvatarId", -1),
@@ -1365,23 +1365,23 @@ class DataStoreManager(private val context: Context) {
         val arr = JSONArray()
         for (e in list) {
             val obj = JSONObject()
-            obj.put("oduserId", e. oduserId)
+            obj.put("oduserId", e.oduserId)
             obj.put("name", e.name)
             obj.put("score", e.score)
-            obj.put("avatarRes", e. avatarRes)
-            obj.put("updatedAt", e. updatedAt)
+            obj.put("avatarRes", e.avatarRes)
+            obj.put("updatedAt", e.updatedAt)
             obj.put("generatedAvatarId", e.generatedAvatarId)
             obj.put("bannerColorId", e.bannerColorId)
             obj.put("highScore", e.highScore)
             obj.put("totalPops", e.totalPops)
             obj.put("bestClickPercent", e.bestClickPercent)
             obj.put("challengesCompleted", e.challengesCompleted)
-            obj.put("level", e. level)
+            obj.put("level", e.level)
             obj.put("bestStreak", e.bestStreak)
             obj.put("maxConsecutiveDays", e.maxConsecutiveDays)
             arr.put(obj)
         }
-        return arr. toString()
+        return arr.toString()
     }
 
     suspend fun submitTournamentScoreWithUserId(
@@ -1426,7 +1426,7 @@ class DataStoreManager(private val context: Context) {
                     maxConsecutiveDays = currentMaxConsecutiveDays
                 )
             } else {
-                list. add(TournamentEntry(
+                list.add(TournamentEntry(
                     name = name,
                     score = score,
                     avatarRes = avatarRes,
@@ -1452,7 +1452,7 @@ class DataStoreManager(private val context: Context) {
     // ==================== TOURNAMENT REWARDS ====================
 
     fun hasClaimedRewardForEpoch(epochMillis: Long): Flow<Boolean> =
-        context. dataStore.data.map { prefs ->
+        context.dataStore.data.map { prefs ->
             val claimedEpochs = prefs[TOURNAMENT_REWARDS_CLAIMED_EPOCHS] ?: ""
             claimedEpochs.split(",").contains(epochMillis.toString())
         }
@@ -1494,7 +1494,7 @@ class DataStoreManager(private val context: Context) {
             }
 
             try {
-                val parts = data. split(",")
+                val parts = data.split(",")
                 if (parts.size >= 4) {
                     val epochMillis = parts[0]. toLong()
                     val rank = parts[1].toInt()
@@ -1592,7 +1592,7 @@ class DataStoreManager(private val context: Context) {
         val epoch = tournamentEpochMillisFlow().first()
 
         if (epoch == 0L) {
-            return TournamentStatus. NO_TOURNAMENT
+            return TournamentStatus.NO_TOURNAMENT
         }
 
         val activeMs = getTournamentActiveMs()
@@ -1600,7 +1600,7 @@ class DataStoreManager(private val context: Context) {
         val elapsedMs = now - epoch
 
         return when {
-            elapsedMs < activeMs -> TournamentStatus. ACTIVE
+            elapsedMs < activeMs -> TournamentStatus.ACTIVE
             elapsedMs < totalMs -> TournamentStatus.ENDED_REWARDS_PENDING
             else -> TournamentStatus.CYCLE_COMPLETE
         }
@@ -1630,12 +1630,12 @@ class DataStoreManager(private val context: Context) {
     suspend fun submitScoreToFirebase(score: Int): Boolean {
         return try {
             // Asegurar auth anónimo
-            firebaseRepository. ensureAnonymousAuth()
+            firebaseRepository.ensureAnonymousAuth()
 
             val oduserId = getUserId()
             val firebaseUid = firebaseRepository.getCurrentFirebaseUid() ?: return false
 
-            val prefs = context.dataStore.data. first()
+            val prefs = context.dataStore.data.first()
             val name = prefs[PROFILE_NAME]?.ifBlank { "Player" } ?: "Player"
             val avatarRes = prefs[PROFILE_DRAWABLE] ?: 0
             val generatedAvatarId = prefs[GENERATED_AVATAR_ID] ?: 0
@@ -1677,7 +1677,7 @@ class DataStoreManager(private val context: Context) {
     suspend fun updateProfileInFirebase(): Boolean {
         return try {
             val oduserId = getUserId()
-            if (oduserId. isBlank()) return false
+            if (oduserId.isBlank()) return false
 
             // Asegurar que tenemos autenticación
             try {
@@ -1859,7 +1859,7 @@ class DataStoreManager(private val context: Context) {
                 // Pero podemos pre-crear con score 0 para que aparezca
                 firebaseRepository.ensureAnonymousAuth()
 
-                val prefs = context.dataStore. data.first()
+                val prefs = context.dataStore.data.first()
                 val name = prefs[PROFILE_NAME]?.ifBlank { "Player" } ?: "Player"
                 val avatarRes = prefs[PROFILE_DRAWABLE] ?: 0
                 val generatedAvatarId = prefs[GENERATED_AVATAR_ID] ?: 0
@@ -1872,7 +1872,7 @@ class DataStoreManager(private val context: Context) {
                 val bestStreak = prefs[HIGH_SCORE_PERFECT_STREAK] ?: 0
                 val maxConsecutiveDays = prefs[MAX_CONSECUTIVE_DAYS] ?:  0
 
-                firebaseRepository. updatePlayerProfile(
+                firebaseRepository.updatePlayerProfile(
                     oduserId = oduserId,
                     name = name,
                     avatarRes = if (avatarRes != 0) avatarRes else R.drawable.profileuser0,
